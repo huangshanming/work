@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>查看商品信息</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	</head>
+	<body>
+	    <div class="panel-head"><strong class="icon-reorder"> 查看商品信息</strong></div>
+	    <div class="body-content">
+	    	<form method="post" class="form-x" action="">
+	    		<p>
+	    			<a class="button border-main" href="goods_list.html"><span class="icon-reply"></span> 返回</a>
+	    		</p>
+	    		<table class="table border table-eye">
+	    			<tr>
+	    				<td>用户名</td>
+	    				<td>admin</td>
+	    				<td>商品名称</td>
+	    				<td>武则天媚娘装</td>
+	    				<td>商品缩略图</td>
+	    				<td><img src="images/11.jpg" style="max-height: 36px;"/></td>
+	    			</tr>
+	    			<tr>
+	    				<td>商品细节图</td>
+	    				<td colspan="5">
+	    					<img src="images/11.jpg" style="max-height: 36px;"/>
+	    					<img src="images/11.jpg" style="max-height: 36px;"/>
+	    					<img src="images/11.jpg" style="max-height: 36px;"/>
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td>商品价格</td>
+	    				<td>1200</td>
+	    				<td>所属分类</td>
+	    				<td>古风</td>
+	    				<td>所属职业</td>
+	    				<td>后勤</td>
+	    			</tr>
+	    			<tr>
+	    				<td>所属戏种</td>
+	    				<td>现代戏</td>
+	    				<td>配送快递</td>
+	    				<td>顺丰快递</td>
+	    				<td>是否推荐到首页</td>
+	    				<td>否</td>
+	    			</tr>
+	    			<tr>
+	    				<td>商品介绍</td>
+	    				<td colspan="5">面料用的新型呢料，有比较好的挺括感，绒绒的手感，也不容易起球。手感上更加细腻，密度性也会比较高，保暖性就不错了</td>
+	    			</tr>
+	    		</table>
+	    	</form>
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+		<script type="text/javascript">
+			//删除
+			function del(id){
+				if(confirm("您确定要删除吗?")){}
+			}
+			//全选
+			$("#checkall").click(function(){ 
+			  	$("input[name='ckall']").each(function(){
+				  	if (this.checked) {
+					  	this.checked = false;
+				  	}
+				  	else {
+					  	this.checked = true;
+				  	}
+			  	});
+			})
+			//全选删除
+			function DelSelect(){
+				var Checkbox=false;
+				 $("input[name='ckall']").each(function(){
+				  if (this.checked==true) {		
+					Checkbox=true;	
+				  }
+				});
+				if (Checkbox){
+					var t=confirm("您确认要删除选中的内容吗？");
+					if (t==false) return false; 		
+				}
+				else{
+					alert("请选择您要删除的内容!");
+					return false;
+				}
+			}
+		
+		</script>
+</body>
+</html>
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

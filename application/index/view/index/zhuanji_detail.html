@@ -1,0 +1,93 @@
+{include file="Common/header"}
+<style type="text/css">
+	body {background: #ddd;}
+</style>
+	<div class="container" id="app">
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   		<div style="height:40px;"></div>    
+		<article class="weui-article">
+            <h1>{{detail.title}}</h1>
+            <h2 class="title"></h2>
+            <section id="detail">
+                <h5 >{{detail.brief}}</h5>
+                <p>
+                    <img :src="detail.photo" alt="">
+                </p>
+            </section>
+			<div class="page__hd">
+		        <p class="page__desc">{{detail.create_time}}</p>
+		    </div>
+        </article>
+	</div>
+</html>
+<script type="text/javascript">
+var app = new Vue({
+	el:'#app',
+	data:{	
+		detail:[],
+		id:'',
+	},
+	methods:{
+		init:function() {
+			var id = app.$data.id;
+			if(!id) {
+				weui.alert('文章不存在');
+				history.go(-1);
+			}
+			var data = {};
+			data['id'] = id;
+			var url = base_url+'Zhuanji/detail';
+			$.ajax({
+				url: url,
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 5000,
+				success: function (data, status) {
+	                 
+					if(data.code==codeArr['e200'])
+					{
+	                    app.$data.detail = data.data;
+					}else{
+						weui.alert(data.msg);
+					}
+				},
+				fail: function (err, status) {
+					alert('数据请求异常');
+				}
+			})
+		},
+	},
+	created:function(){
+		this.id = getParam('id');
+		var id = this.id;
+		if(!id) {
+			weui.alert('文章不存在');
+			history.go(-1);
+		}
+		var data = {};
+		data['id'] = id;
+		var url = base_url+'Zhuanji/detail';
+		$.ajax({
+			url: url,
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 5000,
+			success: function (data, status) {
+                 
+				if(data.code==codeArr['e200'])
+				{
+                    app.$data.detail = data.data;
+                    $('#detail').append(data.data.detail);
+				}else{
+					weui.alert(data.msg);
+				}
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+			}
+		})
+	}
+})
+</script>

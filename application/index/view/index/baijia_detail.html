@@ -1,0 +1,65 @@
+{include file="common/header"}
+<body>
+<style type="text/css">
+    body {background:url('__ROOT__/images/baijia/bg.jpg');}
+</style>
+<link href="__ROOT__/css/baijia/names.css" rel="stylesheet">
+<div id="wrapper">
+<div class="container" id="app">
+    <div class="about_box">
+        <div class="page article js_show">
+            <div class="page__bd">
+                <article class="weui-article">
+                    <h1>{{title}}</h1>
+                    <section>
+                        <section>
+                            <p id="detail">
+                            </p>
+                        </section>
+                    </section>
+                </article>
+            </div>
+            <div class="page__ft j_bottom">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  var app = new Vue({
+    el:'#app',
+    data:{
+        title:'',
+        detail:'',
+    },
+    watch:{
+    },
+    methods:{
+    },
+    created:function() {
+        var data = {};
+        data['id'] = getParam('id');
+        var url = base_url+'Baijia/detail';
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    app.$data.title = data.data.title;
+                    $('#detail').html(data.data.detail);
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+    }
+  })
+</script>

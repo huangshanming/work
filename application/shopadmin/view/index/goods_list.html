@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>商品列表</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+    	<script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+        <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+	</head>
+	<body>
+	<div id="app">
+		<div class="ttb">
+		  	<div class="panel admin-panel">
+			    <div class="panel-head"><strong class="icon-reorder"> 商品列表</strong></div>
+			    <div class="padding border-bottom">
+			    	<p>
+			    		<button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
+				        <a class="button border-red" href="javascript:void(0)"><span class="icon-trash-o"></span> 批量删除</a>
+				        <a class="button border-main" href="goods_list_add.html"><span class="icon-plus"></span> 新增</a>
+			  			<input type="text" class="input input-auto margin-big-left" placeholder="输入标题" v-model="title"/>
+			  			<a class="button border-main" @click="show(1)"><span class="icon-search"></span> 搜索</a>
+			  		</p>
+			    </div>
+			    <div class="table-responsive">
+				    <table class="table table-hover text-center" id="goods_table">
+				      	<tr>
+				      		<th><input type="checkbox" name="ckall" value=""  /></th>
+					        <th>商品名称</th>
+					        <th>商品缩略图</th>
+					        <th>所属分类</th>
+					        <th>操作</th>       
+				      	</tr>
+				      	<tr v-for="(item,index) in goods_list">
+				      		<td>
+				      			<input type="checkbox" name="ckall" value="item.id" />
+				      		</td>
+				      		<td>
+				      			{{item.title}}
+			      			</td>
+			      			<td>
+			      				<img :src="item.picture" style="max-height: 36px;"/>
+			      			</td>
+			      			<td>
+			      				{{item.cate_name}}
+			      			</td>
+			      			<td>
+			      				<div class="button-group">
+			      					<a class="button border-green" @click="show_attr(item.id)">
+			      						<span class="icon-eye"></span> 属性
+			      					</a>
+			      					<a class="button border-main" @click="edit(item.id)">
+			      						<span class="icon-edit"></span> 编辑
+			      					</a>
+			      					<a class="button border-red" href="javascript:void(0)" @click="del(item.id,index)">
+				      			<span class="icon-trash-o"></span> 删除</a>
+				      			</div>
+			      			</td>
+				      	</tr>
+				    </table>
+			    </div>
+		  	</div>
+		  	<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style="float:left;"></nav>
+
+
+		  	<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">属性</h4>
+			            </div>
+			            <div class="modal-body">
+							<div class="table-responsive">
+							    <table class="table table-hover text-center">
+							      	<tr>
+								        <th>属性</th>
+								        <th>售价</th>
+								        <th>原价</th>
+								        <th>数量</th>
+								        <th>销量</th>
+								        <th>创建时间</th>      
+								        <th>操作</th>       
+							      	</tr>
+							      	<tr v-for="(item,index) in attr_list">
+							      		<td>
+							      			{{item.attr_info}}
+						      			</td>
+							      		<td>
+							      			{{item.price}}
+						      			</td>
+						      			<td>
+						      				{{item.origin_price}}
+						      			</td>
+						      			<td>
+						      				{{item.count}}
+						      			</td>
+						      			<td>
+						      				{{item.sale}}
+						      			</td>
+						      			<td>
+						      				{{item.create_time}}
+						      			</td>
+						      			<td>
+						      				<div class="button-group">
+						      					<a class="button border-red" href="javascript:void(0)" @click="del_attr(item.id,index)">
+							      			<span class="icon-trash-o"></span> 删除</a>
+							      			</div>
+						      			</td>
+							      	</tr>
+							    </table>
+						    </div>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="add_attr()">增加属性</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+			
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">增加属性</h4>
+			            </div>
+			            <div class="modal-body">
+		            		<input type="text" class="weui-input" v-model="price" placeholder="售价">
+		            		<input type="text" class="weui-input" v-model="origin_price" placeholder="原价">
+		            		<input type="text" class="weui-input" v-model="count" placeholder="数量">
+							<div class="label">
+				          		<label>属性：</label>
+				        	</div>
+					        <div class="weui-cell__bd">
+					          	<select class="weui-select" name="attr_id_1" id="attr_id_1"   @change="get_av(1)" v-model='attr_1'>
+					          		<option v-for="item in all_attr_list" v-bind:value="item.id">{{item.name}}</option>
+								</select>
+					        </div>
+							<div class="label">
+				          		<label>属性值：</label>
+				        	</div>
+					        <div class="weui-cell__bd">
+					          	<select class="weui-select" v-model='av_1'>
+					          		<option v-for="item in av_list_1" v-bind:value="item.id">{{item.value}}</option>
+								</select>
+					        </div>
+							<div class="label">
+				          		<label>属性：</label>
+				        	</div>
+					        <div class="weui-cell__bd">
+					          	<select class="weui-select" @change="get_av(2)" v-model='attr_2'>
+					          		<option v-for="item in all_attr_list" v-bind:value="item.id">{{item.name}}</option>
+								</select>
+					        </div>
+							<div class="label">
+				          		<label>属性值：</label>
+				        	</div>
+					        <div class="weui-cell__bd">
+					          	<select class="weui-select" v-model='av_2'>
+					          		<option v-for="item in av_list_2" v-bind:value="item.id">{{item.value}}</option>
+								</select>
+					        </div>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="add_attr_confirm()">确定</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+	</div>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+ 		data:{
+ 			p:1,
+ 			goods_list:[],
+			'title':'',
+			'order_num':'',
+			'order_list':[],
+			'detail_order':[],
+			'express_id':'',
+			'express':'',
+			attr_list:[],
+			all_attr_list:[],
+			av_list_1:[],
+			av_list_2:[],
+			goods_id:'',
+			attr_1:'',
+			attr_2:'',
+			attr_3:'',
+			attr_4:'',
+			av_1:'',
+			av_2:'',
+			av_3:'',
+			av_4:'',
+			origin_price:'',
+			price:'',
+			count:'',
+ 		},
+ 		methods:{
+ 			edit:function(id) {
+ 				window.location.href = './goods_list_edit.html?id='+id;
+ 			},
+ 			del:function(id,index) {
+ 				var data = {};
+				data['user_token'] = get_token();
+				data['id'] = id;
+				$.ajax({
+					url: base_url+'Goods/del_goods',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					success: function (data, status) {
+		            	 
+						if(data.code==codeArr['e200'])
+						{
+							weui.alert('删除成功',function(){
+ 								app.$data.goods_list.splice(index,1);
+							});
+						}else {
+							weui.alert(data.msg);
+						}
+						
+					},
+					fail: function (err, status) {
+						$('#addModal').modal('hide');
+					}
+				})
+ 			},
+ 			del_attr:function(id,index) {
+ 				var data = {};
+				data['user_token'] = get_token();
+				data['id'] = id;
+				data['goods_id'] = this.goods_id;
+				$.ajax({
+					url: base_url+'Goods/del_attr',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					success: function (data, status) {
+		            	 
+						if(data.code==codeArr['e200'])
+						{
+							weui.alert('删除成功',function(){
+ 								app.$data.attr_list.splice(index,1);
+							});
+						}else {
+							weui.alert(data.msg);
+						}
+						
+					},
+					fail: function (err, status) {
+						$('#addModal').modal('hide');
+					}
+				})
+ 			},
+ 			add_attr_confirm:function() {
+				var detail = $('#editor-year').html();
+				if(!this.price || !this.count || !this.origin_price) {
+					weui.alert('请填写必要信息');return false;
+				}
+				if(this.price<0 || isNaN( this.price )) {
+					weui.alert('请输入正确的价格');return false;
+				}
+				if(this.count<0 || isNaN( this.count )) {
+					weui.alert('请输入正确的数量');return false;
+				}
+				if(this.origin_price<0 || isNaN( this.origin_price )) {
+					weui.alert('请输入正确的原价');return false;
+				}
+				var data = {};
+				data['goods_id'] = this.goods_id;
+				data['origin_price'] = this.origin_price;
+				data['price'] = this.price;
+				data['count'] = this.count;
+				data['attr_1'] = this.attr_1;
+				data['attr_2'] = this.attr_2;
+				data['attr_3'] = this.attr_3;
+				data['attr_4'] = this.attr_4;
+				data['av_1'] = this.av_1;
+				data['av_2'] = this.av_2;
+				data['av_3'] = this.av_3;
+				data['av_4'] = this.av_4;
+				data['user_token'] = get_token();
+				$.ajax({
+					url: base_url+'Goods/add_attr',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					success: function (data, status) {
+		            	 
+						if(data.code==codeArr['e200'])
+						{
+							weui.alert('添加商品成功',function(){
+ 								$('#addModal').modal('hide');
+							});
+						}else {
+							weui.alert(data.msg,function(){
+ 								$('#addModal').modal('hide');
+							});
+						}
+						
+					},
+					fail: function (err, status) {
+						$('#addModal').modal('hide');
+					}
+				})
+ 			},
+ 			get_av:function(t) {
+				var id = 0;
+				if(t==1) {
+					id = this.attr_1;
+				}else if(t==2) {
+					id = this.attr_2;
+				}else if(t==3) {
+					id = this.attr_3;
+				}else if(t==4) {
+					id = this.attr_4;
+				}
+				var data = {};
+				data['user_token'] = get_token();
+				data['id'] = id;
+				$.ajax({
+					url: base_url+'Attrs/get_values',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					success: function (data, status) {
+		            	 
+						if(data.code==codeArr['e200'])
+						{
+							if(t==1) {
+								app.$data.av_list_1 = data.data;
+							}else if(t==2) {
+								app.$data.av_list_2 = data.data;
+							}else if(t==3) {
+								app.$data.av_list_3 = data.data;
+							}else if(t==4) {
+								app.$data.av_list_4 = data.data;
+							}
+						}
+						
+					},
+					fail: function (err, status) {
+					}
+				})
+			},
+ 			add_attr:function() {
+ 				$('#myModal').modal('hide');
+ 				$('#addModal').modal('show');
+ 			},
+ 			show_attr:function(id) {
+ 				this.goods_id = id;
+ 				var data = {};
+		        var url = base_url+'Attrs/get_by_goods';
+				data['user_token'] = get_token();
+				data['id'] = id;
+				var loading;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            beforeSend:function() {
+		            	loading = weui.loading();
+		            },
+		            success: function (data, status) {
+		            	loading.hide();
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	app.$data.attr_list = data.data;
+		                	$('#myModal').modal();
+		                }else {
+		                	weui.alert(data.msg);
+		                }
+		            },
+		            fail: function (err, status) {
+		            	loading.hide();
+		                alert('数据请求异常');
+		            }
+		        })
+ 			},
+			set_page:function(pageCount) {
+				var pageNavObj = null;//用于储存分页对象
+				var p = app.$data.p;
+				pageNavObj = new PageNavCreate("PageNavId",{ pageCount:pageCount, currentPage:p, perPageNum:2, });
+				pageNavObj.afterClick(function(page){
+					app.$options.methods.show(page);
+				});
+			},
+			show:function(page='') {
+				if(page){
+					app.$data.p = page;
+				}
+				var data = {};
+		        var url = base_url+'Goods/get_list';
+				data['user_token'] = get_token();
+				data['order_num'] = app.$data.order_num;
+				data['p'] = page;
+				data['title'] = app.$data.title;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	app.$data.goods_list = [];
+		                    app.$data.goods_list = data.data.list;
+		                    app.$options.methods.set_page(data.data.max_page);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			},
+ 		},
+		created:function() {
+ 			var data = {};
+	        var url = base_url+'Goods/get_list';
+			data['user_token'] = get_token();
+			data['p'] = this.p;
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                    app.$data.goods_list = data.data.list;
+	                    app.$options.methods.set_page(data.data.max_page);
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                alert('数据请求异常');
+	            }
+	        })
+
+	        var data = {};
+	        var url = base_url+'Attrs/get_all_list';
+			data['user_token'] = get_token();
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                    app.$data.all_attr_list = data.data;
+	                }else {
+	                	weui.alert('属性列表获取失败');
+	                }
+	            },
+	            fail: function (err, status) {
+	                weui.alert('属性列表获取失败');
+	            }
+	        })
+ 		}
+ 	});
+	
+</script>
+
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

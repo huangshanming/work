@@ -1,0 +1,28 @@
+/*--------------主体--------------*/
+.welcome{text-align: center;margin-top: 60px;}
+.pass{margin:60px auto;width: 860px;}
+.pass_left{float: left;margin-right: 60px;}
+.pass_right{margin:0 auto;float: left;}
+.user{background: url(../images/user.png) no-repeat 20px 8px;margin-top: 2px;margin-left: 10px;}
+.user span{margin-left: 50px;line-height: 35px;}
+.name{background:url(../images/suo.png) no-repeat 20px 8px;}
+.passs{background: url(../images/passw.png) no-repeat 20px 8px;}
+.yanzheng{background: url(../images/yanzheng.png) no-repeat 20px 8px;}
+.suoding{background: url(../images/suoding.png) no-repeat 20px 8px;}
+.mama{background: url(../images/tty.png) no-repeat 20px 8px;}
+dl{/*width:600px; */height: 55px;}
+dt{width:138px; height: 50px;float:left;}
+dd{ float:left; height:40px;width: 260px;}
+dd input{width: 260px;border:1px solid rgba(1,0,47,.7);border-radius: 4px;outline: none;}
+.one{ width:260px;}
+.two div{width:30px; background:yellow; height:40px; line-height:40px;}
+.three input{width: 113px;}
+.sumbit{margin-left: 32px;background-color: #a0a0a0;width: 262px;border: none;height: 34px;text-align: center;color: #fff;}
+dd input{height:30px; margin-top:5px;}
+.yuanma{width: 262px;margin-left: 32px;height: 34px;color: #333;background: #fff;}
+.zc{width:370px; border:none;line-height:40px;margin-left: 30px; text-align:center;background-color: #01002f;color: #fff;font-size: 16px;}
+dd div{color:red; font-size:12px; }
+.baobao{height: 400px;height: 30px;margin-left:30px;background: url(../images/yuan.png) no-repeat;}
+.baobao p{margin-left: 18px;line-height:8px;}
+.on{display:block;text-align: right;margin-right: 14px;line-height: 24px;}
+.zc{display: block;height: 40px;}

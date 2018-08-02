@@ -1,0 +1,47 @@
+.what_title{height:40px;line-height:40px;margin-top: 45px;margin-bottom:25px;}
+.what_title .what{float: left;font-size: 18px;margin-left: 10px;}
+.what_title .is{float: right;margin-right:10px;}
+.what_title .is img{vertical-align: middle;}
+.what_title .is span{margin-left: 20px;font-size: 14px;}
+.what_title .is .fourgo{margin-left: 40px;}
+.article{margin-top: 26px;}
+.article p{line-height: 20px;}
+.news_title{margin-top: 40px;}
+.explain_one{margin-top: 30px;}
+.explain_one .hill{float: left;}
+.good .study{float: left;}
+.good a{margin-left: 80px;}
+.good p span{margin-left: 20px;}
+.explain_two{margin-left: 60px;width: 740px;height: 80px;background-color: #f5f5f5;margin-top:20px;line-height: 80px;text-align: center;}
+.explain_two p span{margin-left: 20px;}
+.explain_two p img{margin: auto;vertical-align: middle;}
+.explain_one .good{float: left;margin-left: 20px;line-height: 24px;}
+.news_title h2{float: left;}
+.news_title span{float: left;line-height: 30px;}
+.news_title a{float: right;width: 75px;height: 20px;background-color: #01002f;color:#fff;text-align: center;line-height: 20px;}
+.pager{text-align: center;margin-top: 60px;}
+.pager li{cursor:pointer;display: inline-block;padding:2px 7px;margin-right:10px;background-color: #999;line-height: 20px;text-align: center;}
+.pager li a{display: inline-block;}
+.pager li select{width: 70px;height: 25px;text-align: center;margin-right: 10px;}
+.pager .page{background-color: #fff;}
+.mainsrp_pager .three {background-color: #01002f;}
+.mainsrp_pager .three a{color: #fff;}
+
+.sky{float: right;margin-top: 15px;}
+.sky p span{font-size: 14px;margin-right: 20px;line-height: 44px;}
+.sky p a{display:inline-block;font-size: 16px;width: 26px;float: left;background: none;line-height: 50px;    margin-right: 20px;}
+.sky p .shareto {float: left;}
+.sky p a img{width: 100%;}
+
+.pic{height: 50px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 50px;color: #000;}
+.pic span{margin-left: 10px;}
+
+.twodays{margin-top: 32px;}
+.twodays li{width: 480px;height: 191px;border: 1px solid #999;box-shadow: 3px 3px 2px #999;float: left;}
+.twodays .twodays_one{margin-right: 35px;}
+.twodays li a{float: left;}
+.twodays li .writer{float: left;margin-left: 18px;margin-top: 10px;width: 240px;}
+.writer p {line-height: 24px;font-size: 12px;}
+.writer .write{float: left;}
+.writer .date {float: right;}
+.writer span{font-weight: 600;line-height: 30px;}

@@ -1,0 +1,18 @@
+.sut{width: 920px;margin: 0 auto;position: relative;}
+.do{margin-top: 45px;background: #F5F5F5;padding: 15px;margin-bottom: 15px;}
+.do p{margin-top: 10px;}
+.do .idea{float: left;}
+.do .ido{float: right;}
+.me{font-size: 16px;text-align: right;}
+.do .alarm{height: 36px;background:url(../images/alarm.png) no-repeat;margin-top: 25px;}
+.do .alarm span{margin-left:26px;}
+.world{float: left;}
+.time{float: right;}
+.world img{width: 25px;float: left}
+.world span{margin-left: 10px;line-height: 30px;display: table-cell;float: left;}
+.yan{margin-top: 50px;margin-left: 40px;width: 360px;box-shadow: 3px 3px 10px #999;}
+.ask{margin-top: 80px;}
+.ask p{text-indent: 35px;line-height: 24px;}
+.ask .home{text-indent: 0;}
+.leg{margin-top: 25px;}
+.atnow a{display:inline-block;width: 100px;height: 40px;background-color: #01002f;color: #fff;box-shadow:3px 3px 3px #999;text-align: center;line-height: 40px;position: absolute;bottom: 10px;right: 0;}

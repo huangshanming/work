@@ -1,0 +1,179 @@
+{include file="common/header"}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+	<link rel="stylesheet" href="__ROOT__/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__ROOT__/css/animate.min.css"> 
+	<link rel="stylesheet" href="__ROOT__/css/lightbox.css"> 
+	<link rel="stylesheet" href="__ROOT__/css/main.css">
+	<link rel="stylesheet" href="__ROOT__/css/responsive.css">
+	<link rel="stylesheet" href="__ROOT__/css/layer.css">
+
+	
+    <script type="text/javascript" src="__ROOT__/js/home/jquery.min.js" ></script>
+	<script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="__ROOT__/js/lightbox.min.js"></script>
+	<script type="text/javascript" src="__ROOT__/js/wow.min.js"></script>
+	<script type="text/javascript" src="__ROOT__/js/main.js"></script>   
+	<script type="text/javascript" src="__ROOT__/layer/dist/layer.js"></script>  
+<section id="home-slider">
+    <div class="container">
+        <div class="row">
+            <div class="main-slider">
+                <div class="slide-text">
+                    <h1>创建家谱史，构建亲链网</h1>
+                    <p>利用互联网智能化搜索软件技术，把有一定密切血缘关系任意数量个体，联接成一个较为亲密的蜂窝立体状虚拟社交社区平台的建设。</p>
+                    <a href="#" class="btn btn-common">开始修谱</a>
+                </div>
+                <img src="__ROOT__/images/hill.png" class="slider-hill" alt="slider image">
+                <img src="__ROOT__/images/house.png" class="slider-house" alt="slider image">
+                <img src="__ROOT__/images/sun.png" class="slider-sun" alt="slider image">
+                <img src="__ROOT__/images/birds1.png" class="slider-birds1" alt="slider image">
+                <img src="__ROOT__/images/birds2.png" class="slider-birds2" alt="slider image">
+            </div>
+        </div>
+    </div>
+    <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>
+</section>
+    
+    <!-- 波浪 -->
+    <style type="text/css">
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 480px;
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+</style>
+<!-- 波浪 -->
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('__ROOT__/images/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('__ROOT__/images/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('__ROOT__/images/wave-bot.png')"></div>
+  </div>
+</div>
+
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="single-features">
+                    <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>创建您的在线家谱</h2>
+                        <P>你的过去从你的家庭树开始，很容易在亲链网 建立一个。添加名称，日期，照片和故事，并与您的家人分享。</P>
+                    </div>
+                    <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="__ROOT__/images/1.jpg" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="__ROOT__/images/2.jpg" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>用DNA血缘鉴定 惊奇自己</h2>
+                        <P>我们简单的DNA测试可以揭示您独特的种族背景，并与新发现的亲戚匹配。以市场上最实惠的DNA测试，将家族史纳入到新的水平。</P>
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>加入亲链网社区</h2>
+                        <P>世界各地的数百万家庭使用亲链网探索他们的历史。与成员合作，并通过我们的网络，每天与长期失踪的亲戚团聚在一起的数千人。</P>
+                    </div>
+                    <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="__ROOT__/images/3.jpg" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <div class="single-features">
+                    <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="__ROOT__/images/4.jpg" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>随时随地和任何设备上记录您的家族史</h2>
+                        <P>所有这些都是私人和安全的。在他们之间同步，享受一个迷人的旅程到你的过去，无论你在哪里。</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+            <br/>
+                    <div class="col-md-6"> 
+                      <p class="footer-link"> <span><a href="#">关于我们</a></span> | <span><a href="#">联系我们</a></span> </p> 
+                     </div> 
+                     <div class="col-md-6 text-right"> 
+                      <p class="footer-copyright">&copy; 2017 亲链网<br />京ICP备：17068519号</p> 
+                     </div> 
+            </div>
+        </div>
+    </footer>
+ 
+
+</body>
+</html>

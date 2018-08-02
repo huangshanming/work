@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+    <script>
+    window.onload = function() {
+        
+    var users ={
+        zhangsan:{id:null,portrait: 'images/personPhoto.png',name:'zhangsan',
+            token:'dXOJIInqKDahrpig+TJcq3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2MRus3mUdaZlHmSaXaVmp5/yPASY0/fWWKnbNZUuYfcE'},
+        lisi:{id:null,portrait: 'images/personPhoto.png',name:'lisi',
+            token:'0Qs6YHRj2p45jxfKS40Io3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2E2dH7xIEfEE9lfCByjdxCqYNAuDFMk66A=='},
+        wangwu:{id:null,portrait: 'images/personPhoto.png',name:'wangwu',
+            token:'YDzes+B4OSriNTYeLDC7BNW7KjoFgbvTq2niPU2WAjOFaE5xQ4uoUaoBdBWJ5BKUEvTxDLlTxn16ULwUYj+kwQ=='},
+        zhaoliu:{id:null,portrait: 'images/personPhoto.png',name:'zhaoliu',
+            token:'VSbhlnY4D1iHI1J55slcudW7KjoFgbvTq2niPU2WAjOFaE5xQ4uoUQyqzS9F3hrhDe+2JBV8YMyEe0rO3YzbFCUCwvJsNpzO'},
+            zhangsan:{id:null,portrait: 'images/personPhoto.png',name:'zhangsan',
+            token:'dXOJIInqKDahrpig+TJcq3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2MRus3mUdaZlHmSaXaVmp5/yPASY0/fWWKnbNZUuYfcE'},
+        lisi:{id:null,portrait: 'images/personPhoto.png',name:'lisi',
+            token:'0Qs6YHRj2p45jxfKS40Io3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2E2dH7xIEfEE9lfCByjdxCqYNAuDFMk66A=='},
+        wangwu:{id:null,portrait: 'images/personPhoto.png',name:'wangwu',
+            token:'YDzes+B4OSriNTYeLDC7BNW7KjoFgbvTq2niPU2WAjOFaE5xQ4uoUaoBdBWJ5BKUEvTxDLlTxn16ULwUYj+kwQ=='},
+            zhangsan:{id:null,portrait: 'images/personPhoto.png',name:'zhangsan',
+            token:'dXOJIInqKDahrpig+TJcq3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2MRus3mUdaZlHmSaXaVmp5/yPASY0/fWWKnbNZUuYfcE'},
+        lisi:{id:null,portrait: 'images/personPhoto.png',name:'lisi',
+            token:'0Qs6YHRj2p45jxfKS40Io3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2E2dH7xIEfEE9lfCByjdxCqYNAuDFMk66A=='},
+        wangwu:{id:null,portrait: 'images/personPhoto.png',name:'wangwu',
+            token:'YDzes+B4OSriNTYeLDC7BNW7KjoFgbvTq2niPU2WAjOFaE5xQ4uoUaoBdBWJ5BKUEvTxDLlTxn16ULwUYj+kwQ=='},
+
+    },url = location.href;
+    var paraStrs = getParam('name');
+       var owner = {id:null,portrait: 'images/personPhoto.png',name:'zhangsan',
+            token:'dXOJIInqKDahrpig+TJcq3U1lgYP6zEv1OpCrfDse9JiBi4BNyqa2MRus3mUdaZlHmSaXaVmp5/yPASY0/fWWKnbNZUuYfcE'};
+    }
+    </script>
+<head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/css/chat.css"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/css/message.css"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/widget/css/RongIMWidget.min.css"/>
+    <script src="__ROOT__/widget/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+<script src="__ROOT__/widget/angular.js"></script>
+<script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.12.min.js"></script>
+<script src="http://res.websdk.rongcloud.cn/RongIMClient.emoji-0.9.2.min.js"></script>
+<script type="text/javascript" src="__ROOT__/js/chat/dynamic.js"></script>
+<script src="__ROOT__/js/chat/angular-route.min.js"></script>
+<script src="__ROOT__/js/chat/jquery.nicescroll.js"></script>
+<script src="__ROOT__/js/chat/common.js"></script>
+
+<script src="__ROOT__/js/chat/core.js"></script>
+</head>
+<body ng-app="sdkApp" ng-controller="sdkController">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 menu">
+            <img src="images/favicon.ico">
+            <button type="button">Settings</button>
+            <button type="button">Contacts</button>
+            <button type="button" id="loginOut">LoginOut</button>
+        </div>
+    </div>
+    <div class="row msg-btn">
+        <div class="col-md-3 left-msg-btn">
+                <div><my-button amount="amount"></my-button></div>
+        </div>
+        <div class="col-md-9 right-msg-btn messageBody-btn">
+
+        </div>
+        <div class="col-md-9 right-msg-btn detailBody-btn" style="display: none;">
+            Group Info
+        </div>
+    </div>
+    <div class="row messageBody" >
+        <div class="col-md-3 left-box">
+            <ul class="col-lg-12" id="friendlistId">
+
+                    <li ng-repeat="user in friendlist " targettype="4">
+                        <da-li>
+                    <span><img src="images/user.png"/></span>
+                    <span class="user_name" >{{user.username}}</span>
+                    <span class="user_name">{{user.targetId}}</span>
+                    <span class="noticeMsg" style="display: none;"></span>
+                        </da-li>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-9 messageBox">
+            <div class="col-md-12 msg-content"></div>
+            <div class="col-md-12 expression" style="display: none"></div>
+            <div class="col-md-2 send-btn-file">
+                     <span class="send-btn-file-picture">
+                       <a  href="javascript:void(0)" title="图片"></a>
+                         <input type="file" name="file" id="pictureuploadId">
+                     </span>
+                    <span class="send-btn-file-voice">
+                       <a  href="javascript:void(0)" id="" title="声音"></a>
+                     </span>
+            </div>
+            <div class="col-md-8 send-content" contenteditable="true">
+            </div>
+            <div class="col-md-2 send-btn-box">
+                <div class="btn-expression-box">
+                     <span class="btn-expression">
+                       <a  href="javascript:void(0)" id="btnExpressionId" title="表情"></a>
+                     </span>
+                </div>
+                <div class="btn-box">
+                    <span ><button id="send">发送</button></span><br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 detailBox" style="display: none;">
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

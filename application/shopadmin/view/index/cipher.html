@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>商品列表</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="weui-cells weui-cells_form">
+	            <div class="weui-cell weui-cell_vcode">
+	                <div class="weui-cell__hd">
+	                    <label class="weui-label">原提现密码:</label>
+	                </div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" placeholder="原提现密码" type="password" v-model="cipher">
+	                </div>
+	            </div>
+	            <div class="weui-cell weui-cell_vcode">
+	                <div class="weui-cell__hd">
+	                    <label class="weui-label">新提现密码:</label>
+	                </div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" placeholder="新提现密码" type="password" v-model="new_cipher">
+	                </div>
+	            </div>
+	            <div class="weui-cell weui-cell_vcode">
+	                <div class="weui-cell__hd">
+	                    <label class="weui-label">重复密码:</label>
+	                </div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" placeholder="重复密码" type="password" v-model="re_cipher">
+	                </div>
+	            </div>
+	            <a class="weui-btn weui-btn_primary" href="javascript:" @click="update()" id="showTooltips">确定</a>
+	        </div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+			cipher:'',
+			re_cipher:'',
+			new_cipher:'',
+		},
+		methods:{
+			update:function() {
+				if(!this.re_cipher || !this.new_cipher || !this.cipher) {
+					weui.alert('不予许为空');return false;
+				}
+				if(this.re_cipher!=this.new_cipher) {
+					weui.alert('两次密码不一致');return false;
+				}
+				var data = {};
+		        var url = base_url+'User/update_cipher';
+				data['user_token'] = get_token();
+				data['new_cipher'] = this.new_cipher;
+				data['cipher'] = this.cipher;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	weui.alert('修改成功');
+		                }else if(data.code==codeArr['e400'])
+		                {
+		                	weui.alert(data.msg);
+		                }else{
+		                	weui.alert('提现密码错误');
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			}
+		},
+		created:function() {
+			
+		}
+	})
+</script>
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

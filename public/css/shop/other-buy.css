@@ -1,0 +1,66 @@
+.bar{margin-top: 60px;margin-left: 25px;}
+.bar_ok{height: 30px;line-height: 30px;margin-bottom: 10px;}
+.bar_ok h2{float: left;}
+.bar_ok a{float: right;font-size: 14px;margin-right: 25px;}
+.filtering li{margin-top: 20px;margin-left: 22px;}
+.filtering li p{margin-right: 20px;line-height: 20px;}
+.filtering li .adress{margin-left: 100px;}
+.filtering li a{float: right;font-size: 14px;margin-right: 25px;}
+.price{margin-top:80px; }
+.price_title{margin-top: 30px;margin-bottom: 25px;}
+.price_title p{display:inline-block;width: 235px;font-size: 14px;text-align: center;}
+.price_pig p{width: 235px;height: 150px;text-align: center;display: inline-block;}
+.price_pig p img{vertical-align: middle;}
+.price_pig p .child{display:inline-block;width:60px;height:18px;border:1px solid #999;float: left;text-align: center;}
+.price_pig p span{display: inline-block;height: 20px;margin-top: 55px;}
+.price_pig button{width: 20px;height: 20px;background-color: #01002f;color: #fff;text-align: center;line-height: 20px;float: left;}
+.price_pig textarea{margin-top: 55px;}
+.pay{text-align: right;}
+.pay a{display: inline-block;width: 125px;height: 30px;background-color: #01002f;text-align: center;line-height: 30px;color: #fff;font-size: 16px;margin-right: 25px;box-shadow: 2px 2px 5px #01002f;}
+
+/*发票页面*/
+.title{line-height: 40px;font-size: 16px;}
+.fp-sel span{margin-right: 20px;line-height: 20px;}
+.fp-sel span i{vertical-align: top;font-style: normal;margin-left: 5px;}
+.regular-radio {
+    display: none;
+}
+.regular-radio:checked + label {
+    background-color: #e9ecee;
+    color: #99a1a7;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+}
+.regular-radio + label {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+}
+.regular-radio:checked + label:after {
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 3px;
+    background: #99a1a7;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+    text-shadow: 0px;
+    left: 3px;
+    font-size: 32px;
+}
+
+.fp-sd li{margin: 12px 0;}
+.fp-name{display:none;margin: 20px 0;}
+.fp-name p{margin-bottom: 5px;}
+.fp-name input{width: 200px;padding: 0 10px;line-height: 30px;border: 1px solid #999999;border-radius: 4px;background: transparent;;}
+.fp-btn a{width: 80px;height: 30px;background: #010025;color: #FFFFFF;text-align: center;line-height: 30px;display: inline-block;}
+
+
+
+

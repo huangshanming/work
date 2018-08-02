@@ -1,0 +1,104 @@
+{include file="common/header"}
+<style type="text/css">
+</style>
+<script src="__ROOT__/js/album.js"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/css/album.css">
+
+<body>
+	<div id="diapoContainer">
+		<button type="button" class="btn btn-primary" @click="upload()">我要上传</button>
+		<img class="imgsrc" v-for="item in list" :alt="item.remark" :src="item.photo" />
+		<div id="bkgcaption">
+			<button type="button" class="btn btn-default" v-show="pre" @click="get(-1)">上一页</button>
+			<button type="button" class="btn btn-default" v-show="next" @click="get(1)">下一页</button>
+		</div>
+		<div id="caption"></div>
+	</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+var app;
+app = new Vue({
+	el:'#diapoContainer',
+	data:{
+		pagesize:20,
+		page:getParam('p'),
+		list:[],
+		count:'',
+		length:0,
+		pre:false,
+		next:false,
+	},
+	watch:{
+			
+
+	},
+	methods:{
+		get:function(t) {
+			var p;
+			if(t==-1) {
+				p = this.page-1;
+			}else if(t==1) {
+				p = this.page+1;
+			}
+			window.location.href = "album.html?p="+p;
+		},
+		show:function() {
+			var data = {};
+	        data['pagesize'] = this.pagesize;
+	        data['page'] = this.page;
+	        data['user_token'] = get_token();
+	        var url = base_url+'Album/get_list';
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 10000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                	app.$data.list = [];
+	                    app.$data.page = data.data.page;
+	                    app.$data.pagesize = data.data.pagesize;
+	                    app.$data.count = data.data.count;
+	                    app.$data.list = data.data.list;
+	                    app.$data.length = data.data.list.length;
+	                    if(app.$data.page<=1){
+							app.$data.pre = false;
+						}else {
+							app.$data.pre = true;
+						}
+						var last_page = Math.ceil(app.$data.count/app.$data.pagesize);
+						if(app.$data.page>=last_page || app.$data.length<app.$data.pagesize) {
+							app.$data.next = false;
+						}else {
+							app.$data.next = true;
+						}
+	                }else {
+	                	weui.alert(data.msg,function(){
+	                		history.go(-1);
+	                	});
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                history.go(-1);
+	            }
+	        })
+		},
+		upload:function() {
+			window.location.href = './album_upload.html';
+		}
+	},
+	created:function() {
+		this.show();
+	}	
+});
+window.onload = function(){
+	setTimeout("dom_onload();", 700)
+}
+</script>

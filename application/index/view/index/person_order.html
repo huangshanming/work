@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账户管理-我的订单</title>
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+        <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+		<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+		<link rel="stylesheet" type="text/css" href="__ROOT__/css/shop/main.css"/>
+		<link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    	<script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+	</head>
+	<body class="font-normal" style="overflow:-Scroll;overflow-x:hidden">
+	<div id="app">
+		<div class="main center">
+			<div class="control">
+				<!-- <div class="control-l fl">
+					<div class="ctl-top"><img src="img/ct9.png"/> 个人控制台</div>
+					<div class="ctl-list">
+						<h3><img src="img/ct4.png" />交易管理</h3>
+						<p class="active"><i></i><a href="person_order.html">我的订单</a></p>
+						<p><i></i><a href="person-order-assess.html">我的评价</a></p>
+					</div>
+				</div> -->
+				<div class="control-r fr">
+					<div class="ctr-con">
+						<div class="order-list for">
+							<div class="sc-con select-on">
+								<div class="btm sc-tr">
+									<span>订单号：</span>
+									<input type="text" v-model="order_num">
+									<a class="button bgshadow" @click="order_search()">搜索</a>
+								</div>
+								<div class="sc-t-ul allright">
+									<a href="javascript:void(0)" v-bind:class="{allname:order_index==0}" @click="getOrder(0)">所有订单({{count_list.all}})</a>
+									<a href="javascript:void(0)" v-bind:class="{allname:order_index==1}" @click="getOrder(1)">等待买家付款({{count_list.waitPay}})</a>
+									<a href="javascript:void(0)" v-bind:class="{allname:order_index==2}" @click="getOrder(2)">等待发货({{count_list.waitSend}})</a>
+									<a href="javascript:void(0)" v-bind:class="{allname:order_index==3}" @click="getOrder(3)">已发货({{count_list.sended}})</a>
+									<a href="javascript:void(0)" v-bind:class="{allname:order_index==4}" @click="getOrder(4)">成功的订单({{count_list.final}})</a>
+								</div>
+								<div class="sc-t">
+									<div class="fl sc-tl">
+										<span>
+											<input type="checkbox" id="checkbox_on" class="chk_1" />
+											<label for="checkbox_on"></label><span>全选</span>
+										</span>
+										<a class="button bgshadow" href="" style="margin-right: 20px;margin-left:20px;">批量删除</a>
+									</div>
+									
+									<div class="clearit"></div>
+								</div>
+								
+								<div class="sc-t-ul bad">
+									<span class="babyname">宝贝名称</span>
+									<span>单价</span>
+									<span>数量</span>
+									<span>交易状态</span>
+									<span>实付款</span>
+								</div>
+								<hr class="dash" />
+								<ul class="goods-item" v-for="(item, index) in all_list">
+									<li class="lines">
+										<div class="goods-lists best">
+											<div class="lists-top bottom">
+												<input type="checkbox" id="checkbox_on" class="chk_1"  style="display:block;float:left;" />
+												<!-- <label for="checkbox_on"></label> -->
+												<span>订单号：{{item.order_num}}</span>
+												<span class="oktime">成交时间: {{item.create_time}}</span>
+											</div>
+										</div>
+										<div class="goods-movie">
+											<span @click="detail(item,index)" data-toggle="modal" data-target="#detailModal" target="_blank">
+												<img :src="item.picture" alt="" width="40px;" style="vertical-align: middle;margin-right:10px">
+												<span class="name-algin">{{item.title}}</span>
+												<span class="price nine">{{item.price}}</span>
+												<span class="nice one">{{item.number}}</span>
+											</span>
+											<span class="nice">
+												<span>{{item.status_msg}}</span>
+												<!-- <a href="person-order-product-detail.html">详情</a> -->
+											</span>
+											<span class="nice">{{item.nice_pay}}</span>
+										</div>
+									</li>
+									<div class="clearit"></div>
+								</ul>
+								
+								<div class="text-center">
+									<a href="javascript:void(0)" @click="get_more();" v-if="loading==0">加载更多</a>
+								 	<i class="weui-loading" v-if="loading==1"></i>
+								 	<div class="weui_cells_title tcenter" v-if="loading==2">没有更多数据了</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearit"></div>
+			</div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">订单详情</h4>
+			            </div>
+			            <!-- <div class="modal-body"> -->
+							<p>订单号：{{detail_order.order_num}}</p>
+							<p>收货人：{{detail_order.name}}</p>
+							<p>联系电话：{{detail_order.phone}}</p>
+							<p>收货地址：{{detail_order.address}}</p>
+							<p>备注：{{detail_order.remark}}</p>
+							<p>当前状态：{{detail_order.status}}</p>
+							<p>快递公司：{{detail_order.express}}</p>
+							<p>快递单号：{{detail_order.express_id}}</p>
+			            <!-- </div> -->
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="confirm(detail_order)" v-if="detail_order.status==3">确认收货</button>
+			                <button type="button" class="btn btn-primary" @click="go_pay(detail_order.order_num)" v-if="detail_order.status==1&&detail_order.crowd_funding==0">去支付</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+		</div>
+	</div>
+		
+		<script type="text/javascript">
+			function tanopen(){
+				$("#win1").show();
+				$("#wincon1").show();
+			}
+			function tanclose(){
+				$("#win1").hide();
+				$("#wincon1").hide();
+			}
+		</script>
+		<script type="text/javascript">
+			function tanopen2(){
+				$("#win2").show();
+				$("#wincon2").show();
+			}
+			function tanclose2(){
+				$("#win2").hide();
+				$("#wincon2").hide();
+			}
+		</script>
+		<script src="__ROOT__/js/shop/banner.js"></script>
+		<script src="__ROOT__/js/shop/tab_change.js"></script>
+		<script src="__ROOT__/js/shop/fixed4.js"></script>
+		<script type="text/javascript" src="__ROOT__/js/shop/sctp.js" ></script>
+	</body>
+</html>
+<script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data: {
+			all_list:[],
+			last_id:0,
+			loading:0,
+			count_list:[],
+			order_index:0,
+			order_num:'',
+			detail_order:[],
+		},
+		methods:{
+	        go_pay:function(order_num) {
+	            window.location.href = "./other_pay.html?order_num="+order_num;
+	        },
+			order_search:function() {
+				var order_num = this.order_num;
+				var data = {};
+				data['order_num'] = order_num;
+				data['user_token'] = get_token();
+				var loading;
+				$.ajax({
+					url: base_url+'Order/get_list',
+					type: 'post',
+					data: data,
+					dataType:'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							var list = {};
+							list = data.data;
+							app.$data.count_list = data.msg;
+							app.$data.all_list = list;
+							app.$data.loading = 2;
+						}else
+						{
+							app.$data.loading = 2;
+							alert(data.msg);
+						}
+						
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			getOrder:function(index) {
+				this.order_index = index;
+				app.$data.loading = 0;
+				var data = {};
+				data['status'] = this.order_index;
+				data['user_token'] = get_token();
+				$.ajax({
+					url: base_url+'Order/get_list',
+					type: 'post',
+					data: data,
+					dataType:'json',
+					timeout: 1000,
+					success: function (data, status) {
+						
+						if(data.code==codeArr['e200'])
+						{
+							var list = {};
+							list = data.data;
+							app.$data.count_list = data.msg;
+							app.$data.all_list = list;
+							if(list.length>0) {
+								app.$data.last_id = list[list.length-1]['id'];
+								app.$data.loading = 0;
+							}else {
+								app.$data.loading = 2;
+							}
+						}else
+						{
+							app.$data.loading = 2;
+							alert(data.msg);
+						}
+						
+					},
+					fail: function (err, status) {
+						alert('数据请求异常');
+					}
+				})
+			},
+			alert:function()
+			{
+				alert(1);
+				console.log(this.data.all_list);
+			},
+			get_more:function() {
+				app.$data.loading = 1;
+				var data = {};
+				data['user_token'] = get_token();
+				data['last_id'] = this.last_id;
+				data['status'] = this.order_index;
+				$.ajax({
+					url: base_url+'Order/get_list',
+					type: 'post',
+					data: data,
+					dataType:'json',
+					timeout: 1000,
+					success: function (data, status) {
+						
+						if(data.code==codeArr['e200'])
+						{
+							var list = {};
+							list = data.data;
+							for(var i=0;i<list.length;i++) {
+								app.$data.all_list.push(list[i]);
+							}
+							if(list.length>0) {
+								app.$data.last_id = list[list.length-1]['id'];
+								app.$data.loading = 0;
+							}else {
+								app.$data.loading = 2;
+							}
+						}else
+						{
+							alert(data.msg);
+						}
+					},
+					fail: function (err, status) {
+						alert('数据请求异常');
+						app.$data.loading = 0;
+					}
+				})
+			},
+			detail:function(item,index) {
+				item['index'] = index;
+				app.$data.detail_order = item;
+			},
+			confirm:function(detail_order) {
+				var data = {};
+				var index = detail_order.index;
+				data['user_token'] = get_token();
+				data['id'] = detail_order.id;
+				$.ajax({
+					url: base_url+'Order/collect_goods',
+					type: 'post',
+					data: data,
+					dataType:'json',
+					timeout: 1000,
+					success: function (data, status) {
+						
+						if(data.code==codeArr['e200'])
+						{
+							weui.alert('确认收货成功,欢迎下次光临');
+							Vue.set(app.all_list[index],'status_msg','完成');
+							$('#detailModal').modal('hide');
+						}else
+						{
+							alert(data.msg);
+						}
+					},
+					fail: function (err, status) {
+						alert('数据请求异常');
+						app.$data.loading = 0;
+					}
+				})
+			},
+		},
+		
+		created:function() {
+			var data = {};
+			data['user_token'] = get_token();
+			data['status'] = this.order_index;
+			$.ajax({
+				url: base_url+'Order/get_list',
+				type: 'post',
+				data: data,
+				dataType:'json',
+				timeout: 1000,
+				success: function (data, status) {
+					
+					if(data.code==codeArr['e200'])
+					{
+						var list = {};
+						list = data.data;
+						app.$data.count_list = data.msg;
+						app.$data.all_list = list;
+						app.$data.last_id = list[list.length-1]['id'];
+					}else
+					{
+						alert(data.msg);
+					}
+					
+				},
+				fail: function (err, status) {
+					alert('数据请求异常');
+				}
+			})
+		}
+	})
+</script>
+

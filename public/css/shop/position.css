@@ -1,0 +1,26 @@
+.mc_left{width: 575px;margin-top: 60px;margin-left: 25px;font-size: 14px;float: left;}
+.mc_left_o{height: 100px;line-height: 100px;}
+.mc_left_tp span{margin-right: 25px;}
+.mc_left_op{float: left;}
+.mc_left_op img{vertical-align: middle;margin-right: 10px;}
+.mc_left_tp{float: right;}
+.best_answer{margin-bottom: 10px;}
+.best_answer img{vertical-align: middle;margin-right: 5px;}
+.best_answer p{line-height: 20px;margin-top: 30px;}
+.mc_left_tp a{display: inline-block;width: 20px;height: 20px;}
+.mc_left_tp a img{width: 100%;}
+.mc_left_tp b{font-weight: normal;}
+.mc_right{float: right;margin-top: 60px;font-size: 14px;}
+.need{width: 320px;height: 35px;background: url(../images/line.png) no-repeat 0 32px;}
+.need h2{margin-left: 15px;}
+.bowbo{text-align: center;margin-top: 30px;}
+.bowbo a{width: 100px;height:30px;display: inline-block;background-color: #01002f;color: #fff;text-align: center;line-height: 30px;margin-top: 30px;box-shadow: 1px 1px 3px #01002f;}
+.bowbo textarea{padding: 5px 15px;}
+.boxbox p{margin-top: 20px;margin-left: 25px;margin-bottom: 10px;}
+.boxbox .oneinput{width: 288px;height: 28px;border: 1px solid #01002f;margin-left: 15px;}
+.boxbox .twoinput{width: 288px;height: 198px;border: 1px solid #01002f;margin-left: 15px;}
+.boxbox a{display: block;width: 80px;height: 28px;background-color: #01002f;color: #fff;text-align: center;line-height: 28px;margin-top: 20px;margin-left: 215px;margin-bottom: 40px;}
+.diandian{margin-top: 24px;}
+.diandian li{background: url(../images/diandian.png) no-repeat left;margin-top: 10px;margin-left: 15px;}
+.diandian li a{margin-left: 10px;}
+.margint{margin-top: 10px;}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>亲链网商城后台管理中心</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script> 
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>   
+	</head>
+	<body style="background-color:#f2f9fd;">
+		<div class="header bg-main">
+		  	<div class="logo margin-big-left fadein-top">
+		    	<h1><img src="__ROOT__/images/shopadmin/y.jpg" class="radius-circle rotate-hover" style="height: 50px;" alt="" />亲链网商城后台管理中心</h1>
+		  	</div>
+		  	<div class="head-l">
+		  		<a class="button button-little bg-red" href="{:url('index/login')}"><span class="icon-power-off"></span> 退出登录</a> 
+		  	</div>
+		</div>
+		<div class="leftnav">
+		  	<h2><span class="icon-home"></span>基本设置</h2>
+		  	<ul>
+			    <li><a href="{:url('index/base_pwd')}" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
+			    <li><a href="{:url('index/bank_info')}" target="right"><span class="icon-caret-right"></span>提现账户资料</a></li>
+			    <li><a href="{:url('index/cipher')}" target="right"><span class="icon-caret-right"></span>修改提现密码</a></li>
+		  	</ul>   
+		  	<h2><span class="icon-suitcase"></span>商品管理</h2>
+		  	<ul>
+			    <li><a href="{:url('index/goods_list')}" target="right"><span class="icon-caret-right"></span>商品列表</a></li>
+			    <li><a href="{:url('index/attr_add')}" target="right"><span class="icon-caret-right"></span>添加商品属性</a></li>
+			    <li><a href="{:url('index/goods_list_add')}" target="right"><span class="icon-caret-right"></span>添加商品</a></li>
+		  	</ul>
+		  	<h2><span class="icon-suitcase"></span>订单管理</h2>
+		  	<ul>
+			    <li><a href="{:url('index/order_list')}" target="right"><span class="icon-caret-right"></span>订单列表</a></li>
+		  	</ul>
+		  	<h2><span class="icon-suitcase"></span>提现</h2>
+		  	<ul>
+			    <li><a href="{:url('index/balance')}" target="right"><span class="icon-caret-right"></span>申请提现</a></li>
+			    <li><a href="{:url('index/balance_list')}" target="right"><span class="icon-caret-right"></span>提现记录</a></li>
+		  	</ul>
+		</div>
+
+		<script type="text/javascript">
+			$(function(){
+			  	$(".leftnav h2").click(function(){
+				  	$(this).next().slideToggle(200);	
+				  	$(this).toggleClass("on"); 
+			  	})
+			  	$(".leftnav ul li a").click(function(){
+				    $("#a_leader_txt").text($(this).text());
+			  		$(".leftnav ul li a").removeClass("on");
+					$(this).addClass("on");
+			  	})
+			 	$(".leftnav").children("ul:last-child").css("padding-bottom","100px");
+			});
+		</script>	
+		<div class="admin">
+		  	<iframe scrolling="auto" rameborder="0" src="{:url('index/goods_list')}" name="right" width="100%" height="100%"></iframe>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+	<link rel="stylesheet" href="__ROOT__/css/shop/model.css">
+	<link rel="stylesheet" href="__ROOT__/css/pageNav.css">
+	<script src="__ROOT__/js/shop/jquery.min.js"></script>
+	<script src="__ROOT__/js/shop/fixed3.js"></script>
+	<script src="__ROOT__/js/shop/tab_change.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="http://cdn.bootcss.com/weui/1.1.2/style/weui.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <style type="text/css">
+    	.cate_a {color:green;}
+    </style>
+</head>
+<body>
+<div id="app">
+<!--头部-->
+<!-- 主体 -->
+	<div class="main">
+		<div class="center">
+			<div class="main_left">
+				<div class="source">
+					<input type="text" class="sce" v-model="search_text">
+					<button type="submit" class="submit" @click="search()">搜 索</button>
+				</div>
+				<div class="clearit"></div>
+				<div class="job">
+					<div class="zhiye">
+						<span>分 类 ：</span>
+						<div class="xia">
+							<a href="javascript:void(0)" @click="find_cate(item.id,index)" v-for="(item,index) in cate_list" :class="{'cate_a':cate_index === index}">{{item.name}}</a>
+						</div>
+					</div>
+				</div>
+				<div class="xizhong sure">
+					<div class="zuozuo">
+						<a href="javascript:void(0)" @click="reOrder(1)" v-bind:class="{ bold: order==1 }">综合</a>
+						<a href="javascript:void(0)" @click="reOrder(2)" v-bind:class="{ bold: order==2 }">销量</a>
+						<a href="javascript:void(0)" @click="reOrder(3)" v-bind:class="{ bold: order==3 }">价格</a>
+					</div>
+					<ul class="qujian">
+						<li>¥&nbsp;<input type="text" v-model="min_price"></li>
+						<li>&nbsp;-&nbsp;</li>
+						<li><input type="text" v-model="max_price"></li>
+						<li><button @click="price_send()">确定</button></li>
+					</ul>
+				</div>
+				<div class="many">
+					<ul id="con_ul">
+						<li class="rmb" v-for="(item,index) in goods_list">
+							<a @click="buy(item)" href="javascript:void(0)">
+								<img :src="item.picture">
+								<span>
+									<i>{{item.title}}</i><br>
+									<i>¥{{item.price}}元</i>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="main_right">
+				<div class="bang">
+					<img src="images/bang.png" alt="">
+					<button @click="self()">个人中心</button>
+				</div>	
+				<div class="need">
+					<h2>需求栏</h2>
+				</div>
+				<div class="uncle">
+					<ul id="adv">
+						<li v-for="(item,index) in adv_list">
+							<a @click="buyAdv(item)" href="javascript:void(0)">
+								<img width=50px height=70px :src="item.picture">
+							</a>
+							<div class="longt">
+								<p>名称：{{item.title}}</p>
+								<p>价格：{{item.price}} 元</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style="float:left;"></nav>
+			<div class="clearit">
+				
+			</div>
+	</div>
+<!-- 底部 -->	
+	<div class="clearit"></div>
+	<div class="footer">
+		
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+			goods_list:[],
+			cate_list:[],
+			adv_list:[],
+			search_text:'',
+			cate_index:'',
+			cate_id:'',
+			min_price:'',
+			max_price:'',
+			order:1,
+			page:1,
+		},
+		methods:{
+			price_send:function() {
+				var data = {};
+				var p = 1;
+				var loading;
+				data['p'] = p;
+				data['user_token'] = get_token();
+				data['cate_id'] = this.cate_id;
+				data['order'] = this.order;
+				data['search'] = this.search_text;
+				data['min'] = this.min_price;
+				data['max'] = this.max_price;
+				$.ajax({
+					url: base_url+'Goods/get_list',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							app.$data.goods_list = data.data.list;
+							app.$data.cate_list = data.data.cates;
+							var pageNavObj = null;//用于储存分页对象
+							pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:p, perPageNum:5, });
+							pageNavObj.afterClick(function(page){
+								app.$options.methods.setPage(page);
+							});
+						}
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			search:function() {
+				var data = {};
+				var loading;
+				var p = 1;
+				data['p'] = p;
+				data['user_token'] = get_token();
+				data['cate_id'] = this.cate_id;
+				data['order'] = this.order;
+				data['search'] = this.search_text;
+				data['min'] = this.min_price;
+				data['max'] = this.max_price;
+				$.ajax({
+					url: base_url+'Goods/get_list',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							app.$data.goods_list = data.data.list;
+							app.$data.cate_list = data.data.cates;
+							var pageNavObj = null;//用于储存分页对象
+							pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:p, perPageNum:5, });
+							pageNavObj.afterClick(function(page){
+								app.$options.methods.setPage(page);
+							});
+						}
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			reOrder:function(index) {
+				this.order = index;
+				this.cate_index = index;
+				var loading;
+				var data = {};
+				var p = 1;
+				data['p'] = p;
+				data['user_token'] = get_token();
+				data['cate_id'] = this.cate_id;
+				data['order'] = index;
+				data['search'] = this.search_text;
+				data['min'] = this.min_price;
+				data['max'] = this.max_price;
+				$.ajax({
+					url: base_url+'Goods/get_list',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							app.$data.goods_list = data.data.list;
+							app.$data.cate_list = data.data.cates;
+							var pageNavObj = null;//用于储存分页对象
+							pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:p, perPageNum:5, });
+							pageNavObj.afterClick(function(page){
+								app.$options.methods.setPage(page);
+							});
+						}
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			find_cate:function(cate_id,index) {
+				this.cate_index = index;
+				app.$data.cate_id = cate_id;
+				var loading;
+				var data = {};
+				var p = 1;
+				data['p'] = p;
+				data['user_token'] = get_token();
+				data['cate_id'] = cate_id;
+				data['order'] = this.order;
+				data['search'] = this.search_text;
+				data['min'] = this.min_price;
+				data['max'] = this.max_price;
+				$.ajax({
+					url: base_url+'Goods/get_list',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							app.$data.goods_list = data.data.list;
+							app.$data.cate_list = data.data.cates;
+							var pageNavObj = null;//用于储存分页对象
+							pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:p, perPageNum:5, });
+							pageNavObj.afterClick(function(page){
+								app.$options.methods.setPage(page);
+							});
+						}
+
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			setPage:function(page) {
+				var data = {};
+				this.page = page;
+				var loading;
+				data['p'] = page;
+				data['cate_id'] = app.$data.cate_id;
+				data['order'] = app.$data.order;
+				data['user_token'] = get_token();
+				data['search'] = this.search_text;
+				data['min'] = this.min_price;
+				data['max'] = this.max_price;
+				$.ajax({
+					url: base_url+'Goods/get_list',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					beforeSend:function() {
+						loading = weui.loading();
+					},
+					success: function (data, status) {
+						
+						loading.hide();
+						if(data.code==codeArr['e200'])
+						{
+							app.$data.goods_list = data.data.list;
+							app.$data.cate_list = data.data.cates;
+							var pageNavObj = null;//用于储存分页对象
+							pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:page, perPageNum:5, });
+							pageNavObj.afterClick(function(page){
+								app.$options.methods.setPage(page);
+							});
+						}
+					},
+					fail: function (err, status) {
+						loading.hide();
+						alert('数据请求异常');
+					}
+				})
+			},
+			buy:function(item) {
+				window.location.href = './buy.html?id='+item.id;
+			},
+			buyAdv:function(item) {
+				window.location.href = './buy.html?id='+item.goods_id;
+			},
+			self:function() {
+				window.location.href = './person_order.html';
+			},
+		},
+		created:function() {
+			var data = {};
+			var p = getParam('p')?getParam('p'):1;
+			this.cate_id = getParam('cate_id');
+			data['p'] = p;
+			data['cate_id'] = this.cate_id;
+			data['user_token'] = get_token();
+			$.ajax({
+				url: base_url+'Goods/get_list',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 1000,
+				success: function (data, status) {
+					
+					if(data.code==codeArr['e200'])
+					{
+						app.$data.goods_list = data.data.list;
+						app.$data.cate_list = data.data.cates;
+						var pageNavObj = null;//用于储存分页对象
+						pageNavObj = new PageNavCreate("PageNavId",{ pageCount:data.data.pageCount, currentPage:p, perPageNum:5, });
+						pageNavObj.afterClick(function(page){
+							app.$options.methods.setPage(page);
+						});
+					}else
+					{
+						weui.alert(data.msg);
+						window.location.href = './index.html';
+					}
+					
+				},
+				fail: function (err, status) {
+					alert('数据请求异常');
+				}
+			})
+
+			$.ajax({
+				url: base_url+'Adv/get_model',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 1000,
+				success: function (data, status) {
+					
+					if(data.code==codeArr['e200'])
+					{
+						app.$data.adv_list = data.data;
+					}
+					
+				},
+				fail: function (err, status) {
+					alert('数据请求异常');
+				}
+			})
+		}
+	})
+	
+
+
+			
+</script>

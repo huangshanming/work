@@ -1,0 +1,160 @@
+body {
+    background: url("../images/mooning.png") repeat scroll 0 0;
+    overflow-x: hidden;
+}
+/*****************菜单*********start***************************************************************/
+.menu{
+    background-color: #6389A8;
+    margin-top: 50px;
+    height: 30px;
+    padding-top: 5px;
+    padding-top: 0px\0;
+}
+.menu button{
+    background: none;
+    border: 0px;
+    color: gainsboro;
+}
+.menu button:hover{
+   color: #ffffff;
+}
+
+/*****************菜单*********end*****************************************************************/
+
+/*****************消息按钮******start**************************************************************/
+.msg-btn{
+    background-color: #FFFFFF;
+    height: 60px;
+}
+.left-msg-btn{
+    border-right: 1px solid gray;
+    height: inherit;
+}
+.left-msg-btn .search-box{
+    width:100%;
+    background-color: #F2F2F2;
+    margin-top: 10px;
+}
+.left-msg-btn .search-plguin{
+    width:75%;
+    margin-top:10px;
+    background-color: #F2F2F2;
+    border: 0px;
+}
+.right-msg-btn{
+    height: inherit;
+}
+/*****************消息按钮******end****************************************************************/
+
+/*****************消息Body*****start**************************************************************/
+.messageBody{
+    height: 470px;
+}
+.messageBody .left-box{
+    height: inherit;
+    background-color: #FFFFFF;
+    border-right: 1px solid grey;
+}
+.messageBody .left-box ul{
+    overflow: hidden;
+    cursor: pointer;
+    list-style:none;
+    color: #000;
+    padding: 0;
+    margin:0 0 0 -15px;
+    width: 300px;
+}
+.messageBody .left-box ul li img{
+    height:60px !important;
+    padding: 10px;
+}
+.messageBody .left-box ul li{
+   padding:0 0 0 0;
+}
+.messageBody .left-box .user_name{
+    margin-left: 2px;
+    padding:10px 10px 10px 10px;
+
+}
+.messageBody .messageBox{
+    height: inherit;
+    border-top: 1px solid grey;
+    background:url("../images/bg.png") no-repeat;
+}
+.messageBody .messageBox .msg-content{
+    height: 83%;
+    margin-top: 3px;
+}
+.messageBody .messageBox .send-content{
+    background-color: blanchedalmond;
+    height: 15%;
+    padding: 2px;
+    margin-top: 5px;
+}
+.messageBody .messageBox .send-btn-box{
+    padding-top:15px;
+    background-color: blanchedalmond;
+    height: 15%;
+    margin-top: 5px;
+}
+.messageBody .messageBox .btn-expression-box{
+    float: left;
+    margin-left: -10px;
+    margin-right: 20px;
+}
+.messageBody .messageBox .btn-expression a{
+    background: url("../images/icons.min.png") no-repeat;
+    display: block;
+    background-position: -86px 1px;
+    width: 28px;
+    height: 27px;
+}
+.messageBody .messageBox .expression{
+    height: 120px;
+    background-color: blanchedalmond;
+    border-bottom: 1px solid gray;
+}
+.messageBody .messageBox button{
+    width: 70px;
+    background-color: #2992d9;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+.messageBody .messageBox .send-btn-file{
+    height: 15%;
+    background-color: blanchedalmond;
+    margin-top: 5px;
+}
+.messageBody .messageBox .send-btn-file .send-btn-file-picture a{
+    background: url("../images/camera.png") no-repeat;
+    display: block;
+    width: 45px;
+    height: 40px;
+    margin-top: 15px;
+    float: left;
+}
+.messageBody .messageBox .send-btn-file .send-btn-file-picture input{
+    position: absolute;
+    height: 70px;
+    width: 50px;
+    opacity: 0;
+}
+.messageBody .messageBox .send-btn-file .send-btn-file-picture input:hover{
+    cursor: pointer;
+}
+.messageBody .messageBox .send-btn-file .send-btn-file-voice a{
+    background: url("../images/voice.png") no-repeat;
+    display: block;
+    width: 45px;
+    height: 40px;
+    margin-top: 15px;
+    margin-left: 70px;
+}
+.messageBody .detailBox{
+    height: inherit;
+    border-top: 1px solid grey;
+    background-color:#ffffff;
+}
+/*****************消息Body****end**************************************************************/

@@ -1,0 +1,62 @@
+.center_soure{margin-top: 45px;}
+.upload {float: right;margin-right: 80px;width: 110px;height: 40px;line-height: 40px;text-align: center;background-color: #01002f;color: #fff;font-size: 14px;}
+.source{float: left;margin-left: 160px;}
+.sce{width: 398px;height: 38px;border: 1px solid #01002f;float: left;}
+.submit{width: 80px;height: 40px;background-color: #01002f;border: none;color: #fff;float: left;font-size: 14px;}
+.center_item_left{float: left;}
+.center_item_left .ul{width: 254px;background-color: #ededed;margin-top: 60px;}
+.center_item_left .center_item_left_title{display:block;height: 54px;border-bottom: 1px solid #666;line-height:54px;background: url(../images/xx.png) no-repeat 215px center;}
+.center_item_left ul li{height: 56px;border-bottom: 1px dashed #999;line-height: 56px;}
+.center_item_left ul li span{margin-right: 10px;}
+.center_item_left ul li span:first-child{font-weight: 600;margin-left: 30px;}
+.center_item_left ul li span:nth-child(2){font-weight: 600;}
+.center_item_left ul li span:nth-child(3){color: #999;}
+.center_item_left ul .dress{border-bottom: none;margin-bottom: 32px;}
+.message .message_center a:nth-child(2){margin-left: 30px;}
+.message{width: 240px;text-align: center;margin-top: 40px;}
+.sale a{display: block;width: 254px;height: 38px;background-color: #01002f;color: #fff;font-size: 16px;text-align: center;line-height: 38px;}
+.center_item_left ul .dress{border-bottom: none;margin-bottom: 32px;}
+.center_item_right{margin-top: 60px;float: right;margin-left: 40px;width: 685px;}
+.center_item_right ul li{width: 690px;height: 125px;}
+.center_item_right ul li img{float: left;}
+.center_item_right ul li .get{float: left;width: 480px;margin-left: 30px;}
+.center_item_right ul li .get p{margin-top: 16px;line-height: 20px;}
+.get .div .dop{margin-left: 0;margin-right: 45px;float: left;}
+.get .div .dop span{margin-right: 35px;}
+.get .div .dtp{float: right;margin-right: 14px;}
+.get .div .dtp span{margin-left: 20px;}
+.xian{width: 680px;height: 1px;border-top:1px dashed #999;margin-top: 25px;margin-bottom: 25px;}
+.pager{text-align: center;margin-top: 60px;}
+.pager li{cursor:pointer;display: inline-block;padding:2px 7px;margin-right:10px;background-color: #999;line-height: 20px;text-align: center;}
+.pager li a{display: inline-block;}
+.pager li select{width: 70px;height: 25px;text-align: center;margin-right: 10px;border: 1px solid #999;}
+.pager li:nth-child(3){background-color: #01002f;}
+.pager li:nth-child(3) a{color: #fff;}
+.pager .page{background-color: #fff;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/wom.png) no-repeat;}
+.title-bottom{background: url(../images/com.png) no-repeat;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;position: relative;}
+.blue li a .onet{width: 40px;position: absolute;top: 50%;margin-top: -40px;left: 50%;margin-left: -27px;}
+/*.blue li a .twot{display: none;}*/
+.clothes ul .thing{margin-bottom: 16px;}
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 18px;}
+
+

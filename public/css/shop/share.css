@@ -1,0 +1,61 @@
+/*.log .log_share{position: relative;background: url(../images/ccc.png) no-repeat 0 0; background-size: 100% 100%}*/
+/*.log .logshare>a{background: url(../images/ccc.png) no-repeat 0 0; background-size: 100% 100%}*/
+
+.center_soure{margin-top: 45px;}
+.upload {float: right;margin-right:104px;width: 110px;height: 40px;line-height: 40px;text-align: center;background-color: #01002f;color: #fff;font-size: 14px;    margin-top: 17px;}
+.source{float: left;margin-left:140px;margin-top: 17px}
+.sce{width: 398px;height: 38px;border: 1px solid #01002f;float: left;}
+.submit{width: 80px;height: 40px;background-color: #01002f;border: none;color: #fff;float: left;font-size: 14px;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/tuceng.png) no-repeat center left;}
+.title-bottom{background: url(../images/rvr.png) no-repeat center left;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.clearit{clear:both;}
+.more p{margin-right: 30px;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 16px;}
+.all{color: #000;font-weight:600;}
+.hot{float: right;padding-right: 10px;}
+.hot span{display: inline-block;padding:2px 12px;text-align: center;line-height: 26px;margin-left: 25px;border: 1px solid #666;border-radius: 6px;color: #666;font-size: 14px;}
+.clothes,.info{overflow: hidden;width: 1000px;}
+.clothes ul li{float: left;margin-left: 45px;margin-bottom: 35px;overflow: hidden;width: 213px;height: 200px;border: 1px solid #ddd;box-shadow: 2px 3px 10px #999;border-right:none;}
+.tt ul li{float: left;}
+.clothes ul li a p{font-size:8px;padding: 0 5px;}
+.reader ul li{width: 484px;height: 191px;margin-left: 20px;float: left;}
+.reader ul li a{float: left;}
+.reader ul li .writer{float: left;margin-left: 18px;margin-top: 10px;width: 240px;}
+.reader ul li .writer p{line-height: 24px;}
+.reader ul li .writer span{font-weight: 600;line-height: 30px;}
+.reader ul li .writer .date{float: right;}
+.reader ul li .writer .write{float: left;}
+.reader ul .lefto{margin-left: 0}
+.clothes ul .lefto{margin-left: 0;}
+.clothes .active{display: block;}
+.tabchange{display: none;}
+.info ul li span{position: static;color: #333;font-weight: 600;line-height: 20px;}
+.info ul li p span{font-weight: normal;line-height: 24px;}
+.info ul li p .collect{float: right;}
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;}
+.clothes ul .thing{margin-bottom: 16px;}
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+.logshare:hover #now{display: block;}
+/*#now li:hover{background-color:#01002f;}
+#now {width: 150px;text-align: center;}
+#now li a{width: 150px;}
+.log .logshare ul{width: 155px;position: absolute;top:75px;background-color: #01002f;z-index: 4; left:18px;display: none;}
+.log .logshare ul li{height:41px;width: 150px;background-color: #0b1044;}
+.log .logshare ul li a{color: #fff;}*/

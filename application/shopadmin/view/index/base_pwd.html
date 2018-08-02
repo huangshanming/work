@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>密码设置</title>
+<link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+<link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+<script src="__ROOT__/js/home/jquery.min.js"></script>
+<script src="__ROOT__/js/shopadmin/pintuer.js"></script>
+<script src="__ROOT__/js/shopadmin/common.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-key"></span> 修改密码</strong></div>
+  <div class="body-content">
+     <form method="post" class="form-x" action="">
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">管理员帐号：</label>
+        </div>
+        <div class="field">
+          <label style="line-height:33px;">
+           admin
+          </label>
+        </div>
+      </div>      
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">原始密码：</label>
+        </div>
+        <div class="field">
+          <input type="password" class="input w50" id="old" name="old" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />       
+        </div>
+      </div>      
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">新密码：</label>
+        </div>
+        <div class="field">
+          <input type="password" class="input w50" name="new" id="new" size="50" placeholder="请输入新密码" data-validate="required:请输入新密码,length#>=5:新密码不能小于5位" />         
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label for="sitename">确认新密码：</label>
+        </div>
+        <div class="field">
+          <input type="password" class="input w50" name="renew" id="renew" size="50" placeholder="请再次输入新密码" data-validate="required:请再次输入新密码,repeat#new:两次输入的密码不一致" />          
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="button" onclick="check()"> 提交</button>   
+        </div>
+      </div>    
+      </form>
+  </div>
+</div>
+<a href="javascript:void(0)" id="btn-scroll-up"> 
+	<img src="__ROOT__/images/shopadmin/top.png"/>
+</a>
+</body></html>
+<script type="text/javascript">
+function check()
+{
+  var old = $('#old').val();
+  var tnew = $('#new').val();
+  var renew = $('#renew').val();
+  if(!old || !tnew || !renew)
+  {
+    alert('输入不完整');
+    return false;
+  }
+  if(tnew != renew)
+  {
+    alert('两次输入的密码不一致');
+    return false;
+  }
+  var data = {};
+  data['new'] = tnew;
+  data['old'] = old;
+  data['user_token'] = get_token();
+  $.ajax({
+      url: base_url+'User/change_pas',
+      type: 'post',
+      data: data,
+      dataType: 'json',
+      timeout: 1000,
+      success: function (data, status) {
+         
+        if(data.code==codeArr['e200'])
+        {
+          set_session('user_token',null);
+          alert(data.msg);
+          window.location.href = './login.html';
+        }else
+        {
+          alert(data.msg);
+        }
+        
+      },
+      fail: function (err, status) {
+        alert('数据请求异常');
+      }
+    })
+}
+</script>
+<script>
+  if(!get_token()) {
+    window.location.href = "./login.html";
+  }
+</script>

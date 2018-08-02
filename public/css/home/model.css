@@ -1,0 +1,67 @@
+.main{margin-top: 45px;}
+.main_left{/*width: 725px;*/float: left;}
+.source{float: right;margin-right: 40px;}
+.sce{width: 398px;height: 38px;border: 1px solid #01002f;float: left;}
+.submit{width: 80px;height: 40px;background-color: #01002f;border: none;color: #fff;float: left;font-size: 14px;}
+.job{width: 725px;height: 110px; margin-top: 45px;}
+.job a{margin-right: 50px;}
+.job span{display:block;height: 40px;width: 50px;float: left;margin-left: 18px;}
+.huzi{margin-top: 14px;}
+.zhiye{border-bottom: 1px dashed #999;padding-bottom: 15px;}
+.xizhong{width: 725px;height: 35px;border-bottom: 1px dashed #999;line-height: 35px;}
+.sure{background-color: #f5f5f5;border: 1px solid #e8e8e8;}
+.sure a{margin-left: 18px;margin-right: 20px;}
+.bold{color: #01002f;font-weight: 800;}
+.zuozuo{float: left;}
+.qujian{float: right;}
+.qujian li{float: left;}
+.qujian li input{width: 55px;height: 24px;color: #666;}
+.qujian button{width: 60px;height: 20px;margin-right:55px;margin-left:50px;margin-top:8px;float: left;background-color: #01002f;border: none;color: #fff;}
+.many{width: 725px;}
+.many li a{width: 100%;height: 100%;display: block;}
+.many li{width: 24%;height: 230px;margin-top: 40px;float: left;margin-right: 1%;}
+.many li img{width: 100%;height: 100%;}
+.rmb a{position: relative;}
+.rmb span{color:#fff;display: inline-block;background-color: rgba(0,0,0,.4);position: absolute;bottom: 0;left: 0;text-align: center;padding: 8px 0;width: 100%;}
+.rmb i{display: block;width: 100%;height: 20px;}
+.main_right{float: left;margin-left: 30px;}
+.main_right img{display: block;}
+.main_right button{width: 225px;height: 55px;background-color: #01002f;color: #fff;font-size: 20px;margin-top: 10px;margin-left: 5px;}
+.need{height: 35px;margin-top: 66px;background: url(../images/nend.png) no-repeat 0 32px;}
+.uncle{margin-top: 40px;}
+.uncle li{margin-top: 30px;/*width: 230px;*/height: 112px;}
+.uncle li a img{display: block;float: left;}
+.longt{float: left;margin-left: 16px;}
+.longt p{line-height: 22px;margin-top: 4px;}
+.smore a{display: block;width: 130px;height: 40px;background-color: #01002f;color: #fff;margin: 35px auto 0 auto;text-align: center;line-height: 40px;font-size: 14px;}
+.pager{text-align: center;margin-top: 60px;}
+.pager li{cursor:pointer;display: inline-block;padding:2px 7px;margin-right:10px;background-color: #999;line-height: 20px;text-align: center;}
+.pager li a{display: inline-block;}
+/*.pager .item{width: 50px;}*/
+.pager li select{width: 70px;height: 25px;text-align: center;margin-right: 10px;}
+.pager .page{background-color: #fff;}
+.end{margin-left: 20px;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/wom.png) no-repeat;}
+.title-bottom{background: url(../images/com.png) no-repeat;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;}
+.clothes ul .thing{margin-bottom: 16px;}
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 18px;}
+

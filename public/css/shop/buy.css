@@ -1,0 +1,58 @@
+.banner img{width: 100%;}
+.buy{margin-top: 60px;}
+.pic{position: relative;height: 230px;}
+.xiangqing{float: left;width: 270px;}
+.smallbanner{position: relative;}
+.smallbanner .pic li{position: absolute;top: 0;left: 0;}
+.small{margin-top: 20px;}
+.small li{float: left;margin-right: 15px;}
+.i{position: absolute;bottom:20px;left: 100px;}
+.i i{display:inline-block;width: 8px;height: 8px;background-color: #fff;border-radius: 100%;}
+.i .fff{background-color:#01002F;}
+.share{margin-top: 30px; }
+.share a{margin-left: 20px;}
+.share a img{vertical-align: middle;margin-bottom: 3px;}
+.busrz span{display: inline-block;width: 80px;height: 30px;background-color: #01002f;color: #FFFFFF;text-align: center;line-height: 30px;border-radius: 5px;}
+.share span{margin-left: 10px;margin-top: 10px;}
+.number{margin-left: 70px;width: 250px;height: 40px;float: left;j}
+.number li{margin-bottom: 40px;}
+.have{width: 250px;height: 40px;background-color: #ddd;line-height: 40px;}
+.have span{margin-left: 30px;font-size: 15px;}
+.sics{text-decoration:line-through;}
+.math{width: 250px;height: 20px;}
+.math a{display: inline-block;width: 32px;height: 20px;background-color: #01002f;color:#fff;text-align: center; float: left;border:1px solid #01002f;}
+.math p{display: inline-block;float: left;margin-right: 20px;}
+.math input{width: 50px;height: 20px;float: left;text-align: center;color: #01002f;border: 1px solid #999;}
+.number .onbuy{width: 250px;height: 30px;margin-bottom: 15px;}
+.onbuy a{width: 120px;height: 30px;background-color: #01002f;display: block;color: #fff;text-align: center;line-height: 30px;}
+.ten span{margin-left: 15px;}
+.hot{width: 170px;float: right;}
+.title p{font-size: 16px;font-weight: 700;color: #000;height: 30px;background: url(../images/line.png) no-repeat bottom left;margin-bottom: 20px;}
+.title li{display:block;width: 150px;margin-top: 15px;}
+.title .rec{margin-top: 30px;margin-bottom: 10px;}
+.title img{width: 100%;}
+.title span{font-size: 12px;text-align: center;line-height: 25px;}
+.recommend{text-align: center;}
+.baby_weixin{margin-top:80px;}
+.baby_weixin{float: left;margin-right: 70px;}
+.baby_weixin_top a{display: block;width: 250px;height: 40px;background-color: #01002f;color:#fff;text-align: center;line-height: 40px;font-size: 16px; }
+.baby_weixin_top .qq a{display:inline-block;background-color: #fff;width: 125px;margin-top: 40px;margin-bottom: 60px;}
+.hotop{float: none;}
+.hotop{width: 250px;margin-top: 50px;}
+.hotop li{width: 250px;}
+.baby_after{float: left;margin-top: 60pr;position: relative;}
+.pinglun{width: 660px;height: 40px;border-bottom: 1px dashed #999;border-top:1px dashed #999;line-height: 40px;}
+.pinglun a{font-size: 16px; }
+.babyxq{margin-left: 30px;font-weight: 700;margin-right: 90px;}
+.very{position: absolute;}
+.very li{margin-top: 40px;height: 110px;width: 500px;}
+.sace{float: left;text-align: center;margin-right: 40px;}
+.good{float: left;margin-top: 20px;}
+.good p span{margin-left: 20px;}
+.very p{line-height: 30px;font-size: 14px}
+.blpck{display: none;}
+.black li{margin-top: 40px;}
+.tb-revhd{position: absolute;}
+.filtering li{float: left;margin-right: 15px;margin: 2px 10px 2px 0;text-align: left;margin-top: 30px;}
+.attrs{ margin-top: -30px; width:260px; }
+.attr{ margin-top: 1px; width:125px;   }

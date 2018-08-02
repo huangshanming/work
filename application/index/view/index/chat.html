@@ -1,0 +1,494 @@
+{include file="common/header"}
+	<script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="__ROOT__/css/chat/index.css" />
+	<!--<script src="js/rem.js"></script>-->
+	<script src="__ROOT__/js/chat/flexible.min.js"></script>
+	<style type="text/css">
+		@media only screen and (min-width: 320px) and (max-width: 1024px) {
+			html,body{
+				width:100%;
+				height:100%;
+				background-size: cover;
+			}
+			.content{
+				width:100%;
+				height:100%;
+				position:fixed;
+				top:0;
+				left:0;
+				margin-left:0;
+				margin-top:0;
+			}
+			#chat{
+				width: 100%;
+				/*height:7rem;*/
+				height:60%;
+			}
+
+			.chat-list {
+									
+				/*background: pink;*/
+				/*height:4.6rem;*/
+				width:100%;				
+				height:40%;
+				padding: 0;
+			}
+			.chat-list .kefu {
+				width: 100%;
+				/*height: 70px;*/
+				height: 2.1875rem;
+				/*line-height: 70px;*/
+				line-height: 2.1875rem;
+				/*font-size: 30px;*/
+				font-size: 0.9375rem;
+				color: #000;
+				float: left;
+				text-align: center;
+			}
+			
+			.chat-list img {
+				width: 40px;
+				width:1.25rem;
+				/*height: 40px;*/
+				height:1.25rem;
+				/*line-height: 70px;*/
+				line-height: 2.1875rem;
+				vertical-align: middle;
+			}
+			.chat-list li img {
+				width:1.5625rem;
+				height:1.5625rem;
+			}
+			.chat-list .title {
+				width: 40px;
+				height: 40px;
+				line-height: 70px;
+				vertical-align: middle;
+			}
+			.user{
+				width:100%;
+				background: #ccc;
+				float:none;
+				height:1.875rem;
+				line-height: 1.875rem;
+			}
+			.user img{
+				margin-left: 0.3125rem;
+				width:1.25rem;
+				height:1.25rem;
+			}
+			.user .title{
+				font-size: 0.5rem;
+				line-height: 1.875rem;
+			}
+			.user .cha{
+				font-size: 0.625rem;
+				margin-right: 0.625rem;
+			}
+			.list-ul{
+				height:66%;
+			}
+			.chat-list li{
+				width:2.5rem;
+				height:2.5rem;
+			}
+			.chat-list li p {
+				width:1.5625rem;
+				height:0.625rem;
+				line-height:0.625rem;
+				font-size: 0.4375rem;
+			}
+			.m-message .time{
+				margin:0.21875rem 0;
+			}
+			.m-message .time>span {
+				font-size: 0.4375rem;
+				padding:0 0.5625rem;
+			}
+			.m-message .avatar {
+				width:0.9375rem;
+				height:1.25rem;
+			}
+			.m-message .text{
+				font-size: 0.4375rem;
+				max-width: calc(100% - 70px);
+			}
+			.m-text textarea {
+				font-size: 0.4375rem;
+			}
+		}
+		
+		@media only screen and (min-width: 768px) and (max-width: 1024px) {
+			#chat .m-message {
+			    height: calc(100% - 18pc);
+			}
+			.m-text {
+		 			height: 18pc;
+		 		}
+		 		.m-message .text{
+				max-width: calc(100% - 90px);
+			}
+		}
+		.page-input-box {
+			display:none;
+		}
+		.goods_img:hover {
+			transform: scale(1.4);
+		}
+		.attr_span {
+			background: white;
+			margin-right: 12px;
+			margin-top: 10px;
+			float: left;
+			height:30px;
+			line-height:30px;
+			color:#666;
+			font-size: 16px;
+			font-weight:500;
+			cursor:pointer;
+		}
+		.attr_select_color {
+			border:2px solid blue;
+		}
+		.goods_number {
+			height:58px;
+		    width: 100px;
+		    text-align: center;
+		    float:left;    
+		    margin-top: 17px;
+		}
+		.goods_number button{
+	        width: 20px;
+		    height: 20px;
+		    background-color: #01002f;
+		    color: #fff;
+		    text-align: center;
+		    line-height: 20px;
+		    float: left;
+		}
+		.goods_number input {
+	        display: inline-block;
+		    width: 60px;
+		    height: 20px;
+		    border: 1px solid #999;
+		    float: left;
+		    text-align: center;
+		}
+		.recharge_number {
+		    width: 170px;
+		    text-align: center;
+		    float:left;    
+		}
+		.recharge_number button{
+	        width: 38px;
+		    height: 38px;
+		    background-color: #FAFAFA;
+		    color: #BABABA;
+		    text-align: center;
+		    line-height: 20px;
+		    font-size:18px;
+		    border:1px solid #E5E5E5;
+		    float: left;
+		}
+		.recharge_number input {
+	        display: inline-block;
+		    width: 60px;
+		    height: 38px;
+		    border: 1px solid #999;
+		    float: left;
+		    text-align: center;
+		    border:none;
+		    border-top:1px solid #E5E5E5;
+		    border-bottom:1px solid #E5E5E5;
+		}
+	</style>
+</head>
+
+	<body>
+		<div class="content">
+			<div class="chat-list">
+				<div class="kefu">
+					<!-- <img src="mtoux.jpg" /> -->
+					<!-- <span class="title">客服</span> -->
+				</div>
+				<div class="weui-cell__bd">群组</div>
+				<div class="weui-cells">
+		            <div class="weui-cell" v-for="(item,index) in groups" :id="groups[index].send_uid" v-on:click="doThis(groups[index].send_uid,groups[index].nick_name,groups[index].headimg,groups[index].content,index)">
+		                <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+		                    <img :src="groups[index].headimg"  style="width: 50px;display: block">
+		                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;" v-show="item.news>0">{{item.news}}</span>
+		                </div>
+		                <div class="weui-cell__bd">
+		                    <p>{{item.nick_name}}</p>
+		                    <p style="font-size: 13px;color: #888888;">{{item.name}}</p>
+		                </div>
+		            </div>
+	            </div>
+				<div class="weui-cell__bd">家族成员</div>
+				<div class="weui-cells">
+		            <div class="weui-cell" v-for="(item,index) in items" :id="items[index].send_uid" v-on:click="doThis(items[index].send_uid,items[index].nick_name,items[index].headimg,items[index].content,index)">
+		                <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+		                    <img :src="items[index].headimg"  style="width: 50px;display: block">
+		                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;" v-show="item.news>0">{{item.news}}</span>
+		                </div>
+		                <div class="weui-cell__bd">
+		                    <p>{{item.nick_name}}</p>
+		                    <p style="font-size: 13px;color: #888888;">{{item.name}}</p>
+		                </div>
+		            </div>
+	            </div>
+				<!-- <ul class="list-ul">
+					<li v-for="(item,index) in items" :id="items[index].send_uid" v-on:click="doThis(items[index].send_uid,items[index].nick_name,items[index].headimg,items[index].content,index)">
+						<img :src="items[index].headimg" alt="" />
+						<p>
+							{{item.nick_name}}
+							<span v-show="item.news>0">
+								{{item.news}}
+							</span>
+						</p>
+						<p v-else @click.stop="remove(index)" >x</p>
+					</li>
+				</ul>
+				 -->
+			</div>
+			<div id="chat" v-show="send_uid">
+				<div class="user">
+					<img :src="head_photo" />
+					<span class="title">{{head_name}}</span>
+					<!-- <a class="cha" href="javascript:;">x</a> -->
+				</div>
+				<div class="main">
+					<div class="m-message" v-scroll-bottom="items">
+						<ul>
+							<li  v-for="(item,index) in items">
+								<p class="time">
+									<span>{{item.send_time | time}}</span>
+								</p>
+								<div v-bind:class="classli(items[index].type)" class="main ">
+									<img class="avatar" :src="items[index].headimg" width="30" height="40" />
+									<div class="text">
+										{{items[index].content}}
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="emoji" id="icon" v-show="emoji_key"></div>
+					</div>
+					<div class="m-text">
+						<div class="m-icon">
+							<img src="__ROOT__/images/icon.jpg" @click="emoji_key=!emoji_key;">
+							<img src="__ROOT__/images/shop_icon.jpg" @click="shop_show();">
+						</div>
+						<textarea v-model="message" @click="emoji_key=false;" id="message" placeholder="按 Enter 发送" @keyup="inputing"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="shop">
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="shop_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="min-width:800px;">
+			    <div class="modal-dialog" style="border-radius:5px;min-width:800px;">
+			        <div class="modal-content">
+			            <div style="height: 30px;background:#FF5B84; padding:4px;">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+			                <h4 style="color:#FDFEDA;margin-top:0px;">礼品商城</h4>
+			            </div>
+			            <div style="background:#F9EDF1; height:560px;padding:1px;">
+							<div style="width:30%;background:#F54D73; float:left;height:560px;">
+								<div style="width:33%;height:70px; float:left; line-height:22px;text-align:center;cursor:pointer;" v-for="list in cate_list" @click="cate_select(list.id)">
+									<img :src="list.photo" width="60px" height="60px" style="margin:5px auto 0px; border-radius:50%;">
+									<p style="color:#FDA5BA; font-size:14px;" v-if="cate_id==list.id">{{list.name}}</p>
+									<p style="color:#fff; font-size:14px;" v-else>{{list.name}}</p>
+								</div>
+							</div>
+							<div style="width:70%; float:left;height:500px;" v-show="shop_key==1">
+								<div style="width:480px;height:400px; margin:25px auto 0px;">
+									<div style="width:140px; background:#FFFFFF; float:left; height:180px; margin-top:25px; margin-right:20px; text-align:center; cursor: pointer;" v-for="list in goods_list" @click="goods_select(list)">
+										<img class="goods_img" :src="list.picture" width="120px" height="120px" style="margin:4px auto 0px;transition: all 0.6s;">
+										<p style="font-size:14px;">{{list.title}}</p>
+										<p style="color:#CDCDCD;">￥{{list.price}}</p>
+									</div>
+								</div>
+								<div style="width:480px;height:70px; margin:10px auto 0px; text-align:center; ">
+									<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style=""></nav>
+								</div>
+								<div style="width:100%; float:left; height:30px;background:#FCF6F8;" v-show="shop_key==1">
+									<span style="float:left;font-size:16px;margin:20px 0px 0px 20px;">我有<span style="color:#FFB22E">亲币 {{user_info.balance}}</span></span>
+								</div>
+							</div>
+							<div style="width:70%; float:left;height:500px;" v-show="shop_key==2">
+								<img src="__ROOT__/images/shop-back.png" style="float:right;cursor:pointer;margin:5px;" @click="shop_key=1" width="40px" height="40px">
+								<div style="width:480px;height:475px; margin:25px auto 0px;">
+									<div style="width:90%;  height:140px; margin:25px auto 0px; ">
+										<div style="float:left; text-align:left;width:50%;">
+											<img class="goods_img" :src="goods_detail.picture" width="120px" height="120px" style="margin:4px auto 0px;transition: all 0.6s;">
+										</div>
+										<div style="float:left;text-align:left;width:50%;">
+											<h4>{{goods_detail.title}}</h4>
+											<h4 style="margin-top:30px;">原价：<span style="text-decoration:line-through">￥{{goods_detail.origin_price}}</span></h4>
+											<h4 style="margin-top:30px;">现价：￥{{goods_detail.price}}</h4>
+										</div>
+									</div>
+									<div style="width:90%; height:120px; margin:25px auto 0px; overflow-y: scroll;">
+										<!-- <span class="attr_span">123123</span>
+										<span class="attr_span">3231321</span> -->
+										<span class="attr_span" v-for="(item,index) in attrs" @click="getAttr(item.id,index)" v-bind:style="{ border:(attr_index==index)?'2px solid #e3393c':'' }">
+											{{item.attr}}
+										</span>
+									</div>
+									<div style="width:90%; height:120px; margin:0px auto 0px; ">
+										<div class="weui-cell">
+							                <div class="weui-cell__hd"><label class="weui-label">收件人</label></div>
+							                <div class="weui-cell__bd">
+							                    <input class="weui-input" type="text" placeholder="填写收件人" v-model="name">
+							                </div>
+							            </div>
+							            <div class="weui-cell">
+							                <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+							                <div class="weui-cell__bd">
+							                    <input class="weui-input" type="number" placeholder="填写联系电话" v-model="phone">
+							                </div>
+							            </div>
+							            <div class="weui-cell">
+							                <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
+							                <div class="weui-cell__bd">
+							                    <input class="weui-input" type="text" placeholder="填写收货地址" v-model="address">
+							                </div>
+							            </div>
+							            <div class="weui-cell">
+							                <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
+							                <div class="weui-cell__bd">
+							                    <input class="weui-input" type="text" placeholder="填写备注" v-model="remark">
+							                </div>
+							            </div>
+									</div>
+								</div>
+								<div style="width:100%; float:left; height:60px;background:#FCF6F8;" v-show="shop_key==2">
+									<div style="width:90%;margin:0px auto 0px;height:58px;line-height:58px;
+									">
+										<div style="width:50%;float:left;line-height:58px;">
+											<span class="goods_number">
+												<span>
+													<button @click="reduce()">-</button>
+													<input class="child" id="child" v-model="buy_num" readonly="">
+													<button @click="add()">+</button>
+												</span>
+											</span>
+											<span style="font-size:16px;float:left;">￥{{buy_price}}</span>
+										</div>
+										<div style="width:50%;float:left;line-height:58px;">
+											<span style="font-size:16px;">我有<span style="color:#FFB22E">亲币 {{user_info.balance}}</span></span>
+											<span class="btn btn-info" style="float: right;margin-top: 10px;" @click="pay()">确定</span>
+										</div>
+									</div>
+								</div>
+							</div>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="recharge_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="min-width:690px;">
+			    <div class="modal-dialog" style="border-radius:5px;min-width:690px;">
+			        <div class="modal-content">
+			            <div style="height: 40px;background:#F1F1F1;padding:5px;border-bottom:1px #D8D8D8 solid">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+			                <h5 style="color:#000000;text-align:center;">亲币充值</h5>
+			            </div>
+			            <div style="height:160px;background:#F9F9F9;border-bottom:1px #E5E5E5 solid">
+			            	<img src="__ROOT__/images/liwu.png" style="margin:50px 0px 0px 60px;float:left;" alt="亲币">
+			            	<div style="width:170px; float:left; margin:50px 0px 0px 20px;">
+			            		<span class="recharge_number">
+									<span>
+										<button @click="rechage_price_reduce()">-</button>
+										<input type="text" class="form-control" v-model="rechage_price" id="rechage_price" name="rechage_price"  onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+    										onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"/>
+										<button @click="rechage_price_add()">+</button>
+									</span>
+								</span>
+								<p style="color:#7F7F7F;line-height:30px;height:30px;">充值数量必须是整数</p>
+			            	</div>
+			            	<span style="width:220px;color:#313131;font-size:34px;height:50px; float:right; margin:90px 70px 0px 0px;text-align:right;">
+			            		{{rechage_price}}<span style="font-size:12px;color:#A8A8A8;">元</span>
+			            	</span>
+			            </div>
+			            <div style="height:330px;background:#FFFFFF;">
+			            	<a @click="recharge_confirm()" id="recharge_confirm_btn" href="javascript:void(0)" class="btn btn-info">生成支付码</a>
+			            	<div style="width: 200px;height: 200px; margin:30px auto 0px; ">
+			            		<img :src="pay_code" id="pay_code" style="display:none;" alt="" width="198px" height="198px">
+			            	</div>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+		</script>
+		<script src="__ROOT__/js/chat/my.js" type="text/javascript" charset="utf-8"></script>
+		
+	</body>
+
+</html>
+<script src="http://cdn.ronghub.com/RongIMLib-2.3.1.min.js"></script>
+<script src="__ROOT__/js/chat/rongyun.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script>
+<script type="text/javascript">
+	
+    // 直接初始化
+    RongIMLib.RongIMEmoji.init();
+
+    // 通过配置初始化
+    // 表情信息可参考 http://unicode.org/emoji/charts/full-emoji-list.html
+    var config = {
+        size: 24, // 大小, 默认 24, 建议15 - 55
+        url: '//f2e.cn.ronghub.com/sdk/emoji-48.png', // 所有 emoji 的背景图片
+        lang: 'zh', // 选择的语言, 默认 zh
+        // 扩展表情
+        extension: {
+            dataSource: {
+                "u1F914":{  
+                    "en":"thinking face", // 英文名称
+                    "zh":"思考", // 中文名称
+                    "tag":"🤔", // 原生emoji
+                    "position":"0px 0px" // 所在背景图位置坐标
+                },
+            },
+            // 新增 emoji 的背景图 url
+            url: 'https://emojipedia-us.s3.amazonaws.com/thumbs/160/apple/96/thinking-face_1f914.png'
+        }
+    };
+    RongIMLib.RongIMEmoji.init(config);
+
+	function getEmojiDetailList() {
+        var shadowDomList = [];
+        for (var i = 0; i < RongIMLib.RongIMEmoji.list.length; i++) {
+            var value = RongIMLib.RongIMEmoji.list[i];
+            shadowDomList.push(value.node);
+        }
+        return shadowDomList;
+    }
+    function bindClickEmoji(emojis) {
+        for(var i=0;i<emojis.length;i++){
+            var emojiHtml = emojis[i];
+            $('#icon').append(emojiHtml);
+            emojiHtml.onclick = clickEmoji;
+        }
+    }
+    function clickEmoji(event) {
+        var e = event || window.event;
+        var target = e.target || e.srcElement;
+        if (document.all && !document.addEventListener === false) {
+            console.log(target);
+        }
+        var str 		  = vc.message + RongIMLib.RongIMEmoji.symbolToEmoji(target.getAttribute("name"));
+        // $('#message').val(str);
+        vc.message        = str;
+    }
+    var emojis = getEmojiDetailList();
+    bindClickEmoji(emojis);
+ 
+</script>

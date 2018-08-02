@@ -1,0 +1,39 @@
+.here{width: 660px;margin: 0 auto;}
+.cosplay{height: 140px;line-height: 140px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-left: 110px;color:rgb(1,0,47);font-size: 16px;}
+.cosplay li .all{color: #000;font-weight:600;}
+.hot{float: right;padding-right: 10px;}
+.hot a{display: inline-block;padding:2px 12px;text-align: center;line-height: 26px;margin-left: 25px;border: 1px solid #666;border-radius: 6px;color: #666;font-size: 14px;}
+.clothes,.info{overflow: hidden;width: 1200px;margin-top: 40px;}
+.clothes ul li{margin-right: 30px;margin-bottom: 22px;overflow: hidden;}
+.tt ul li{float: left;}
+.clothes ul li a{position: relative;}
+.clothes ul li a p{margin-top: 20px;}
+.clothes a span{position: absolute;left: 0;bottom: 0;background: rgba(0,0,0,0.4);color: #fff;padding:0 5px;}
+.clothes a span i{font-style: normal;display: table-cell;vertical-align: middle;height: 54px;width: 100%;}
+.info ul li{width: 190px;margin-right: 30px;float: left;}
+.clothes .active{display: block;}
+.tabchange{display: none;}
+.info ul li span{position: static;background: none; color: #333; height: 40px;text-align: center;line-height: 40px;display: block;}
+.main{position: relative;}
+.xian{position: absolute;top: 120px;}
+.pager{text-align: center;margin-top: 70px;}
+.pager li{cursor:pointer;display: inline-block;padding:1px 6px;margin-right:5px;background-color: #999;line-height: 20px;text-align: center;    border-radius: 2px;}
+.pager li a{display: inline-block;    padding: 2px 4px;color: #fff;}
+.pager li select{width: 70px;height: 25px;text-align: center;}
+.pager .page{background-color: #fff;}
+/* .end{margin-left: 20px;} */
+.smer{text-align: center;}
+.smer a{display: inline-block;width: 104px;height: 32px;background-color: #01002f;color: #fff;text-align: center;line-height: 32px;}
+.submit{margin-top: 75px;}
+.submit p{font-size: 14px;}
+.subinp span{width: 80px;text-align: left;display: inline-block;}
+.subinp{line-height: 40px;margin-top: 10px;}
+.subinp input{display: inline-block;border: 1px solid #DDDDDD;border-radius: 5px;line-height: 32px;padding: 0 10px;}
+.submit textarea{margin-top: 10px;border: 1px solid #DDDDDD;border-radius: 5px;padding: 10px;}
+.inout{text-align: center;}
+.submit .inout input{display: inline-block;width: 165px;height: 40px;background-color: #01002f;color: #fff;margin-top: 30px;box-shadow: 2px 2px 6px #01002f;}
+
+
+

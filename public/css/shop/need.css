@@ -1,0 +1,57 @@
+.all_need{height: 60px;	margin-top:45px;line-height:60px;background: url(../images/line.png) no-repeat bottom left;color: #000;font-size: 18px;}
+.person{padding-left:15px; }
+.all_need a{float:right;width: 100px;height: 30px;margin-right:20px;background-color: #01002f;color: #fff;font-size: 14px;text-align: center;line-height:30px;margin-top: 15px;}
+.job{height: 110px; margin-top: 25px;}
+.job a{margin-left: 60px;}
+.job span{display:block;height: 40px;width: 50px;float: left;margin-left: 18px;}
+.huzi{margin-top: 14px;}
+.xizhong{height: 35px;margin-top:15px;border-top:1px  dashed #999;line-height: 35px;}
+.sure{background-color: #f5f5f5;border: 1px solid #e8e8e8;}
+.sure a{margin-left: 18px;margin-right: 20px;}
+.job .xia .rom{float: right;}
+.bold{color: #01002f;font-weight: 800;}
+.zuozuo{float: left;}
+.zuozuo a{margin-right: 60px;}
+.qujian{float: right;}
+.qujian li{float: left;}
+.qujian li input{width: 55px;height: 24px;color: #666;}
+.qujian button{width: 60px;height: 20px;margin-right:55px;margin-left:50px;margin-top:8px;float: left;background-color: #01002f;border: none;color: #fff;}
+.yusuan{text-align: center;}
+.yusuan ul li{margin-top:45px;height: 110px;display: inline-block;}
+.yusuan li img{width: 180px;float: left;}
+.contect{float: left;font-size: 16px;margin-top: 10px;}
+.contect p{line-height: 40px; margin-left: 40px;text-align: left;}
+.contect .garm{float: left;}
+.contect .germ{float: right;}
+.price a{padding: 5px 15px;background-color: #01002f;color: #fff;line-height: 110px;margin-left: 20px;}
+.pager{text-align: center;margin-top: 60px;}
+.pager li{cursor:pointer;display: inline-block;padding:2px 7px;margin-right:10px;background-color: #999;line-height: 20px;text-align: center;}
+.pager li a{display: inline-block;}
+.pager li select{width: 70px;height: 25px;text-align: center;margin-right: 10px;border: 1px solid #999;}
+.pager li:nth-child(3){background-color: #01002f;}
+.pager li:nth-child(3) a{color: #fff;}
+.pager .page{background-color: #fff;}
+.end{margin-left: 20px;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/wom.png) no-repeat;}
+.title-bottom{background: url(../images/com.png) no-repeat;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;}
+.clothes ul .thing{margin-bottom: 16px;}
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 18px;}

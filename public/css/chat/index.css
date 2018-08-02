@@ -1,0 +1,323 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 14px;
+	color: #000;
+}
+
+a {
+	color: #428bca;
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+.content {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -500px;
+	margin-top: -300px;
+	width: 1000px;
+	height: 600px;
+	border: 1px solid #eee;
+	box-sizing: content-box;
+	background: #f5f5f5;
+}
+
+.chat-top {
+	width: 1000px;
+	height: 70px;
+}
+
+.kefu {
+	width: 400px;
+	height: 70px;
+	line-height: 70px;
+	font-size: 30px;
+	color: #000;
+	/*float: left;*/
+	text-align: center;
+}
+
+.kefu img {
+	width: 40px;
+	height: 40px;
+	line-height: 70px;
+	vertical-align: middle;
+}
+
+.kefu .title {
+	width: 40px;
+	height: 40px;
+	line-height: 70px;
+	vertical-align: middle;
+}
+
+.user {
+	/*width: 600px;*/
+	width:560px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	font-size: 30px;
+	color: #000;
+	/*float: left;*/
+	text-align: left;
+}
+
+.user img {
+	width: 40px;
+	height: 40px;
+	line-height: 70px;
+	vertical-align: middle;
+}
+
+.user .title {
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	text-align: left;
+	line-height: 70px;
+}
+
+.user .cha {
+	float: right;
+	margin-right: 20px;
+	font-size: 20px;
+}
+
+.chat-list {
+	width: 400px;
+	height: 600px;
+	background: #f5f5f5;
+	float: left;
+	padding: 0 20px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.list-ul{
+	width:100%;
+	height:88.5%;
+	overflow-y: scroll;
+	
+}
+.chat-list li {
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+
+.chat-list li img {
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	display: inline-block;
+	margin-left: 15px;
+	margin-top: 2px;
+}
+
+.chat-list li p {
+	width: 50px;
+	height: 20px;
+	background: paleturquoise;
+	margin-left: 15px;
+	text-align: center;
+	line-height: 20px;
+}
+
+
+vue
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	height: 100%;
+	overflow: hidden;
+}
+
+body,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #4d4d4d;
+	font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
+	background: #f5f5f5 url('../bg.jpg') no-repeat center;
+	background-size: cover;
+	font-smoothing: antialiased;
+}
+
+ul {
+	list-style: none;
+}
+
+#chat {
+	width: 558px;
+	/*height: 530px;*/
+	height:600px;
+	float: left;
+}
+
+.m-message {
+	padding: 10px 15px;
+	overflow-y: scroll
+}
+
+.m-message li {
+	margin-bottom: 15px
+}
+
+.m-message .time {
+	margin: 7px 0;
+	text-align: center
+}
+
+.m-message .time>span {
+	display: inline-block;
+	padding: 0 18px;
+	font-size: 9pt;
+	color: #fff;
+	border-radius: 2px;
+	background-color: #dcdcdc
+}
+
+.m-message .avatar {
+	float: left;
+	margin: 0 10px 0 0;
+	border-radius: 3px
+}
+
+.m-message .text {
+	display: inline-block;
+	position: relative;
+	padding: 0 10px;
+	max-width: calc(100% - 40px);
+	min-height: 30px;
+	line-height: 2.5;
+	font-size: 9pt;
+	text-align: left;
+	word-break: break-all;
+	background-color: #fafafa;
+	border-radius: 4px
+}
+
+.m-message .text:before {
+	content: " ";
+	position: absolute;
+	top: 9px;
+	right: 100%;
+	border: 6px solid transparent;
+	border-right-color: #fafafa
+}
+
+.m-message .self {
+	text-align: right
+}
+
+.m-message .self .avatar {
+	float: right;
+	margin: 0 0 0 10px
+}
+
+.m-message .self .text {
+	background-color: #b2e281
+}
+
+.m-message .self .text:before {
+	right: inherit;
+	left: 100%;
+	border-right-color: transparent;
+	border-left-color: #b2e281
+}
+
+.main {
+	position: relative;
+	overflow: hidden;
+	background-color: #eee;
+}
+
+#chat {
+	overflow: hidden;
+	border-radius: 3px
+}
+
+#chat .main,
+#chat .sidebar {
+	height: 100%
+}
+
+#chat .sidebar {
+	float: left;
+	width: 200px;
+	color: #f4f4f4;
+	background-color: #2e3238
+}
+
+#chat .main {
+	position: relative;
+	overflow: hidden;
+	background-color: #eee
+}
+
+#chat .m-text {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0
+}
+
+#chat .m-message {
+	height: calc(100% - 10pc)
+}
+
+#chat .m-icon {
+	/*height: 14px;*/
+}
+
+#chat .m-icon img {
+	cursor:pointer;
+}
+
+#chat .m-icon span {
+	width:14px;
+	height:14px;
+}
+
+#chat .emoji {
+	position:absolute;
+	float: left;
+	border:1px #80FFFF solid;
+	bottom:10pc;
+	width: 90%;
+	height:10pc;
+	overflow-y:scroll;
+}
+
+.m-text {
+	height: 10pc;
+	border-top: 1px solid #ddd
+}
+
+.m-text textarea {
+	padding: 10px;
+	height: 100%;
+	width: 100%;
+	border: none;
+	outline: 0;
+	font-family: Micrsofot Yahei;
+	resize: none
+}

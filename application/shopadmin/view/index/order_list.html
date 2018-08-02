@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>商品列表</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+		<link rel="stylesheet" href="__ROOT__/css/pageNav.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+    	<script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+        <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<div class="ttb" id="app">
+		  	<div class="panel admin-panel">
+			    <div class="panel-head"><strong class="icon-reorder"> 订单列表</strong></div>
+			    <div class="padding border-bottom">
+			    	<p>
+			    		<button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
+			  			<input type="text" class="input input-auto margin-big-left" v-model="title" placeholder="标题" />
+			  			<input type="text" class="input input-auto margin-big-left" v-model="order_num" placeholder="订单号" />
+			  			<a class="button border-main" @click="show()"><span class="icon-search"></span> 搜索</a>
+			  		</p>
+			    </div>
+			    <div class="table-responsive">
+				    <table class="table table-hover text-center" id="goods_table">
+				      	<tr>
+				      		<th><input type="checkbox" name="ckall" value=""  /></th>
+					        <th>订单号</th>
+					        <th>商品名称</th>
+					        <th>属性</th>
+					        <th>下单时间</th>
+					        <th>状态</th>
+					        <th>操作</th>       
+				      	</tr>
+				      	<tr v-for="item in order_list">
+				      		<td><input type="checkbox" value=""/></td>
+				      		<td>{{item.order_num}}</td>
+				      		<td>{{item.title}}</td>
+				      		<td>{{item.attr_info}}</td>
+				      		<td>{{item.create_time}}</td>
+				      		<td>{{item.status}}</td>
+				      		<td>
+						  		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" @click="detail(item)">详细</button>
+						  	</td>
+				      	</tr>
+				    </table>
+			    </div>
+		  	</div>
+		  	<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style="float:left;"></nav>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">订单详情</h4>
+			            </div>
+			            <div class="modal-body">
+							<p>订单号：{{detail_order.order_num}}</p>
+							<p>收货人：{{detail_order.name}}</p>
+							<p>联系电话：{{detail_order.phone}}</p>
+							<p>收货地址：{{detail_order.address}}</p>
+							<p>备注：{{detail_order.remark}}</p>
+							<p>当前状态：{{detail_order.status}}</p>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="send()" v-if="detail_order.order_status==2">发货</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+
+			<div class="modal fade" id="expressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">填写物流信息</h4>
+			            </div>
+			            <div class="modal-body">
+			            	<p>订单号:{{detail_order.order_num}}</p>
+							<input type="text" class="input input-auto margin-big-left" v-model="express" placeholder="快递公司">
+							<input type="text" class="input input-auto margin-big-left" v-model="express_id" placeholder="快递单号">
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="confirm()" >确定</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+		
+	</body>
+</html>
+<script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+<link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data:{
+			'p':1,
+			'title':'',
+			'order_num':'',
+			'order_list':[],
+			'detail_order':[],
+			'express_id':'',
+			'express':'',
+		},
+		methods:{
+			send:function() {
+				$('#myModal').modal('hide');
+				$('#expressModal').modal();
+			},
+			detail:function(item) {
+				app.$data.detail_order = item;
+			},
+			set_page:function(pageCount) {
+				var pageNavObj = null;//用于储存分页对象
+				var p = app.$data.p;
+				pageNavObj = new PageNavCreate("PageNavId",{ pageCount:pageCount, currentPage:p, perPageNum:5, });
+				pageNavObj.afterClick(function(page){
+					app.$options.methods.show(page);
+				});
+			},
+			show:function(page='') {
+				if(page){
+					app.$data.p = page;
+				}
+				var data = {};
+		        var url = base_url+'order/get_list';
+				data['user_token'] = get_token();
+				data['title'] = this.title;
+				data['order_num'] = this.order_num;
+				data['p'] = page;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	app.$data.order_list = [];
+		                    app.$data.order_list = data.data.list;
+		                    app.$options.methods.set_page(data.data.pageCount);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			},
+			confirm:function() {
+				if(!this.express || !this.express_id) {
+					return false;
+				}
+				var data = {};
+		        var url = base_url+'order/send_order';
+				data['user_token'] = get_token();
+				data['express'] = this.express;
+				data['express_id'] = this.express_id;
+				data['id'] = this.detail_order.id;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	alert('发货成功');
+		                	$('#expressModal').modal('hide');
+		                    app.$options.methods.show();
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			}
+
+		},
+		created:function() {
+			var data = {};
+	        var url = base_url+'order/get_list';
+			data['user_token'] = get_token();
+			data['title'] = this.title;
+			data['order_num'] = this.order_num;
+			data['p'] = this.p;
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                    app.$data.order_list = data.data.list;
+	                    app.$options.methods.set_page(data.data.pageCount);
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                alert('数据请求异常');
+	            }
+	        })
+		}
+
+	})
+</script>
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

@@ -1,0 +1,383 @@
+﻿/*--------------case-------------*/
+* {
+    padding: 0;
+    margin: 0;
+     font-family: 微软雅黑;
+}
+
+ul, li {
+    list-style: none;
+}
+
+body {
+    font-size: 12px;
+    font-family: 微软雅黑;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    font-family: 黑体, Arial, SimHei, ArialMT;
+    color: #333;
+}
+
+a, button {
+    cursor: pointer;
+    font-family: "microsoft yahei";
+    outline: medium;
+    border: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.center {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.blue {
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.clearit {
+    clear: both;
+}
+
+input, select {
+    outline: medium;
+    border: none;
+}
+
+textarea {
+    outline: medium;
+}
+
+/*--------------头部--------------*/
+.header {
+    width: 100%;
+    height: 120px;
+    background-color: #01002F;
+    position: relative;
+    z-index:   99;
+}
+
+.header_top {
+    height: 25px;
+    padding-top: 7px;
+}
+
+.header_top_left {
+    width: 400px;
+    float: left;
+}
+
+.header_top_left a {
+    display: inline-block;
+    width: 75px;
+    height: 23px;
+    margin-right: 45px;
+    color: #fff;
+    border: 1px solid #999;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 23px;
+}
+
+.header_top_right {
+    color: #fff;
+    float: right;
+}
+
+.header_top_right a {
+    color: #fff;
+}
+
+.header_top_right .kongzhi {
+    background: url(../images/img.png) -79px -16px no-repeat;
+    padding-left: 25px;
+    margin-right: 60px;
+    display: block;
+    float: right;
+}
+
+.header_top_right .login {
+    float: right;
+    display: block;
+}
+
+.header_bottom {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    z-index: 2147483651;
+}
+
+.logo {
+    width: 78px;
+    height: 80px;
+    background: url(../images/LOGO.png) center bottom;
+    margin-left: 45px;
+    float: left;
+}
+
+.nav {
+    width: 860px;
+}
+
+.log {
+    width: 1200px;
+}
+
+.log li {
+    width: 165px;
+    height: 78px;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+.log li a {
+    padding-top: 35px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    width: 186px;
+    height: 85px;
+    display: block;
+    text-shadow: 8px 0 5px #000;
+    position: absolute;
+    left: 0;
+    top: -23px;
+}
+
+.log li a span {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.shouye {
+    background: url(../images/ccc.png) no-repeat 0 0;
+    background-size: 100% 100%
+}
+
+.jiaoyi {
+    float: right;
+    margin-right: 15px;
+}
+
+.logshare:hover #now {
+    display: block;
+}
+
+#now li:hover {
+    background-color: #0b1044;
+}
+
+#now {
+    width: 150px;
+    text-align: center;
+}
+
+#now li a {
+    width: 150px;
+    height: 100%;
+    padding: 0;
+    position: initial;
+    line-height: 41px;
+}
+
+.log .logshare ul {
+    width: 155px;
+    position: absolute;
+    top: 75px;
+    background-color: #01002f;
+    z-index: 4;
+    left: 18px;
+    display: none;
+}
+
+.log .logshare ul li {
+    height: 41px;
+    width: 150px;
+    background-color: #01002f;
+}
+
+.log .logshare ul li a {
+    color: #fff;
+}
+
+/*--------------底部--------------*/
+.footer {
+    height: 300px;
+    background-color: #010025;
+    margin-top: 70px;
+    clear: both
+}
+
+.footer_logo {
+    width: 125px;
+    height: 110px;
+    margin-top: 60px;
+    float: left;
+}
+
+.footer_center {
+    width: 600px;
+    height: 170px;
+    float: left;
+    margin-top: 70px;
+    margin-left: 70px;
+}
+
+.tel {
+    float: left;
+    color: #fff;
+    width: 210px;
+    height: 100px;
+}
+
+.tel p {
+    margin-top: 10px;
+}
+
+.again {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.again li {
+    margin-right: 50px;
+    float: left;
+}
+
+.again li a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tete {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.before {
+    background: url(../images/tel.png) no-repeat left center;
+    padding: 0 40px;
+}
+
+.before span {
+    display: block;
+    margin-top: 4px;
+}
+
+.erweima {
+    height: 100px;
+    float: left;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.erweima img {
+    margin-top: 10px;
+    float: left;
+    margin-left: 20px;
+}
+
+.lianjie {
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lianjie a {
+    color: #fff;
+    margin-right: 5px;
+}
+
+.lianjie span {
+    margin-right: 5px;
+}
+
+.lianjie p {
+    margin-top: 10px;
+}
+
+.erweima span {
+    color: #fff;
+    display: block;
+    margin-top: -20px;
+}
+
+.pager {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.pager li {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 7px;
+    margin-right: 10px;
+    background-color: #999;
+    line-height: 20px;
+    text-align: center;
+}
+
+.pager li a {
+    display: inline-block;
+}
+
+/*.pager .item{width: 50px;}*/
+.pager li select {
+    width: 70px;
+    height: 25px;
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid #999
+}
+
+.pager .page {
+    background-color: #fff;
+}
+
+.end {
+    margin-left: 10px;
+}
+
+/*弹窗*/
+.modal{display: none;position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0,0,0,0.5);z-index: 10000;}
+.modal-body{display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%);z-index: 20000;}
+
+/*举报*/
+.jubtn{width: 100%;margin: 20px auto;text-align: right;}
+.jubtn a{    display: inline-block;text-align: center;line-height: 36px;
+    width: 100px;
+    height: 36px;
+    background-color: #01002f;
+    color: #fff;
+    box-shadow: 2px 2px 6px #01002f;}
+.jubaocon{width: 400px;background: #FFFFFF;padding: 30px;}
+.jubaocon h2{text-align: center;font-size: 16px;line-height: 60px;}
+.jubaocon .jbinfo{line-height: 36px;margin-bottom: 10px;}
+.jubaocon .jbinfo span{display: inline-block;width: 80px;text-align: left;}
+.jubaocon .jbinfo textarea{border: 1px solid #CCCCCC;display: inline-block;vertical-align: middle;padding: 10px;width: 250px;}
+.jubaocon select{border: 1px solid #CCCCCC;line-height: 36px;padding: 5px;border-radius: 5px;}
+.jubaocon .subbtn{text-align: center;}
+.jubaocon .subbtn input[type='submit']{width: 90px;height: 36px;line-height: 36px;background-color: #01002f;
+    color: #fff;
+    box-shadow: 2px 2px 6px #01002f;}
+
+
+

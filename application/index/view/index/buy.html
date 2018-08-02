@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+	<link rel="stylesheet" href="__ROOT__/css/shop/buy.css">
+	<script src="__ROOT__/js/shop/jquery.min.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <style type="text/css">
+    	.attr-select {color:green;}
+    </style>
+</head>
+<body>
+	<div class="main" id="app">
+		<div class="banner"><img src="images/best.png" alt=""></div>
+		<div class="center">
+			<div class="buy">
+				<div class="xiangqing">
+					<div class="smallbanner">
+						<ul class="pic" id="picture">
+							<li v-for="item in icon">
+								<a href="javascript:void(0)">
+									<img width=250px height=225px :src="item" alt="">
+								</a>
+							</li>
+						</ul>	
+						<ul class="small" id="small_picture">
+							<li v-for="item in small_icon">
+								<a href="javascript:void(0)">
+									<img width=70px height=70px :src="item" alt="">
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="clearit"></div>
+					<div class="share">
+						<a href=""><img src="images/share.png" alt=""><span>分享</span></a>
+						<a href=""><img src="images/shoucang.png" alt=""><span>收藏</span></a>
+						<a href="javascript:void(0)" @click="ruzhu()" class="busrz"><span>商家入驻</span></a>
+					</div>
+				</div>
+				<ul class="number">
+					<li><h2 id="title">{{title}}</h2></li>
+					
+					<li class="have">
+						<span id="price">￥ {{price}}</span>
+						<span class="sics" id="origin_price">￥ {{origin_price}}</span>
+					</li>
+					<li class="metatit">
+						<p>配送：广 州 至 
+							<select>
+  								<option value="北京">北京</option>
+  								<option value="广州">广州</option>
+  								<option value="上海">上海</option>
+  								<option value="天津">天津</option>
+  								<option value="重庆">重庆</option>
+  								<option value="山西">山西</option>
+  								<option value="河北">河北</option>
+  								<option value="河南">河南</option>
+  								<option value="陕西">陕西</option>
+  								<option value="甘肃">甘肃</option>
+  								<option value="宁夏">宁夏</option>
+  								<option value="内蒙古">内蒙古</option>
+  								<option value="东北">东北</option>
+  								<option value="福建">福建</option>
+  								<option value="四川">四川</option>
+  								<option value="西藏">西藏</option>
+  								<option value="吉林">吉林</option>
+  								<option value="辽宁">辽宁</option>
+  								<option value="黑龙江">黑龙江</option>
+  								<option value="江苏">江苏</option>
+  								<option value="浙江">浙江</option>
+  								<option value="安徽">安徽</option>
+  								<option value="江西">江西</option>
+  								<option value="山东">山东</option>
+  								<option value="湖北">湖北</option>
+  								<option value="湖南">湖南</option>
+  								<option value="广东">广东</option>
+  								<option value="广西">广西</option>
+  								<option value="海南">海南</option>
+  								<option value="贵州">贵州</option>
+  								<option value="云南">云南</option>
+  								<option value="青海">青海</option>
+  								<option value="新疆">新疆</option>
+  								<option value="台湾">台湾</option>
+  								<option value="澳门">澳门</option>
+  								<option value="香港">香港</option>
+							</select>
+							<span>快递 ：免运费</span>
+						</p>
+					</li>
+					<div style=" margin-top: -30px; width:260px;" id="attrs">
+						<p style="margin-top: 1px; width:125px;"  v-for="(item,index) in attrs">
+							<a href="javascript:void(0)" @click="getAttr(item.id,index)" v-bind:style="{ color:(attr_index==index)?attr_select_color:'' }" style="background-color:#f8f8f8;">
+								<span >
+								{{item.attr}}
+								</span>
+							</a>
+						</p>
+					</div>
+					<li class="onbuy"><a href="javascript:void(0)" @click="buy();">立 即 购 买</a></li>
+					<li class="ten"><p>该 商 家 信 用 等 级 为 : 10级 <span>积分:  2000分</span></p></li>
+				</ul>
+				<div class="hot">
+					<div class="title">
+						<p>热 门 推 荐</p>
+						<ul id="adv_right">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="clearit"></div>
+			<div class="baby">
+				<div class="baby_weixin">
+					<!-- <div class="baby_weixin_top">
+						<a href="">联系卖家</a>
+						<div class="qq">
+							<a href=""><img src="images/weixin.png" alt=""></a>
+							<a href=""><img src="images/qq.png" alt=""></a>
+						</div>
+						<a href="d_index.html">进入店铺</a>
+					</div> -->
+					<div class="hot hotop">
+						<div class="title">
+							<p>热 门 推 荐</p>
+							<ul id="adv_left">
+							
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="baby_after">
+					<div class="pinglun">
+						<a class="babyxq">宝贝详情</a>
+						<!-- <a class="ljpl">累计评论</a> -->
+					</div>
+					<div class="tb-revhd">
+						<div class="display black" id="detail">
+							{{detail}}
+						</div>
+            			<div class="display blpck">
+            				<div class="bar">
+              					<ul class="filtering">
+              				 		<li class="is-current">
+              				 		  <label for="reviews-t-all">
+              				     	  	<input type="radio" name="J_KgRate_ReviewType" id="<reviews-></reviews->t-all" value="" <checked>				</checked>
+              				      		全部
+              				    		</label>
+              				  		</li>
+              				  		<li data-kg-rate-filter-val="1" class="">
+              				    		<label for="reviews-t-val1">
+              				      			<input type="radio" name="J_KgRate_ReviewType" id="<reviews-></reviews->t-val1" value="1">
+              				      			好评
+              				      			<span class="tb-tbcr-num">
+              				        			<span class="content-regarded" data-kg-rate-stats="good">(389)</span>
+              				      			</span>
+              				    		</label>
+              				  		</li>
+              				  		<li data-kg-rate-filter-val="0" class="">
+              				    		<label for="reviews-t-val0">
+              				      			<input type="radio" name="J_KgRate_ReviewType" id="<reviews-></reviews->t-val0" value="0">
+              				     		 	中评
+              				      			<span class="tb-tbcr-num">
+              				        			<span data-kg-rate-stats="neutral">(32)</span>
+              				      			</span>
+              				    		</label>
+              				  		</li>
+              				  		<li data-kg-rate-filter-val="-1" class="">
+              				    		<label for="reviews-t-val-1">
+              				      			<input type="radio" name="J_KgRate_ReviewType" id="<reviews-></reviews->t-val-1" value="-1">
+              				      			差评
+              				      			<span class="tb-tbcr-num">
+              				        			<span data-kg-rate-stats="bad">(0)</span>
+              				      			</span>
+              				    		</label>
+              				  		</li>
+              					</ul>
+            				</div>
+            				<div class="clearit"></div>
+            				<ul class="very">
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							<li>
+								<div class="sace">
+								<img src="images/bighair.png" alt="">
+								<p>昵 称</p>
+								</div>
+								<div class="good">
+									<p> 好 评 ， 美 爆 了 ， 很 好 看 的 衣 服 值 得 购 买 ！ <br>
+								2017年07月03日  <span>  17：37 </span></p>
+								</div>
+							</li>
+							</ul>
+            			</div>
+          			</div>
+          			<!-- <div class="clearit"></div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearit"></div>
+	<div class="footer">
+	</div>
+
+	<script src="__ROOT__/js/shop/tab_change.js"></script>	
+	<script src="__ROOT__/js/shop/fixed.js"></script>
+	<script src="__ROOT__/js/shop/small.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+			id:getParam('id'),
+			attr_id:'',
+			title:'',
+			price:'',
+			origin_price:'',
+			detail:'',
+			icon:[],
+			small_icon:[],
+			attrs:[],
+			attr_index:0,
+			attr_select_color:'rgb(169, 105, 105)',
+		},
+		methods:{
+			ruzhu:function() {
+				alert('请咨询qq：1581400575');
+			},
+			getAttr:function(id,index) {
+				this.attr_index = index;
+				this.price = this.attrs[index].price;
+				this.origin_price = this.attrs[index].origin_price;
+				this.attr_id = this.id;
+			},
+			buy:function()
+			{
+				var attr_id = this.attr_id;
+				if(!attr_id)
+				{
+					alert('请选择一个商品属性！');return false;
+				}
+				var data = {};
+				data['attr_id'] = attr_id;
+				data['user_token'] = get_token();
+				$.ajax({
+					url: base_url+'Goods/count_check',
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					timeout: 1000,
+					success: function (data, status) {
+						
+						if(data.code==codeArr['e200'])
+						{
+							window.location.href = './other_buy.html?attr_id='+attr_id;
+						}else if(data.code==codeArr['e500']) {
+							alert(data.msg);
+							window.location.href = './index.html';
+						}else
+						{
+							alert(data.msg);
+							return false;
+						}
+						
+					},
+					fail: function (err, status) {
+						alert('数据请求异常');
+					}
+				})
+			}
+		},
+		created:function() {
+			var data = {};
+			var id = this.id;
+			data['id'] = id;
+			$.ajax({
+				url: base_url+'Goods/detail',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 1000,
+				success: function (data, status) {
+					
+					if(data.code==codeArr['e200'])
+					{
+						var goods = data.data.goods;
+						var attrs = data.data.attrs;
+						app.$data.attrs = attrs.slice(0,7);
+						app.$data.title = goods.title;
+						app.$data.price = attrs[0].price;
+						app.$data.attr_id = attrs[0].id;
+						app.$data.origin_price = attrs[0].origin_price;
+						// app.$data.detail = goods.detail;
+						$('#detail').append(goods.detail);
+						var str = '';
+						var small_str = '';
+						if(goods.icon1)
+						{
+							app.$data.icon.push(goods.icon1);
+							app.$data.small_icon.push(goods.icon1);
+						}
+						if(goods.icon2)
+						{
+							app.$data.icon.push(goods.icon2);
+							app.$data.small_icon.push(goods.icon2);
+						}
+						if(goods.icon3)
+						{
+							app.$data.icon.push(goods.icon3);
+							app.$data.small_icon.push(goods.icon3);
+						}
+						if(goods.icon4)
+						{
+							app.$data.icon.push(goods.icon4);
+							app.$data.small_icon.push(goods.icon4);
+						}
+
+					}else
+					{
+						alert(data.msg);
+						window.location.href = './index.html';
+					}
+					
+				},
+				fail: function (err, status) {
+					alert('数据请求异常');
+				}
+			})
+		}
+	})
+	
+
+	$.ajax({
+		url: base_url+'Adv/get_detail_left',
+		type: 'get',
+		dataType: 'json',
+		timeout: 1000,
+		success: function (data, status) {
+			
+			var list = {};
+			list = data.data;
+			var str = '';
+			for(var key in list)
+			{
+			 	str += '<li class="recommend"><a href="./buy.html?id='+list[key].goods_id+'"><img src="'+list[key].picture+'" alt=""><span>'+list[key].title+'</span></a></li>';
+		 	}	
+		 	$('#adv_left').append(str);
+		},
+		fail: function (err, status) {
+			
+		}
+	})
+
+	$.ajax({
+		url: base_url+'Adv/get_detail_right',
+		type: 'get',
+		dataType: 'json',
+		timeout: 1000,
+		success: function (data, status) {
+			
+			var list = {};
+			list = data.data;
+			var str = '';
+			for(var key in list)
+			{
+			 	str += '<li class="recommend"><a href="./buy.html?id='+list[key].goods_id+'"><img src="'+list[key].picture+'" alt=""><span>'+list[key].title+'</span></a></li>';
+		 	}	
+		 	$('#adv_right').append(str);
+		},
+		fail: function (err, status) {
+			
+		}
+	})
+
+	
+</script>

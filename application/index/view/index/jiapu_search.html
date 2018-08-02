@@ -1,0 +1,81 @@
+{include file="common/header"}
+    <div id="app">
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   <div style="height: 60px;"></div>    
+        <!--使下面的h1居中-->
+        <div class="container">
+            <!--使用字体图标，BootStrap官方文档提供了很多-->
+            <h1 class="page-header"><span class="glyphicon glyphicon-bell"></span> 创建属于您的家谱 </h1>
+            <form class="form-horizontal" name="jiapu_form" id="jiapu_form">
+                <div class="form-group">
+                    <!--设置文本框长度-->
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" v-model="name" id="name" name="name" placeholder="家谱名称"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" v-model="password" id="password" name="password" placeholder="家谱密码"/>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group">
+                <div class="col-md-5">
+                    <button class="btn btn-primary" @click="join()">加   入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{
+            name:'',
+            password:'',
+        },
+        methods:{
+            join:function() {
+                var name = this.name;
+                var password = this.password;
+                if(!name || !password) {
+                    weui.alert('请输入完整信息！');
+                }
+                var url = base_url+'jiapu/join';
+                var token = get_token();
+                var data = {};
+                data['user_token'] = token;
+                data['name'] = name;
+                data['password'] = password;
+                $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: data,
+                        headers : {
+                            'user_token' : token
+                        },
+                        dataType: 'json',
+                        timeout: 1000,
+                        success: function (data, status) {
+                             
+                            if(data['code']==200) {
+                                weui.alert(data.msg);
+                                window.location.href = "./jiapu.html";
+                            }else
+                            {
+                                weui.alert(data.msg);
+                            }
+                            
+                        },
+                        fail: function (err, status) {
+                            alert('数据请求异常');
+                        }
+                    })
+            }
+        },
+        created:function() {
+
+        }
+    })
+</script>

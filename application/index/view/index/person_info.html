@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人资料-基本信息</title>
+		<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+		<link rel="stylesheet" type="text/css" href="__ROOT__/css/shop/main.css"/>
+	</head>
+	<body class="font-normal" style="overflow:-Scroll;overflow-x:hidden">
+		<div class="main center">
+			<div class="control">
+				<div class="control-l fl">
+					<div class="ctl-top"><img src="img/ct9.png"/> 个人控制台</div>
+					<div class="ctl-list">
+						<h3><img src="img/ct4.png" />交易管理</h3>
+						<p><i></i><a href="person-order.html">我的订单</a></p>
+						<p><i></i><a href="person-order-assess.html">我的评价</a></p>
+						<p><i></i><a href="person-order-invoice.html">我的发票</a></p>
+					</div>
+				</div>
+				<div class="control-r fr">
+					<div class="ctr-top">
+						<div class="fl ctr-top-l">
+							<p><img src="images/air.png"/></p>
+							<p>我的空间</p>
+						</div>
+						<div class="fl ctr-top-c">
+							<p class="ctr-c-t">
+								<span class="fl">长腿叔叔</span>
+								<a class="fr" href="javascript:void(0)" onclick="tanopen()">所在的行业</a>
+								<div class="clearit"></div>
+							</p>
+							<p>信用等级：36级</p>
+							<p>账户余额：1000元</p>
+							<p>排行榜排名：第1200名</p>
+							<p></p>
+						</div>
+						<div class="fr ctr-top-r">
+							上次登录时间：2017-09-19   19：00
+						</div>
+						<div class="clearit"></div>
+					</div>
+					<div class="ctr-con">
+						<p class="text-center">填写真实的资料更方便大家了解你，以下信息将显示在个人资料页</p>
+						<div class="ctr-con-l fl">
+							<div class="imgnum">
+						        <input type="file" class="filepath" />
+						        <span class="close">X</span>
+						        <img src="img/btn.png" class="img1" />
+						        <img class="img2" />
+						    </div>
+						</div>
+						<div class="ctr-con-r fr">
+							<ul>
+								<li>
+									<label>用 户 名 ：</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<li>
+									<label>
+										<span>职</span>
+										<span class="jin">业</span>
+										<span>：</span>
+									</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<li>
+									<label>
+										<span>姓</span>
+										<span class="jie">名</span>
+										<span>：</span>
+									</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<li>
+									<label>
+										<span>状</span>
+										<span class="jie">态</span>
+										<span>：</span>
+									</label>
+									<span class="text-left">
+										<select name="" class="input text-left">
+											<option value="">工作中</option>
+										</select>
+									</span>
+								</li>
+								<li>
+									<label>
+										<span>姓</span>
+										<span class="jie">别</span>
+										<span>：</span>
+									</label>
+									<span>
+										<input type="radio" name="sex" style="margin: 0 10px 0 0;" />男
+										<input type="radio" name="sex" style="margin: 0 0 10px 30px;" />女
+									</span>
+								</li>
+								<li>
+									<label>
+										<span>学</span>
+										<span class="jie">历</span>
+										<span>：</span>
+									</label>
+									<span class="text-left">
+										<select name="" class="input text-left">
+											<option value="">本科</option>
+											<option value="">专科</option>
+										</select>
+									</span>
+								</li>
+								<li class="li-wh">
+									<label>
+										<span>生</span>
+										<span class="jie">日</span>
+										<span>：</span>
+									</label>
+									<select name="" class="input text-left timenow ">
+										<option value="">1993</option>
+										<option value="">1994</option>
+										<option value="">1995</option>
+									</select>年
+									<select name="" class="input text-left timenow option">
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">3</option>
+										<option value="">4</option>
+										<option value="">5</option>
+										<option value="">6</option>
+										<option value="">7</option>
+										<option value="">8</option>
+										<option value="">9</option>
+										<option value="">10</option>
+										<option value="">11</option>
+										<option value="">12</option>
+									</select>月
+									<select name="" class="input text-left timenow option">
+										<option value="">1</option>
+										<option value="">2</option>
+										<option value="">3</option>
+										<option value="">4</option>
+										<option value="">5</option>
+										<option value="">6</option>
+										<option value="">7</option>
+										<option value="">8</option>
+										<option value="">9</option>
+									</select>日
+								</li>
+								<li>
+									<label>从业经验：</label>
+									<span class="text-left">
+										<select name="" class="input text-left">
+											<option value="">不满一年</option>
+										</select>
+									</span>
+								</li>
+								<li>
+									<label>毕业院校：</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<div class="clearit"></div>
+								<li>
+									<label>绑定电话：</label>
+									<span>
+										<input type="text" class="input" />
+										<!-- <a>立即绑定</a> -->
+									</span>
+								</li>
+								<li>
+									<label>固定电话：</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<li>
+									<label>绑定邮箱：</label>
+									<span>
+										<input type="text" class="input" />
+										<!-- <a>修改</a> -->
+									</span>
+								</li>
+								<li>
+									<label>QQ号码：</label>
+									<span><input type="text" class="input" /></span>
+								</li>
+								<li class="li-wh">
+									<label>
+										<span>所 在 地</span>
+										<span class="circles">：</span>
+									</label>
+									<select name="" class="timenow text-left">
+										<option value="">请选择省份</option>
+									</select>
+									<select name="" class="timenow text-left option">
+										<option value="">请选择城市</option>
+									</select>
+									<select name="" class="timenow text-left option">
+										<option value="">请选择区县</option>
+									</select>
+								</li>
+								<li class="li-wh">
+									<label>所 在 地：</label>
+									<input type="text" class="input" style="width: 370px" />
+								</li>
+							</ul>
+						</div>
+						<div class="clearit"></div>
+						<p class="ctr-con-btn">
+							<a href="person-info-add.html">保存</a>
+						</p>
+					</div>
+					<div class="ctr-bottom">
+						<p class="tt">大家都购买了</p>
+						<ul>
+							<li>
+								<div class="buy-list">
+									<a>
+										<p class="title">海**东 <span>最近购买了</span></p>
+										<div class="buy">
+											<div class="fl buy-l">
+												<img src="images/gu.png"/>
+											</div>
+											<div class="fr buy-r">
+												<p class="btt">
+													<span class="fl">武则天电视剧中媚娘整装</span>
+													<span class="fr"><strong>￥200</strong></span>
+													<div class="clearit"></div>
+												</p>
+												<p>好评，美爆了，很值得购买，宝贝很好，卖家很耐心</p>
+												<p class="text-right">2017-09-20  17:20</p>
+											</div>
+											<div class="clearit"></div>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="buy-list">
+									<a>
+										<p class="title">海**东 <span>最近购买了</span></p>
+										<div class="buy">
+											<div class="fl buy-l">
+												<img src="images/gu.png"/>
+											</div>
+											<div class="fr buy-r">
+												<p class="btt">
+													<span class="fl">武则天电视剧中媚娘整装</span>
+													<span class="fr"><strong>￥200</strong></span>
+													<div class="clearit"></div>
+												</p>
+												<p>好评，美爆了，很值得购买，宝贝很好，卖家很耐心</p>
+												<p class="text-right">2017-09-20  17:20</p>
+											</div>
+											<div class="clearit"></div>
+										</div>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clearit"></div>
+			</div>
+		</div>
+		
+		<div class="modal"></div>
+		<div class="mymodal">
+			<span class="close-btn"><a href="javascript:void(0)" onclick="tanclose()"><img src="img/close.png"/></a></span>
+			<div class="hy">
+				<p class="hy-tt">选择您所在的行业</p>
+				<ul>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li><a>造型化妆</a></li>
+					<li>
+						<a>
+							<select class="other">
+								<option>其他</option>
+							</select>
+						</a>
+					</li>
+					<div class="clearit"></div>
+				</ul>
+				<p class="bottom-btn text-center">
+					<a href="javascript:void(0)" onclick="tanclose()">确定</a>
+					<a href="javascript:void(0)" onclick="tanclose()">取消</a>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function tanopen(){
+				$(".modal").show();
+				$(".mymodal").show();
+			}
+			function tanclose(){
+				$(".modal").hide();
+				$(".mymodal").hide();
+			}
+		</script>
+		<script src="__ROOT__/js/shop/jquery-1.11.1.min.js"></script>
+		<script src="__ROOT__/js/shop/banner.js"></script>
+		<script src="__ROOT__/js/shop/tab_change.js"></script>
+		<script src="__ROOT__/js/shop/fixed4.js"></script>
+		<script type="text/javascript" src="__ROOT__/js/shop/sctp.js" ></script>
+	</body>
+</html>

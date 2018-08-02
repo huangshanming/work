@@ -1,0 +1,242 @@
+{include file="Common/header"}
+    <!-- <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css"> -->
+    <link rel="stylesheet" href="__ROOT__/umeditor/themes/default/css/umeditor.css">
+    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+    <script src="__ROOT__/js/shopadmin/sctp.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+    <link rel="stylesheet" href="__ROOT__/css/cropper.min.css" />
+    <link rel="stylesheet" href="__ROOT__/css/ImgCropping.css" />
+    <script type="text/javascript" src="__ROOT__/js/cropper.min.js" ></script>
+	</head>
+	<body>
+		<div class="container" id="app">
+   		<!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   			<div style="height: 60px;"></div>    
+		    	<div class="weui-cell">
+	                <div class="weui-cell__hd"><label class="weui-label">标题</label></div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" v-model="title" placeholder="" type="text">
+	                </div>
+	            </div>
+		      	<div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">图片：</label></div>
+			        <div class="weui-cell__bd">
+	                    <a href="javascript:void(0)" @click='photo_update()' >
+	                        选择<br>
+	                        <img id="photo" style="width:150px;height:150px;"  alt="">
+	                    </a>
+                	</div>
+		      	</div>
+		      	<div class="weui-cell">
+	                <div class="weui-cell__hd"><label class="weui-label">简介</label></div>
+	                <div class="weui-cell__bd">
+	                    <input class="weui-input" v-model="brief" placeholder="" type="text">
+	                </div>
+	            </div>
+		      	<div class="weui-cell">
+		            <div id="editor-year" class="editor margin-right" name="detail" id="detail"></div>	
+	          	</div>
+		      	<div class="weui-btn-area">
+		            <a class="weui-btn weui-btn_primary" href="javascript:" @click="save()" id="showTooltips">确定</a>
+		        </div>
+
+		      	<!--图片裁剪框 start-->
+
+			    <div style="display: none" class="tailoring-container" >
+			        <div class="black-cloth" onclick="closeTailor(this)"></div>
+			        <div class="tailoring-content">
+			            <div class="tailoring-content-one">
+			                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+			                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+			                    选择图片
+			                </label>
+			                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+			            </div>
+			            <div class="tailoring-content-two">
+			                <div class="tailoring-box-parcel">
+			                    <img id="tailoringImg">
+			                </div>
+			                <div class="preview-box-parcel">
+			                    <p>图片预览：</p>
+			                    <div class="square previewImg"></div>
+			                    <div class="circular previewImg"></div>
+			                </div>
+			            </div>
+			            <div class="tailoring-content-three">
+			                <button class="l-btn cropper-reset-btn">复位</button>
+			                <button class="l-btn cropper-rotate-btn">旋转</button>
+			                <button class="l-btn cropper-scaleX-btn">换向</button>
+			                <button class="l-btn sureCut" id="sureCut" @click="confim_photo()">确定</button>
+			            </div>
+			        </div>
+			    </div>
+			    <!--图片裁剪框 end-->
+		</div>
+		
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/umeditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/umeditor.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/lang/zh-cn/zh-cn.js"></script>
+		<script type="text/javascript">
+		window.onload = function() {
+			window.UMEDITOR_HOME_URL = '__PUBLIC__/umeditor/';
+    		var umMonth = UM.getEditor('editor-year');
+    		$('select').select();
+    		
+		    //cropper图片裁剪
+		    $('#tailoringImg').cropper({
+		        aspectRatio: 1/1,//默认比例
+		        preview: '.previewImg',//预览视图
+		        guides: false,  //裁剪框的虚线(九宫格)
+		        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+		        movable: false, //是否允许移动图片
+		        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+		        movable: true,  //是否允许移动剪裁框
+		        resizable: true,  //是否允许改变裁剪框的大小
+		        zoomable: false,  //是否允许缩放图片大小
+		        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+		        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+		        rotatable: true,  //是否允许旋转图片
+		        crop: function(e) {
+		            // 输出结果数据裁剪图像。
+		        }
+		    });
+		    //旋转
+		    $(".cropper-rotate-btn").on("click",function () {
+		        $('#tailoringImg').cropper("rotate", 45);
+		    });
+		    //复位
+		    $(".cropper-reset-btn").on("click",function () {
+		        $('#tailoringImg').cropper("reset");
+		    });
+		    //换向
+		    var flagX = true;
+		    $(".cropper-scaleX-btn").on("click",function () {
+		        if(flagX){
+		            $('#tailoringImg').cropper("scaleX", -1);
+		            flagX = false;
+		        }else{
+		            $('#tailoringImg').cropper("scaleX", 1);
+		            flagX = true;
+		        }
+		        flagX != flagX;
+		    });
+    	}
+   		</script>
+</body>
+</html>
+<!-- <script src="__ROOT__/js/shopadmin/goods_add_vue.js"></script> -->
+<script type="text/javascript">
+     //弹出框水平垂直居中
+   (window.onresize = function () {
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $("#zupu_cover").on("click",function () {
+        $(".tailoring-container").toggle();
+    });
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+</script>
+<script>
+var app = new Vue({
+	el:'#app',
+	data:{	
+		title:'',
+		brief:'',
+	},
+	methods:{
+		photo_update:function(t) {
+			$(".tailoring-container").toggle();
+		},
+		confim_photo:function() {
+			if ($("#tailoringImg").attr("src") == null ){
+	            return false;
+	        }else{
+	            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+	            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            	$("#photo").prop("src",base64url);//显示为图片的形式
+	            
+
+	            //关闭裁剪框
+	            closeTailor();
+	        }
+		},
+		save:function() {
+			var data = {};
+			data['user_token'] 	= get_token();
+			data['title'] 		= this.title;
+			data['brief'] 		= this.brief;
+			data['photo'] 		= $('#photo').attr('src');
+			data['detail'] 		= $('#editor-year').html();
+			if( !data['title'] || !data['brief'] || !data['photo'] || !data['detail']) {
+				weui.alert('请输入完整');
+				return false;
+			}
+			var url = base_url+'Zhuanji/upload';
+			$.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 5000,
+	            success: function (data, status) {
+	                 
+	                if(data.code== codeArr['e200'])
+	                {   
+	                    weui.alert('上传成功',function() {
+	                    	window.location.href = "./index.html";
+	                    });
+	                }else if(data.code==codeArr['e400'])
+	                {
+	                    weui.alert(data.msg);
+	                }else
+	                {
+	                    weui.alert(data.msg);
+	                }
+	                
+	            },
+	            error: function () {
+	                weui.alert('数据请求异常');
+	            },
+	            fail: function (err, status) {
+	                weui.alert('数据请求异常');
+	            }
+	        })
+		},
+		
+	},
+	created:function(){
+
+	}
+})
+</script>

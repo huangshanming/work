@@ -1,0 +1,15 @@
+.pay_top{margin-top: 60px;margin-left: 50px;}
+.pay_top_s{height: 50px;}
+.pay_top_s h3{float: left;}
+.pay_top_s p{float: right;margin-right: 50px;font-size: 16px;}
+.sales{font-size: 14px;height: 50px;}
+.fenge{width: 1000px;height: 1px;background-color: #999;margin-bottom: 50px;}
+.pay_bottom{margin-left: 50px;}
+.pay_bottom p{font-size: 16px;margin-bottom: 40px;}
+.pay_bottom p a{font-size: 14px;display: inline-block;width: 200px;margin-left: 60px;}
+.pay_bottom p a span{height: 30px;line-height: 30px;display:inline-block;vertical-align: middle;margin-left: 10px;}
+.pay_bottom p a img{vertical-align: middle;}
+.yhk{margin-left: 60px;font-size: 14px;line-height: 50px;}
+.pay_bottom input{width: 244px;height: 26px;border:1px solid #01002f;}
+.pay_pay{text-align: center;}
+.pay_pay a{margin: 0 auto;display: inline-block;font-size:14px;width: 124px;height: 28px;background-color: #01002f;box-shadow: 2px 2px 3px #01002f;color: #fff;text-align: center;line-height: 28px;}

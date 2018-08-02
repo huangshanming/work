@@ -1,0 +1,38 @@
+.main_cenetr{margin-top: 60px;}
+.main_center_one{height: 32px;border-bottom: 1px dashed #999;font-size: 14px;}
+.main_center_one .rc{margin-left:20px;}
+.rt{font-weight: 700;color: #01002f;margin-right: 10px;}
+.main_center_one .rl{margin-right: 10px;}
+.main_center_two{height: 35px;border-bottom: 1px dashed #999;line-height: 35px;font-size: 14px;}
+.main_center_two a{margin-left: 20px;}
+.main_center_two .donew{margin-right: 35px;}
+.news_answer{height: 235px;border-bottom: 1px dashed #999;}
+.news_answer h2{margin-top: 40px;}
+.news_answer_actile{ word-wrap: break-word;word-break: normal;margin-top: 30px;line-height: 30px;}
+.news_answer_actile a{width: 200px;float: left;}
+.news_answer_actile img{width: 100%;}
+.news_answer_actile p{display:inline-block;width: 750px;float: left;margin-left: 30px;text-indent: 20px;}
+.sina{float: right;margin-right: 26px;}
+.sina span{margin-left: 50px;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;}
+.clothes ul .thing{margin-bottom: 16px;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/wom.png) no-repeat;}
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 18px;}

@@ -1,0 +1,114 @@
+{include file="Common/header"}
+
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   <div style="height: 60px;"></div>    
+        <!--使下面的h1居中-->
+        <div class="container">
+            <!--使用字体图标，BootStrap官方文档提供了很多-->
+            <h1 class="page-header"><span class="glyphicon glyphicon-bell"></span> 会员注册</h1>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <!--设置文本框长度-->
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="请输入用户名"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!--设置文本框长度-->
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="nickname" id="nickname" placeholder="真实姓名"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">生日:</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input" value="" name="birthday" id="birthday" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">性别:</label>
+                        </div>
+                        <div class="weui-cell__hd">
+                            <select class="weui-select" name="sex" id="sex">
+                                <option value="1" selected="selected">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <input type="password" class="form-control" name="password" id="password"  placeholder="请输入密码"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <input type="password" class="form-control" name="rpassword" id="rpassword"  placeholder="再次输入密码"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <button class="btn btn-primary" onclick="do_register()">注   册</button>
+                        <button class="btn btn-primary">取   消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+<script type="text/javascript">
+    function do_register()
+    {
+        var data = {};
+        var url = base_url+'user/register';
+        data['username'] = $('#username').val();
+        data['password'] = $('#password').val();
+        data['nickname'] = $('#nickname').val();
+        data['birthday'] = $('#birthday').val();
+        data['sex']      = $('#sex').val();
+        if(!data['username'] || !data['password'] || !$('#rpassword').val() || !$('#nickname').val() || !$('#birthday').val())
+        {
+            weui.alert('请输入完整');
+            return false;
+        }else if($('#rpassword').val()!=$('#password').val())
+        {
+            weui.alert('两次密码输入不一致');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code== codeArr['e200'])
+                {   
+                    weui.alert(data.msg,function(){
+                        window.location.href = "./index.html";
+                    });
+                }else if(data.code==codeArr['e400'])
+                {
+                    weui.alert(data.msg);
+                }else
+                {
+                    weui.alert(data.msg);
+                }
+                
+            },
+            fail: function (err, status) {
+                weui.alert('数据请求异常');
+            }
+        })
+    }
+    
+</script>

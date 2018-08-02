@@ -1,0 +1,15 @@
+.righ{margin-right: 80px;}
+.leff{position: relative;}
+.leff {width: 1px;height: 330px;background: url(../images/shu.png) no-repeat;background-size: cover;}
+.leff span{color: #01002f;font-size: 18px;display: block;position:absolute;top: 154px;right: -12px;}
+.dl{height: 50px;}
+.user{height: 40px;}
+.goon{width: 300px;float: left;margin-top: 45px;}
+.goon h2{color: #666666;margin: auto;}
+.kefu{background: url(../images/girrl.png) no-repeat #666 55px;display:block;width: 270px;height: 70px;border-radius:60px;line-height: 70px;color: #fff;font-size: 16px;margin-top: 50px;}
+.goon span{margin-left: 120px;}
+.baobao{margin-top: 20px;}
+.baobao a:first-child{float: left;margin-left: 14px;line-height: 10px;}
+.baobao a:nth-child(2){float: right;line-height: 12px;}
+.phone{background: url(../images/phone.png) no-repeat #666 55px;margin-top: 20px;}
+.zc{display: block;height: 40px;}

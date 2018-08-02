@@ -1,0 +1,208 @@
+{include file="common/header"}
+<body>
+<link href="__ROOT__/css/baijia/names.css" rel="stylesheet">
+<style type="text/css">
+    body {background:url('__ROOT__/images/baijia/bg.jpg');}
+    .con {background:#ffffff;border-radius:5px;width:90%;margin:10px auto 0px;}
+</style>
+<div id="wrapper">
+<div id="app" style="margin-top:70px;">
+    <div class="con" v-for="item in birth_list">
+        <div class="weui-media-box weui-media-box_text" v-if="item.type == 2">
+            <label class="weui-media-box__title">生日提醒</label>
+            <!-- <p class="weui-media-box__desc">{{item.create_time}}</p> -->
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;"><h4>今天是您的生日！亲链网祝您生日快乐！</h4></p>
+        </div>
+        <div class="weui-panel__ft" v-if="item.type == 2">
+            <a href="javascript:void(0);" @click="go_shop(item.id)" class="weui-cell weui-cell_access weui-cell_link">
+                <div class="weui-cell__bd">发起礼拼</div>
+                <span class="weui-cell__ft"></span>
+            </a>    
+        </div>
+
+        <div class="weui-media-box weui-media-box_text" v-if="item.type == 1">
+            <label class="weui-media-box__title">生日提醒</label>
+            <!-- <p class="weui-media-box__desc">{{item.create_time}}</p> -->
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">今天是<b>{{item.nickname}}</b>的生日！快去挑选礼品吧！</p>
+        </div>
+        <div class="weui-panel__ft" v-if="item.type == 1">
+            <a href="javascript:void(0);" @click="go_shop(item.id)" class="weui-cell weui-cell_access weui-cell_link">
+                <div class="weui-cell__bd">挑选礼品</div>
+                <span class="weui-cell__ft"></span>
+            </a>    
+        </div>
+    </div>
+    <div class="con" v-for="item in list">
+        <div class="weui-media-box weui-media-box_text" v-if="item.type == 1">
+            <label class="weui-media-box__title">下单成功提醒</label>
+            <p class="weui-media-box__desc">{{item.create_time}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">您好，您已下单成功！</p>
+            <p class="weui-media-box__desc" style="color:#000;">商品名称：{{item.con.goods_name}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">订单金额：{{item.con.price*item.con.num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">订单号：{{item.con.order_num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">如有疑问，请与商家联系。</p>
+        </div>
+        <div class="weui-panel__ft" v-if="item.type == 1">
+            <a href="javascript:void(0);" @click="go_pay(item.con.order_num)" class="weui-cell weui-cell_access weui-cell_link">
+                <div class="weui-cell__bd">去支付</div>
+                <span class="weui-cell__ft"></span>
+            </a>    
+        </div>
+
+        <div class="weui-media-box weui-media-box_text"  v-if="item.type == 2">
+            <label class="weui-media-box__title">发货通知</label>
+            <p class="weui-media-box__desc">{{item.create_time}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">您好，您的商品已发货！</p>
+            <p class="weui-media-box__desc" style="color:#000;">物流公司：{{item.con.express}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">快递单号：{{item.con.express_id}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">商品名称：{{item.con.goods_name}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">订单金额：{{item.con.price*item.con.num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">订单号：{{item.con.order_num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">如有疑问，请与商家联系。</p>
+        </div>
+
+        <div class="weui-media-box weui-media-box_text"  v-if="item.type == 3">
+            <label class="weui-media-box__title">订单完成</label>
+            <p class="weui-media-box__desc">{{item.create_time}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">您好，您的订单已完成</p>
+            <p class="weui-media-box__desc" style="color:#000;">商品名称：{{item.con.goods_name}}</p>
+            <p class="weui-media-box__desc" style="color:#000;margin-top:10px;">订单金额：{{item.con.price*item.con.num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">订单号：{{item.con.order_num}}</p>
+            <p class="weui-media-box__desc" style="color:#000;">如有疑问，请与商家联系。</p>
+        </div>
+
+    </div>
+    <div colspan="20" style="text-align:center;">
+        <a href="javascript:void(0)" @click="get_more()" class="btn btn-info" v-if="get_more_key==0" style="width:100%;">点击加载更多... </a>
+        <p v-else-if="get_more_key==1"><i class="weui-loading"></i>正在加载</p>
+        <div class="weui-loadmore weui-loadmore_line" v-else-if="get_more_key==2">
+            <span class="weui-loadmore__tips">{{loadmord_tips}}</span>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <!-- container代码 结束 -->
+  
+    <footer>
+  
+    </footer>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  var app = new Vue({
+    el:'#app',
+    data:{
+        last_id:'',
+        list:[],
+        birth_list:[],
+        pagesize:10,
+        get_more_key:1,
+        loadmord_tips:'已无更多',
+    },
+    watch:{
+        
+    },
+    methods:{
+        go_shop:function(user_id) {
+            window.location.href = "./model.html?user_id="+user_id;
+        },
+        go_pay:function(order_num) {
+            window.location.href = "./other_pay.html?order_num="+order_num;
+        },
+        get_more:function() {
+            var data = {};
+            data['user_token'] = get_token();
+            data['pagesize'] = this.pagesize;
+            data['last_id'] = this.last_id;
+            var url = base_url+'Msg/get_list';
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                timeout: 1000,
+                success: function (data, status) {
+                     
+                    if(data.code==codeArr['e200'])
+                    {
+                        for (var i = data.data.length - 1; i >= 0; i--) {
+                            app.$data.list.push(data.data[i]);
+                        }
+                        if(data.data.length==0) {
+                            app.$data.get_more_key = 2;
+                            app.$data.loadmord_tips = '已无更多';
+                        }else if(data.data.length<app.$data.pagesize) {
+                            app.$data.get_more_key = 2;
+                            app.$data.loadmord_tips = '已无更多';
+                        }else{
+                            app.$data.get_more_key = 0;
+                        }
+                        app.$data.last_id = data.data[data.data.length-1].id;
+                    }
+                    
+                },
+                fail: function (err, status) {
+                    app.$data.get_more_key = 2;
+                    app.$data.loadmord_tips = '已无更多';
+                }
+            })
+        }
+       
+    },
+    created:function() {
+        var data = {};
+        data['user_token'] = get_token();
+        data['pagesize'] = this.pagesize;
+        var url = base_url+'Msg/get_list';
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            timeout: 10000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    if(data.data.length==0) {
+                        app.$data.get_more_key = 2;
+                        app.$data.loadmord_tips = '暂无消息';
+                    }else if(data.data.length<app.$data.pagesize) {
+                        app.$data.get_more_key = 2;
+                        app.$data.loadmord_tips = '已无更多';
+                    }else{
+                        app.$data.get_more_key = 0;
+                    }
+                    app.$data.list = data.data;
+                    app.$data.last_id = data.data[data.data.length-1].id;
+                }
+                
+            },
+            fail: function (err, status) {
+                app.$data.get_more_key = 2;
+                app.$data.loadmord_tips = '暂无消息';
+            }
+        })
+
+        var data = {};
+        data['user_token'] = get_token();
+        var url = base_url+'Msg/birth_list';
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            timeout: 10000,
+            success: function (data, status) {
+                if(data.code==codeArr['e200'])
+                {
+                    var list = data.data;
+                    app.$data.birth_list = list;
+                }
+            },
+            fail: function (err, status) {
+            }
+        })
+    }
+  })
+</script>

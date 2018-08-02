@@ -1,0 +1,39 @@
+.here{width: 900px;margin: 0 auto;}
+.high{margin-top: 60px;}
+.high img{float: left;}
+.height{float: left;margin-left: 80px;width: 400px;height: 240px;font-size: 14px;overflow: hidden;}
+.height h3{float: left;}
+.height p{margin-top: 15px;}
+.month{float: right;line-height:24px;}
+.wan{height: 20px;}
+.if{margin-left: 30px;}
+.left{float: left;}
+.right{float: right;}
+.workj{text-align: center;}
+.workj a{display:inline-block;width: 140px;height: 35px;background-color: #01002f;margin-top: 15px;color: #fff;font-size: 14px;text-align: center;line-height: 35px;}
+.dercition{margin-top: 60px;}
+.title h2{float: left;}
+.title{height: 26px;}
+.touxiang{float: right;height: 26px;}
+.touxiang img{float: left;}
+.touxiang span{margin-left: 15px;vertical-align: middle;display:table-cell;float: left;}
+.yellow{width: 900px;height: 220px;position:relative;background-color: #f8f8f8;margin-top: 20px;font-size: 16px;}
+.always{background: url(../images/hr.png) no-repeat bottom left;}
+.always span{line-height: 30px;}
+.yellow p{line-height: 30px;}
+.zhong{width: 720px;margin:0 auto;}
+.yellow_left{float: left;margin-right: 70px;margin-top: 30px;}
+.yellow_left li{float: left;margin-right:30px;}
+.yellow_left li p{line-height: 30px;}
+.yellow_right{margin-left: 50px;float: left;margin-top: 30px;}
+.sky{float: right;}
+.sky p span{font-size: 14px;margin-right: 20px;line-height: 44px;}
+.sky p a{display:inline-block;font-size: 16px;width: 26px;float: left;background: none;line-height: 50px;    margin-right: 20px;}
+.sky p .shareto {float: left;}
+.sky p a img{width: 100%;}
+.pics{margin-top: 50px;}
+.pics li{float: left;width: 33.3%;margin: auto;}
+.zaoxing{margin-top: 50px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.blue li{width: 33.3%;float: left;margin-left: 0px;margin-top: 15px;text-align: center;}
+.blue li p{line-height: 30px;font-size: 14px;}

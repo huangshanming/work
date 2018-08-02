@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/widget/css/RongIMWidget.min.css"/>
+    <script src="__ROOT__/widget/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+</head>
+<style type="text/css">
+    .firends{width:200px;background:#ddd;min-height:200px;float:left;}
+    .firends ul {list-style:none;width:200px;}
+    .firends ul li {float:left; height:50px; text-align:center;line-height:50px;}
+    .firends ul li img{width:50px;height:50px;border-radius:50%;}
+</style>
+<body ng-controller="main">
+<div>
+    <!--导航栏，设置属性为无论怎么滚动页面，导航栏都在顶部，当然也可以设置为bottom-->
+    <nav class="nav navbar-default navbar-fixed-top" role="navigation">
+        <!--导航栏采取流布局方式-->
+    <div class="container-fluid">
+
+    <div class="navbar-header">             
+    <!--浏览器界面小于一定阀值的时候，将会出现一个有三条横线的按钮，点击可以展开隐藏内容-->
+     <a href="#" class="navbar-brand">
+        <img src ="__ROOT__/images/logo.png" style="height: 50px;margin-top:-15px;"/>
+     </a>
+
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>       
+    </div>
+
+    <!--当浏览器缩小的时候，下面这些元素会消失，变成一个可弹出子菜单的小按钮-->
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <!--默认这个选项是选中的（灰色图标）-->
+            <li class="active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">首页<span class="caret"></span></a>
+                <ul class="bs-menu dropdown-menu">
+                    <li><a href="{:url('home/info')}">个人信息</a></li>
+                    <li><a href="./chat.html">亲缘社交</a></li>
+                    <li><a href="./model.html">礼品众筹</a></li>
+                    <li><a href="./crowd_funding.html">众筹列表</a></li>
+                </ul>
+            </li>
+            <!--下拉菜单-->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">亲缘画卷<span class="caret"></span></a>
+                <ul class="bs-menu dropdown-menu" id="menu">
+                    <li><a href="{:url('home/jiapu')}">我的亲缘总图</a></li>
+                    <li><a href="{:url('home/jiapu_create')}">创建家谱</a></li>
+                    <li><a href="{:url('home/jiapu_search')}">搜索家谱</a></li>
+                    <li><a href="{:url('home/baijia')}">姓氏渊源</a></li>
+                    <li><a href="#">事件</a></li>
+                    <!--下拉菜单之间划一道横线作为分割
+                    -->
+                    <li class="divider"></li>
+                    <li><a href="{:url('home/album')}">相册、影视</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DNA检测<span class="caret"></span></a>
+                <ul class="bs-menu dropdown-menu">
+                    <li><a href="#">基因检测</a></li>
+                    <li><a href="#">匹配伴侣</a></li>
+                    <li><a href="#">匹配近亲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">特色服务<span class="caret"></span></a>
+                <ul class="bs-menu dropdown-menu">
+                    <li><a href="#">AI虚拟亲人</a></li>
+                    <li><a href="#">人脸匹配</a></li>
+                </ul>
+            </li>
+            <li><a href="{:url('home/news')}">消息</a></li>
+        </ul>
+        <div class="navbar-form  navbar-right" id="header_info">
+            
+            
+        </div>
+    </div>
+
+</div>
+</nav>
+</div>
+<div class="weui-grids" id="firends" style="margin-top:50px;">
+    <a href="javascript:;" ng-repeat="x in firends" ng-click="setconversation(x.id,x.name)" class="weui-grid">
+        <div class="weui-grid__icon">
+            <img src="__ROOT__/images/f_icon.jpg" alt="">
+        </div>
+        <p class="weui-grid__label">{{x.name}}</p>
+    </a>
+</div>
+<!-- <button ng-click="show()">show</button>
+<button ng-click="hidden()">hidden</button>
+<button ng-click="setconversation()">设置会话</button>
+<label>会话类型</label><input ng-model="targetType">
+<label>会话Id</label><input ng-model="targetId"> -->
+<div>
+    <rong-widget></rong-widget>
+</div>
+<!--客服列表框-->
+</body>
+<script src="__ROOT__/widget/angular.js"></script>
+<script src="__ROOT__/widget/RongIMWidget.js"></script>
+<script type="text/javascript">
+    var token = '';
+    window.onload = function() {
+        
+    }
+</script>
+<script type="text/javascript">
+
+    var demo = angular.module("demo", ["RongWebIMWidget"]);
+    demo.config(function($logProvider){
+        //$logProvider.debugEnabled(false);
+    })
+
+    demo.controller("main", ["$scope","WebIMWidget", "$http", function($scope,WebIMWidget,
+                                                                       $http) {
+        var data = {};
+        data['user_token'] = get_token();
+        $.ajax({
+            url: base_url+'index/Jiapu/get_chat_list',
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            async:true,
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    var str = '';
+                    var list = data.data;
+                    $scope.firends = list;
+                    $('#firends').append(str);
+                }else
+                {
+                    alert('请先登录');
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+        $scope.show = function() {
+            WebIMWidget.show();
+        }
+
+        $scope.hidden = function() {
+            WebIMWidget.hidden();
+        }
+
+        $scope.server = WebIMWidget;
+        $scope.targetType=1;
+
+        $scope.setconversation=function(id,name){
+            $scope.targetId = id.toString();
+            WebIMWidget.setConversation(Number($scope.targetType), id.toString(), name.toString());
+        }
+
+
+        var data = {};
+        data['user_token'] = get_token();
+        $.ajax({
+            url: base_url+'index/Rongyun/get_token',
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            async:true,
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    token = data.data;
+                    WebIMWidget.init({
+                        appkey: "e0x9wycfxxx5q",
+                        token: token,
+                        style:{
+                            width:600,
+                            positionFixed:true,
+                            bottom:20,
+                        },
+                        displayConversationList:true,
+                        conversationListPosition:WebIMWidget.EnumConversationListPosition.right,
+                        hiddenConversations:[{type:WebIMWidget.EnumConversationType.PRIVATE,id:'bb'}],
+                        onSuccess:function(id){
+                            console.log(id);
+                        },
+                        onError:function(error){
+                            console.log("error:"+error);
+                        }
+                    });
+                }else
+                {
+                    alert('请先登录');
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+        
+        WebIMWidget.show();
+
+        WebIMWidget.setUserInfoProvider(function(targetId,obj){
+            if(get_session('user_id')==targetId) {
+                var user_name = get_session('user_name');
+                obj.onSuccess({id:targetId,name:user_name,portraitUri:''});
+            }else {
+                $http({
+                    method:'post',  
+                    url:base_url+'index/Jiapu/get_chat_list',
+                    data:{user_token:get_token()},
+                }).success(function(rep){
+                    var user;
+                    for (var i = rep.data.length - 1; i >= 0; i--) {
+                        if(rep.data[i].id==targetId){
+                            user = rep.data[i];
+                        }
+                    }
+                    console.log(user);
+                    if(user){
+                        obj.onSuccess({id:user.id,name:user.name,portraitUri:user.portraitUri});
+                    }else{
+                        obj.onSuccess({id:targetId,name:"陌："+targetId});
+                    }
+                })
+            }
+            
+        });
+
+        WebIMWidget.setOnlineStatusProvider(function(arr,obj){
+            $http({
+                url:"{:url('index/online')}"
+            }).success(function(rep){
+                obj.onSuccess(rep.code.data);
+            })
+        })
+
+
+        WebIMWidget.onClose=function(){
+            console.log("已关闭");
+        }
+
+        WebIMWidget.show();
+    }]);
+
+</script>
+
+</html>

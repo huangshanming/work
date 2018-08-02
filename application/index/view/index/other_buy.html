@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+	<link rel="stylesheet" href="__ROOT__/css/shop/other-buy.css">
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="http://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="center">
+			<div class="bar">
+				<div class="thing">
+					<div class="bar_ok">
+						<h2>确 认 收 货 地 址 ：</h2>
+					</div>
+              		<ul class="filtering">
+              			<li class="weui-cell">
+              				<div class="weui-cell__hd">
+	              				<label for="reviews-t-all" class="weui-label">
+	              					详细地址：
+	              				</label>
+              				</div>
+              				<div class="weui-cell__bd">
+              					<textarea class="weui-input" name="address" id="address" cols="50" rows="2" placeholder="详细地址"></textarea>
+              				</div>
+              			</li>
+              			<li data-kg-rate-filter-val="1" class="weui-cell">
+              				<div class="weui-cell__hd">
+	              				<label for="reviews-t-val1">
+	              					联系电话：
+	              				</label>
+              				</div>
+              				<div class="weui-cell__bd">
+              					<textarea class="weui-input" name="phone" id="phone" cols="50" rows="2" placeholder="联系电话"></textarea>
+          					</div>
+              			</li>
+              			<li data-kg-rate-filter-val="0" class="weui-cell">
+              				<div class="weui-cell__hd">
+	              				<label for="reviews-t-val0">
+	              					收&nbsp;货&nbsp;人&nbsp;：
+	              				</label>
+              				</div>
+              				<div class="weui-cell__bd">
+              					<textarea class="weui-input" name="name" id="name" cols="50" rows="2" placeholder="收货人"></textarea>
+              				</div>
+              			</li>
+              		</ul>
+				</div>
+				<div class="price">
+					<h2>确 认 订 单 :</h2>
+					<div class="price_title">
+						<p>店 铺 宝 贝</p>
+						<p>数 量</p>
+						<p>价 格</p>
+						<p>留 言</p>
+					</div>
+					<div class="price_pig">
+						<p><img id="picture" src="" alt="" width="200px" height="200px"></p>
+						<p>
+							<span>
+								<button onclick="reduce()">-</button>
+								<input class="child" value="1" id="child">
+								<button onclick="add()">+</button>
+							</span>
+						</p>
+						<p><span id="price"></span></p>
+						<p>
+							<textarea name="" id="remark" class="weui-input" cols="30" rows="2" placeholder="给卖家留言"></textarea>
+						</p>
+					</div>
+				</div>
+				<div class="pay">
+					<a href="javascript:void(0)" onclick="crowdFunding()">发起众筹</a>
+					<a href="javascript:void(0)" onclick="pay()">支 付</a>
+				</div>
+            </div>
+		</div>
+	</div>
+	<div class="clearit"></div>
+	
+	<script src="__ROOT__/js/shop/jquery-1.11.1.min.js"></script>
+	<script src="__ROOT__/js/shop/tab_change.js"></script>
+	<script src="__ROOT__/js/shop/fixed2.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+ 	var count = 0;
+ 	var data = {};
+ 	var price = 0;
+ 	var attr_id = getParam('attr_id')?getParam('attr_id'):0;
+ 	data['user_token'] = get_token();
+ 	data['attr_id'] = attr_id;
+	$.ajax({
+		url: base_url+'Order/confirm',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		timeout: 1000,
+		async : false,
+		success: function (data, status) {
+			
+			if(data.code==codeArr['e200'])
+			{
+				var user_info = {};
+				user_info = data.data.user_info;
+				var goods_info = {};
+				goods_info = data.data.goods_info;
+				count = goods_info.count;
+				$('#address').val(user_info.address);
+				$('#phone').val(user_info.phone);
+				$('#name').val(user_info.nickname);
+				$('#picture').attr('src',goods_info.picture);
+				price = goods_info.price;
+				$('#price').html(price+'元');
+				console.log(data);
+			}else
+			{
+				alert(data.msg);
+				return false;
+			}
+			
+		},
+		fail: function (err, status) {
+			alert('数据请求异常');
+		}
+	})
+
+	function reduce()
+	{
+		var val = $('#child').val();
+		if(val>1)
+		{
+			val--;
+		}
+		$('#price').html(price*val+'元');
+		$('#child').val(val);
+	}
+
+	function add()
+	{
+		var val = $('#child').val();
+		if(val<count)
+		{
+			val++;
+		}
+		$('#price').html(price*val+'元');
+		$('#child').val(val);
+	}
+
+	function pay()
+	{
+		var attr_id = getParam('attr_id')?getParam('attr_id'):0;
+		var data = {};
+		data['number'] = $('#child').val();
+		data['attr_id'] = attr_id;
+		data['address'] = $('#address').val();
+		data['phone'] = $('#phone').val();
+		data['name'] = $('#name').val();
+		data['remark'] = $('#remark').val();
+		data['user_token'] = get_token();
+		$.ajax({
+			url: base_url+'Order/build',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 1000,
+			success: function (data, status) {
+				
+				if(data.code==codeArr['e200'])
+				{
+					var order_num = data.data.order_num;
+					window.location.href = './other_pay.html?order_num='+order_num;
+				}else
+				{
+					alert(data.msg);
+					return false;
+				}
+				
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+			}
+		})
+	}
+
+	function crowdFunding() 
+	{
+		var attr_id = getParam('attr_id')?getParam('attr_id'):0;
+		var data = {};
+		data['number'] = $('#child').val();
+		data['attr_id'] = attr_id;
+		data['address'] = $('#address').val();
+		data['phone'] = $('#phone').val();
+		data['name'] = $('#name').val();
+		data['remark'] = $('#remark').val();
+		data['user_token'] = get_token();
+		$.ajax({
+			url: base_url+'Order/crowd_funding',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 1000,
+			success: function (data, status) {
+				
+				if(data.code==codeArr['e200'])
+				{
+					alert('众筹完成');
+					window.location.href = './crowd_funding.html';
+				}else
+				{
+					alert(data.msg);
+					return false;
+				}
+				
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+			}
+		})
+	}
+</script>

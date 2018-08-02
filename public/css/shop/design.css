@@ -1,0 +1,49 @@
+.design{margin-top: 45px;}
+.vedio{float: left;}
+.sky{float: left;margin-left: 36px;width: 380px;}
+.sky h1{margin-bottom: 40px;}
+.sky p a{padding: 8px 30px;background-color: #01002f;color: #fff;margin-right: 20px;}
+.sky p a{font-size: 16px;}
+.sky p span{font-size: 16px;}
+.sky p span span{color: #0072d3;}
+.sky .newtime p span{font-size: 14px;margin-right: 20px;line-height: 44px;}
+.sky .newtime p span img{vertical-align: middle;}
+.newtime{height: 350px;border-top: 1px solid #666;margin-top: 40px;}
+.sky .newtime p a{display:block;width: 26px;float: left;padding: 0;background: none;line-height: 50px;}
+.newtime p a img{width: 100%;}
+.newtime p .shareto{float: left;}
+.newtime p .lr{margin-left: 20px;}
+.classes p{font-size: 14px;line-height:30px;margin-top: 20px;}
+.news_title{margin-top: 40px;}
+.explain_one{margin-top: 30px;}
+.explain_one .hill{float: left;}
+.good .study{float: left;}
+.good a{margin-left: 80px;}
+.good a img{vertical-align: middle;}
+.good p span{margin-left: 20px;}
+.explain_two{margin-left: 60px;width: 740px;height: 80px;background-color: #f5f5f5;margin-top:20px;line-height: 80px;text-align: center;}
+.explain_two p span{margin-left: 20px;font-size: 14px;}
+.explain_two p img{margin: auto;vertical-align: middle;}
+.pager{text-align: center;margin-top: 60px;}
+.pager li{cursor:pointer;display: inline-block;padding:2px 7px;margin-right:10px;background-color: #999;line-height: 20px;text-align: center;}
+.pager li a{display: inline-block;}
+.pager li select{width: 70px;height: 25px;text-align: center;margin-right: 10px;border: 1px solid #999;}
+.pager .page{background-color: #fff;}
+.mainsrp_pager .three {background-color: #01002f;}
+.mainsrp_pager .three a{color: #fff;}
+.explain_one .good{float: left;margin-left: 20px;line-height: 24px;}
+.news_title h2{float: left;}
+.news_title span{float: left;line-height: 30px;}
+.news_title a{float: right;width: 75px;height: 20px;background-color: #01002f;color:#fff;text-align: center;line-height: 20px;}
+.clothes,.info{overflow: hidden;width: 100%;}
+.clothes ul li{margin-right: 65px;margin-top: 30px;overflow: hidden;width: 213px;height: 200px;border:1px solid #999;box-shadow: 3px 3px 2px #999;}
+.info ul li:last-child{margin-right: 0;}
+.info ul li{margin-right: 45px;float: left;}
+.info ul li a span{margin-left: 10px;}
+.clothes .active{display: block;}
+.tabchange{display: none;}
+.info ul li span{position: static;color: #333;font-weight: 600;line-height: 20px;}
+.info ul li p span{font-weight: normal;line-height: 24px;}
+.info ul li p .collect{float: right;}
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 50px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}

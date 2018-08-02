@@ -1,0 +1,171 @@
+.msg-content .user {
+    margin-top: 18px;
+}
+
+.msg-content .user .msg {
+    padding-bottom: 1px; /** 显示box-shadow */
+}
+
+.msg-content .user .msg .msgBody {
+    line-height: 22px;
+    border-radius: 5px;
+    min-height: 20px;
+    box-shadow: 0px 1px 0px #cdcdcd;
+    text-align: left;
+}
+
+.msg-content .user .msg .msgArrow {
+    margin-top: 10px;
+}
+
+.msg-content .user .msg .msgArrow img {
+    width: 6px;
+}
+
+.msg-content .user .status {
+    display: none;
+    margin: 0 10px;
+}
+
+.msg-content .user .status_error {
+    display: block;
+    background: url("../images/icons.min.png") no-repeat;
+    background-position: 0 -41px;
+    width: 21px;
+    height: 21px;
+}
+
+.msg-content .user_img img {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0px 1px 0px #d7d7d7;
+}
+
+.msg-content .other_user {
+    padding-left: 10px;
+    position: relative;
+    overflow: hidden;
+    float: left;
+}
+
+.msg-content .other_user div {
+    float: left;
+}
+
+.msg-content .other_user .msg {
+    margin-left: 10px;
+}
+
+.msg-content .other_user .msg .msgBody {
+    float: none;
+    background-color: #fff !important;
+    color: #000;
+    max-width: 300px;
+    margin-left: 5px;
+    padding: 12px 19px 12px 10px;
+}
+
+.msg-content .other_user .msg .voice {
+    width: 80px;
+    background: url("../images/voicefrom.png") no-repeat;
+    background-position: 80px 8px;
+}
+
+.msg-content .self .msg .voice {
+    width: 80px;
+    background: url("../images/voiceto.png") no-repeat;
+    background-position: 0 8px;
+}
+
+.msg-content .user .msg .msgBody {
+    margin-right: 40px;
+}
+
+.msg-content .self .msg .msgBody {
+    margin-left: 40px;
+    margin-right: 4px;
+}
+
+.msg-content .other_user div {
+    float: none;
+}
+
+.msg-content .other_user .user_img {
+    float: left;
+}
+
+.msg-content .other_user .msg {
+    margin-left: 50px;
+    padding-right: 30px;
+}
+
+.msg-content .other_user .msg div {
+    float: left;
+}
+.slice {
+    clear: both;
+}
+.msg-content .other_user .msg .status {
+    float: right;
+    margin-left: 5px;
+}
+
+.msg-content .self {
+    width: auto;
+}
+
+.msg-content .self .user_img {
+    float: right;
+}
+
+.msg-content .self .msg {
+    margin-right: 50px;
+    padding-left: 30px;
+    text-align: right
+}
+
+.msg-content .self .msg div {
+    float: right;
+}
+
+.msg-content .self .msg .status {
+    float: left;
+    margin-right: 5px;
+}
+
+.msg-content .self {
+    text-align: right;
+    padding-right: 10px;
+    position: relative;
+    overflow: hidden;
+    float: right;
+}
+
+.msg-content .self div {
+    float: none;
+}
+
+.msg-content .self .msg .msgBody {
+    background-color: #30b5ee;
+    margin-right: 4px;
+    max-width: 300px;
+    float: none;
+    padding: 12px 10px 12px 19px;
+}
+
+.msg-content .self .msg .msgArrow {
+    margin-right: -1px;
+}
+.expression span{
+   margin-right: 30px;
+
+}
+.noticeMsg{
+    background-color: #df4a3a;
+    border-radius: 10px;
+    color: #fff;
+    padding: 2px 6px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}

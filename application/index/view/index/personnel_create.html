@@ -1,0 +1,186 @@
+{include file="common/header"}
+
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   <div style="height: 60px;"></div>    
+        <!--使下面的h1居中-->
+    <div class="container" id="app">
+        <form id="personnel_form">
+            <!--使用字体图标，BootStrap官方文档提供了很多-->
+            <h1 class="page-header"><span class="glyphicon glyphicon-bell"></span> 添加亲人</h1>
+            <div class="form-horizontal" id="input_content">
+                <div class="weui-cell">
+                    <!--设置文本框长度-->
+                    <div class="weui-cell__bd">
+                        <select id="relation" name="relation" v-model="relation" class="weui-select">
+                            <option v-for="item in relation_list" :value="item.key" >{{item.val}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="name" name="name" placeholder="姓名"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="joy" name="joy" placeholder="职业"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="date" class="weui-input" id="birthday" name="birthday" placeholder="出生年月"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-input" rows="3" id="detail" name="detail" placeholder="个人简介"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="m_div" class="form-horizontal" v-if="relation==1"> 
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="m_name" name="m_name" placeholder="母亲姓名"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="m_joy" name="m_joy" placeholder="母亲职业"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="date" class="weui-input" id="m_birthday" name="m_birthday" placeholder="母亲出生年月"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-input" rows="3" id="m_detail" name="m_detail" placeholder="母亲个人简介"></textarea>
+                    </div>
+                </div>
+            </div>  
+
+            <div id="f_div" class="form-horizontal" v-if="relation==2">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="f_name" name="f_name" placeholder="请输入父亲姓名"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="f_joy" name="f_joy" placeholder="父亲职业"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input type="date" class="weui-input" id="f_birthday" name="f_birthday" placeholder="父亲出生年月"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-input" rows="3" id="f_detail" name="f_detail" placeholder="父亲个人简介"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <button class="btn btn-primary" @click="create()">添   加</button>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    
+</script>
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            card_id:'',
+            relation:1,
+            relation_list:[],
+        },
+        methods:{
+            create:function()
+            {
+                var fd = data = {};
+                fd = $('#personnel_form').serializeArray();
+                for (var i = 0; i <= fd.length-1; i++) {
+                    if(fd[i]['name'] == 'm_name' && !fd[i]['value']) {
+                        weui.alert('请填写母亲姓名');return false;
+                    }else if(fd[i]['name'] == 'f_name' && !fd[i]['value']) {
+                        weui.alert('请填写父亲姓名');return false;
+                    }else if(fd[i]['name'] == 'm_joy' && !fd[i]['value']) {
+                        weui.alert('请填写母亲职业');return false;
+                    }else if(fd[i]['name'] == 'f_joy' && !fd[i]['value']) {
+                        weui.alert('请填写父亲职业');return false;
+                    }else if(fd[i]['name'] == 'joy' && !fd[i]['value']) {
+                        weui.alert('请填写职业');return false;
+                    }else if(fd[i]['name'] == 'name' && !fd[i]['value']) {
+                        weui.alert('请填写姓名');return false;
+                    }
+                    data[fd[i]['name']] = fd[i]['value'];
+                }
+                data['user_token'] = get_token();
+                data['card_id'] = get_session('card_id');
+                $.ajax({
+                    url: base_url+'Personnel/add',
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    timeout: 1000,
+                    success: function (data, status) {
+                         
+                        if(data.code==codeArr['e200'])
+                        {
+                            alert(data.msg);
+                            window.location.href = './jiapu.html';
+                        }else
+                        {
+                            alert(data.msg);
+                            window.location.href = './jiapu.html';
+                        }
+                        
+                    },
+                    fail: function (err, status) {
+                        alert('数据请求异常');
+                    }
+                })
+            }
+        },
+        created:function() {
+            this.card_id = get_session('card_id');
+            var data = {};
+            data['user_token'] = get_token();
+            data['card_id'] = get_session('card_id');
+            $.ajax({
+                url: base_url+'Personnel/get_relation_list',
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                timeout: 1000,
+                success: function (data, status) {
+                     
+                    if(data.code==codeArr['e200'])
+                    {
+                        app.$data.relation_list = data.data;
+                        app.$data.relation = data.data[0].key;
+                    }else
+                    {
+                        weui.alert(data.msg);
+                        window.location.href = './jiapu.html';
+                    }
+                    
+                },
+                fail: function (err, status) {
+                    alert('数据请求异常');
+                }
+            })
+        }
+    })
+</script>

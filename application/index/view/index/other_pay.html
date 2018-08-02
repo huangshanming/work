@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" href="__ROOT__/css/shop/base.css">
+	<link rel="stylesheet" href="__ROOT__/css/shop/other-pay.css">
+	<link rel="stylesheet" href="__ROOT__/css/shop/other-buy.css">
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="center">
+			<div class="pay_top">
+				<div class="pay_top_s">
+					<h3 id="title"></h3>
+					<p id="price"></p>
+				</div>
+				<p class="sales" id="number"></p>
+			</div>
+			<div class="fenge"></div>
+			<div class="pay_bottom" style="min-width:300px;margin:0px auto;text-align:">
+				<p>暂微信和亲链币支付 ：
+					<div class="pay"><a onclick="pay()">使用亲链币支付</a>
+					</div>
+				</p>
+				<div style="width:200px;margin:0px auto;">
+					<a href=""><img id="pay_code" src="" width="200px" height="200px" alt=""><p style="width:200px;text-align:center;" id="order"></p></a>
+					<!-- <a href=""><img src="images/zfb.png" alt=""><span>支 付 宝 支 付</span></a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="__ROOT__/js/shop/jquery-1.11.1.min.js"></script>
+	<script src="__ROOT__/js/shop/fixed2.js"></script>
+	<script src="__ROOT__/js/shop/tab_change.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+	var order_num = getParam('order_num')?getParam('order_num'):0;
+	function pay() {
+		weui.confirm('确定使用亲链币付款？',function(){
+			var data = {};
+		 	data['user_token'] = get_token();
+		 	data['order_num'] = order_num;
+			$.ajax({
+				url: base_url+'Order/pay_by_balance',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 5000,
+				success: function (data, status) {
+					
+					if(data.code==codeArr['e200'])
+					{
+						window.setTimeout(function() {
+							window.location.href = "./person_order.html";
+						},1500);
+						weui.alert('支付成功');
+					}else {
+						 weui.alert(data.msg);
+					}
+					
+				},
+				error:function() {
+					weui.alert('数据请求异常');
+				},
+				fail: function (err, status) {
+					weui.alert('数据请求异常');
+				}
+			})
+		});
+	}
+	var data = {};
+ 	data['user_token'] = get_token();
+ 	data['order_num'] = order_num;
+	$.ajax({
+		url: base_url+'Order/get_order_info',
+		type: 'post',
+		data: data,
+		dataType: 'json',
+		timeout: 1000,
+		async : false,
+		success: function (data, status) {
+			
+			if(data.code==codeArr['e200'])
+			{
+				var order_info = data.data;
+				$('#title').html(order_info.title);
+				$('#price').html(order_info.price * order_info.number+'元');
+				$('#number').html('数量：'+order_info.number+' 件');
+				$('#pay_code').attr('src',order_info.url);
+				$('#order').html(order_info.order_num);
+				console.log(data);
+			}else
+			{
+				alert(data.msg);
+				history.go(-1);
+			}
+			
+		},
+		fail: function (err, status) {
+			alert('数据请求异常');
+		}
+	})
+	search();
+	function search() {
+		var data = {};
+	 	data['user_token'] = get_token();
+	 	data['order_num'] = order_num;
+		$.ajax({
+			url: base_url+'Order/get_pay_status',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 1000,
+			async : false,
+			success: function (data, status) {
+				
+				if(data.data==1)
+				{
+					window.setTimeout(function() {
+						window.location.href = "./person_order.html";
+					},1500);
+				}else {
+					 window.setTimeout("search()",1000);
+				}
+				
+			},
+			error:function() {
+				window.setTimeout("search()",1000);
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+				window.setTimeout("search()",1000);
+			}
+		})
+	}
+</script>

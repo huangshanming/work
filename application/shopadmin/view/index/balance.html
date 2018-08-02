@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>商品列表</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+        <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+        <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="app">
+			<h1>账户余额:{{bank_info.balance}}</h1>
+			<a class="button button-little bg-blue" href="javascript:void(0)" @click="ask()">申请提现</a>
+
+
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">提现申请</h4>
+			            </div>
+			            <div class="modal-body">
+							<p>收款人：{{bank_info.payee}}</p>
+							<p>收款人身份证：{{bank_info.payee_id}}</p>
+							<p>银行：{{bank_info.bank}}</p>
+							<p>支行：{{bank_info.branch}}</p>
+							<p>转账帐号：{{bank_info.bank_account}}</p>
+							<p>提现金额：<input type="number" v-model="money"></p>
+							<p>提现密码：<input type="password" v-model="cipher"></p>
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="button" class="btn btn-primary" @click="send()">确定申请</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+			bank_info:[],
+			cipher:'',
+			money:10,
+		},
+		watch:{
+			money:function() {
+				if(parseInt(this.money)>parseInt(this.bank_info.balance))
+				{
+					this.money = this.bank_info.balance;
+				}
+				if(parseInt(this.money)<=1)
+				{
+					this.money = 1;
+				}
+			}
+		},
+		methods:{
+			ask:function() {
+				$('#myModal').modal('show');
+			},
+			send:function() {
+				if(!this.cipher) {
+					weui.alert('请输入提现密码');
+				}
+				var data = {};
+		        var url = base_url+'User/put_forward';
+				data['user_token'] = get_token();
+				data['cipher'] = this.cipher;
+				data['money'] = this.money;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	weui.alert('提现申请成功');
+		                	var data = {};
+					        var url = base_url+'User/get_balance';
+							data['user_token'] = get_token();
+					        $.ajax({
+					            url: url,
+					            type: 'post',
+					            data: data,
+					            dataType: 'json',
+					            timeout: 1000,
+					            success: function (data, status) {
+					                 
+					                if(data.code==codeArr['e200'])
+					                {
+					                	app.$data.bank_info = data.data;
+					                }
+					                
+					            },
+					            fail: function (err, status) {
+					                alert('数据请求异常');
+					            }
+					        })
+		                }
+		                else {
+		                	weui.alert(data.msg);
+		                }
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			}
+		},
+		created:function() {
+			var data = {};
+	        var url = base_url+'User/get_balance';
+			data['user_token'] = get_token();
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                	app.$data.bank_info = data.data;
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                alert('数据请求异常');
+	            }
+	        })
+		}
+	})
+</script>
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

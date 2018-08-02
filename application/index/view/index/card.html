@@ -1,0 +1,289 @@
+{include file="common/header"}
+    <script type="text/javascript" src="__ROOT__/js/home/fileinput.min.js" ></script>
+    <link rel="stylesheet" href="__ROOT__/css/home/fileinput.min.css" />
+    <link rel="stylesheet" href="__ROOT__/css/cropper.min.css" />
+    <link rel="stylesheet" href="__ROOT__/css/ImgCropping.css" />
+    <script type="text/javascript" src="__ROOT__/js/cropper.min.js" ></script>
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   <div style="height: 60px;"></div>    
+        <!--使下面的h1居中-->
+        <div class="container">
+            <!--使用字体图标，BootStrap官方文档提供了很多-->
+            <h1 class="page-header"><span class="glyphicon glyphicon-bell"></span> 修改名片 </h1>
+            <form class="form-horizontal" name="jiapu_form" id="jiapu_form">
+                <div class="form-group">
+                    <div class="col-md-5" for="title"> 头像：
+                    <a href="#" id="zupu_cover">
+                        点击修改<br>
+                        <img id="show_cover" style="width:150px;height:150px;" src="" alt="">
+                    </a></div>
+                </div>
+                <div class="weui-cell">姓名：
+                    <!--设置文本框长度-->
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="name" name="name" placeholder="姓名"/>
+                    </div>
+                </div>
+                <div class="weui-cell">职业：
+                    <!--设置文本框长度-->
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="joy" name="joy" placeholder="职业"/>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="col-md-5">
+                        <select id="sex" name="sex" class="selectpicker show-tick form-control">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                </div> -->
+
+                <div class="weui-cell">出生日期：
+                    <div class="weui-cell__bd">
+                        <input type="date" class="weui-input" id="birthday" name="birthday" placeholder="出生日期 2018/03/24" value="2018/03/24" />
+                    </div>
+                </div>
+                <div class="weui-cell">逝世日期：
+                    <div class="weui-cell__bd">
+                        <input type="date" class="weui-input" id="death_date" name="death_date" placeholder="日期 2100/03/24（可不填）"/>
+                    </div>
+                </div>
+                <div class="weui-cell">简介：
+                    <!--设置文本框长度-->
+                    <div class="weui-cell__bd">
+                        <input type="text" class="weui-input" id="detail" name="detail" placeholder="简介"/>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group">
+                <div class="col-md-5">
+                    <button class="btn btn-primary" onclick="update()" id="save" disabled>修   改</button>
+                </div>
+            </div>
+        </div>
+        
+        <!--图片裁剪框 start-->
+
+    <div style="display: none" class="tailoring-container" >
+        <div class="black-cloth" onclick="closeTailor(this)"></div>
+        <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+                    选择图片
+                </label>
+                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+            </div>
+            <div class="tailoring-content-two">
+                <div class="tailoring-box-parcel">
+                    <img id="tailoringImg">
+                </div>
+                <div class="preview-box-parcel">
+                    <p>图片预览：</p>
+                    <div class="square previewImg"></div>
+                    <div class="circular previewImg"></div>
+                </div>
+            </div>
+            <div class="tailoring-content-three">
+                <button class="l-btn cropper-reset-btn">复位</button>
+                <button class="l-btn cropper-rotate-btn">旋转</button>
+                <button class="l-btn cropper-scaleX-btn">换向</button>
+                <button class="l-btn sureCut" id="sureCut">确定</button>
+            </div>
+        </div>
+    </div>
+    <!--图片裁剪框 end-->
+
+    </body>
+</html>
+<script type="text/javascript">
+
+    var card_id = get_session('card_id');
+    var data = {};
+    var url1 = '';
+    data['user_token'] = get_token();
+    data['card_id'] = card_id;
+    $.ajax({
+        url: base_url+'card/get_card_info',
+        type: "POST",
+        data: data,
+        dataType:'json',
+        async:false,
+        success: function(data, status){
+             
+            if(data.code==codeArr['e200'])
+            {
+                var birthday = data.data.birthday;
+                var death_date = data.data.death_date;
+                $('#name').val(data.data.name);
+                $('#birthday').val(birthday);
+                $('#death_date').val(death_date);
+                $('#detail').val(data.data.detail);
+                $('#joy').val(data.data.joy);
+                url1 = data.data.photo;
+                if(data.data.power==true) {
+                    $('#save').attr("disabled",false);
+                }
+                $('#show_cover').attr('src',url1);
+            }else
+            {
+                alert(data.msg);
+                window.location.href = './index.html';
+            }
+        }
+    });
+
+    $("#birthday").keyup(function(){    
+        var txtChange = $("#birthday").val();
+        if(txtChange.length==4||txtChange.length==7)
+        {
+            txtChange = txtChange + '/';
+            $("#birthday").val(txtChange);   
+        }else if(txtChange.length>10)
+        {
+            txtChange = txtChange.substr(0,10);
+            $("#birthday").val(txtChange); 
+        }
+    });   
+
+    $("#death_date").keyup(function(){    
+        var txtChange = $("#death_date").val();
+        if(txtChange.length==4||txtChange.length==7)
+        {
+            txtChange = txtChange + '/';
+            $("#death_date").val(txtChange);   
+        }else if(txtChange.length>10)
+        {
+            txtChange = txtChange.substr(0,10);
+            $("#death_date").val(txtChange); 
+        }
+    }); 
+
+    function update()
+    {
+        var data = {};
+        data['death_date'] = $('#death_date').val();
+        data['birthday'] = $('#birthday').val();
+        // data['sex'] = $('#sex').val();
+        data['photo'] = $('#show_cover').attr('src');
+        data['name'] = $('#name').val();
+        data['joy'] = $('#joy').val();
+        data['detail'] = $('#detail').val();
+        data['card_id'] = card_id;
+        data['user_token'] = get_token();
+        if(!data['name']) {
+            weui.alert('请输入姓名');return false;
+        }
+        $.ajax({
+            url: base_url+'card/update',
+            type: "POST",
+            data: data,
+            dataType:'json',
+            success: function(data, status){
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    alert(data.msg);
+                    window.location.href = './jiapu.html';
+                }else
+                {
+                    alert(data.msg);
+                    // window.location.href = './jiapu.html';
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+     //弹出框水平垂直居中
+   (window.onresize = function () {
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $("#zupu_cover").on("click",function () {
+        $(".tailoring-container").toggle();
+    });
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        aspectRatio: 1/1,//默认比例
+        preview: '.previewImg',//预览视图
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: false,  //是否允许缩放图片大小
+        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function(e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+    //旋转
+    $(".cropper-rotate-btn").on("click",function () {
+        $('#tailoringImg').cropper("rotate", 45);
+    });
+    //复位
+    $(".cropper-reset-btn").on("click",function () {
+        $('#tailoringImg').cropper("reset");
+    });
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click",function () {
+        if(flagX){
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        }else{
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
+
+    //裁剪后的处理
+    $("#sureCut").on("click",function () {
+        if ($("#tailoringImg").attr("src") == null ){
+            return false;
+        }else{
+            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            $("#show_cover").prop("src",base64url);//显示为图片的形式
+
+            //关闭裁剪框
+            closeTailor();
+        }
+    });
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+</script>

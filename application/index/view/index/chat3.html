@@ -1,0 +1,379 @@
+{include file="common/header"}
+    <script src="__ROOT__/js/home/chat.js"></script>
+    <script src="__ROOT__/js/home/bootstrap-treeview.js"></script>
+    </head>
+    <style type="text/css">
+        .jq22-header{margin-bottom: 15px;font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;}
+        .jq22-icon{color: #fff;}
+
+    </style>
+    <body>
+        <!--导航栏，设置属性为无论怎么滚动页面，导航栏都在顶部，当然也可以设置为bottom-->
+        <nav class="nav navbar-default navbar-fixed-top" role="navigation">
+            <!--导航栏采取流布局方式-->
+        <div class="container-fluid">
+
+        <div class="navbar-header">             
+        <!--浏览器界面小于一定阀值的时候，将会出现一个有三条横线的按钮，点击可以展开隐藏内容-->
+         <a href="#" class="navbar-brand">
+            <img src ="__ROOT__/images/logo.png" style="height: 50px;margin-top:-15px;"/>
+         </a>
+
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>       
+        </div>
+
+        <!--当浏览器缩小的时候，下面这些元素会消失，变成一个可弹出子菜单的小按钮-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <!--默认这个选项是选中的（灰色图标）-->
+                <li class="active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">首页<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="./chat.html">亲缘社交</a></li>
+                        <li><a href="#">礼品众筹</a></li>
+                    </ul>
+                </li>
+                <!--下拉菜单-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">亲缘画卷<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="./jiapu.html">我的亲缘总图</a></li>
+                        <li><a href="./jiapu_create.html">创建家谱</a></li>
+                        <li><a href="#">姓氏渊源</a></li>
+                        <li><a href="#">事件</a></li>
+                        <!--下拉菜单之间划一道横线作为分割
+                        -->
+                        <li class="divider"></li>
+                        <li><a href="#">相册、影视</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">DNA检测<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="#">基因检测</a></li>
+                        <li><a href="#">匹配伴侣</a></li>
+                        <li><a href="#">匹配近亲</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">特色服务<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="#">AI虚拟亲人</a></li>
+                        <li><a href="#">人脸匹配</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-form  navbar-right">
+                <a href="./register.html" class="navber-link">注册</a>
+            </div>
+        </div>
+
+    </div>
+   </nav>
+
+    <!-- <div class="sidebar">
+        <h4>亲缘列表</h4>
+            <div class="cover">
+                <h2><img class="img-circle" src="images/icon_face.jpg"/></h2>
+                <b>Hi~ 小主</b>
+                <p></p>
+            </div>
+            <ul class="sidenav animated fadeInUp">
+                <li><a class="withripple" href=""><i class="icon icon-home"></i><span class="sidespan">首页</span></a></li>                
+                <li><a class="withripple hover" href="javascript:;"><i class="icon icon-article"></i><span class="sidespan">文章管理</span><i class="iright pull-right">&gt;</i></a>
+                    <ul class="sidebar-dropdown">
+                        <li><a href="list.html" class="withripple" target="myframe">文章列表</a></li>
+                        <li><a href="add.html" class="withripple" target="myframe">添加文章</a></li>
+                    </ul>
+                </li>
+                <li><a class="withripple" href="javascript:;"><i class="icon icon-ui"></i><span class="sidespan">UI设计</span><i class="iright pull-right">&gt;</i></a>
+                    <ul class="sidebar-dropdown">
+                        <li><a href="" class="withripple">UI设计列表</a></li>
+                        <li><a href="" class="withripple">添加作品</a></li>
+                    </ul>
+                </li>
+                <li><a class="withripple" href="javascript:;"><i class="icon icon-web"></i><span class="sidespan">WEB前端</span><i class="iright pull-right">&gt;</i></a>
+                    <ul class="sidebar-dropdown">
+                        <li><a href="" class="withripple">文章列表</a></li>
+                        <li><a href="" class="withripple">添加WEB作品</a></li>
+                    </ul>
+                </li>
+                <li><a class="withripple" href="javascript:;"><i class="icon icon-php"></i><span class="sidespan">PHP后台</span><i class="iright pull-right">&gt;</i></a>
+                    <ul class="sidebar-dropdown">
+                        <li><a href="" class="withripple">PHP项目</a></li>
+                        <li><a href="" class="withripple">添加项目</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+    </div>
+    <div class="main">主体部分</div> -->
+
+   <!--防止导航栏盖住内容,本质上是使用空白来占位-->
+   <div style="height: 60px;"></div>    
+        <!--使下面的h1居中-->
+        <div class="container">
+            <div class="col-sm-4">
+                <h3>亲缘列表</h3>
+                <div id="treeview" class=""></div>
+            </div>
+        </div>
+        <div class="container">
+            
+            <div class="" id="bjy-chat-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="bjy-top"><div class="bjy-t-myinfo"> <span id="self_user_name"></span> <img class="bjy-t-avatar" id="bjy-t-avatar"></div><div class="bjy-t-title"><span class="bjy-tt-name"></span><span class="bjy-tt-edu"></span><div class="bjy-tt-close" data-dismiss="modal" aria-hidden="true"></div></div></div><div class="bjy-chat bjy-emoji-out3"><div class="bjy-friend-list"></div><div class="bjy-chat-box bjy-show-out"><div class="bjy-cb-history"></div><div class="bjy-cb-middle"> <button type="button" class="bjy-emoji-ico"></button><div class="bjy-emoji-box"><div class="bjy-e-triangle" style="display:block;width:20px;height:20px;"><div style="display:block;position:absolute;left:10px;top:10px;width:0;height:0;border-style:solid;border-width:10px;border-color:transparent transparent #eee  transparent;"></div><div style="display:block;position:absolute;left:10px;top:11px;;width:0;height:0;border-style:solid;border-width:10px;border-color:transparent transparent #fff transparent;"></div></div><div class="xb-h-10"></div><ul class="nav nav-tabs"><li class="active bjy-emoji-category"> <a href="#bjy-face-11" data-toggle="tab">表情</a></li><li class="bjy-emoji-category"> <a href="#bjy-face-12" data-toggle="tab">动物</a></li><li class="bjy-emoji-category"> <a href="#bjy-face-13" data-toggle="tab">水果</a></li><li class="bjy-emoji-category"> <a href="#bjy-face-14" data-toggle="tab">国旗</a></li><li class="bjy-emoji-category"> <a href="#bjy-face-15" data-toggle="tab">键盘</a></li></ul><div class="tab-content"><div class="tab-pane fade bjy-emoji-imgs in active" id="bjy-face-11"></div><div class="tab-pane fade bjy-emoji-imgs" id="bjy-face-12"></div><div class="tab-pane fade bjy-emoji-imgs" id="bjy-face-13"></div><div class="tab-pane fade bjy-emoji-imgs" id="bjy-face-14"></div><div class="tab-pane fade bjy-emoji-imgs" id="bjy-face-15"></div></div></div></div><div class="bjy-cb-sendbox"><textarea class="bjy-emoji-textarea bjy-emoji-from3 bjy-cbs-content hide" name="content"></textarea><div class="bjy-show-box bjy-emoji-box3" contenteditable="true"></div></div><ul class="bjy-cb-handle"><li class="bjy-cbh-close" data-dismiss="modal" aria-hidden="true">关闭</li><li class="bjy-cbh-send" id="data-uid" data-uid=''>发送</li></ul></div></div></div></div></div>
+
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+
+    var xbIsLogin=0, 
+    rongUserInfoUrl='',
+    rongKey='',
+    rongToken='',
+    xbUserInfo = {}; 
+    var url = base_url+'index/user/rong';
+    var data = {};
+    data['user_token'] = get_token();
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        async :false,
+        dataType: 'json',
+        timeout: 1000,
+        success: function (data, status) {
+             
+            if(data.code==codeArr['e500'])
+            {
+                alert(data.msg);
+                window.location.href = "./index.html";
+            }else if(data.code==codeArr['e201'])
+            {
+                alert(data.msg);
+                window.location.href = "./index.html";
+            }else if(data.code==codeArr['e200'])
+            {
+                xbIsLogin=1;
+                rongUserInfoUrl=base_url+'index/User/get_user_info';
+                rongKey=rong_key;
+                rongToken=data.data.rong_token;
+                xbUserInfo = {
+                    id: data.data.uid,
+                    name: data.data.name,
+                    avatar: data.data.photo
+                };
+                xbUserInfo['avatar'] = xbUserInfo['avatar']?xbUserInfo['avatar']:'../img/clear.png';
+                $('#self_user_name').html(data.data.name); 
+                $('#bjy-t-avatar').attr('src',xbUserInfo['avatar']);
+            }else
+            {
+                window.location.href = "./index.html";
+            }
+            
+        },
+        fail: function (err, status) {
+            alert('数据请求异常');
+        }
+    })
+    
+    // 下面的代码是用来测试的
+    // $('#bjy-chat-modal').modal('show');
+    // setTimeout(function(){
+    //     $('.bjy-fl-one').click();
+    // },2000)
+
+    var alternateData,data = {};
+    data['user_token'] = get_token();
+    $.ajax({
+            url: base_url+'index/Personnel/get_chat_list',
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            timeout: 1000,
+            async:false,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    alternateData = data.data;
+                }else
+                {
+                    alert(data.msg);
+                    window.location.href = './index.html';
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+
+    $('#treeview').treeview({
+          expandIcon: "glyphicon glyphicon-stop",
+          collapseIcon: "glyphicon glyphicon-unchecked",
+          nodeIcon: "glyphicon glyphicon-user",
+          color: "yellow",
+          backColor: "purple",
+          onhoverColor: "orange",
+          borderColor: "red",
+          showBorder: false,
+          showTags: true,
+          // highlightSelected: true,
+          selectedColor: "yellow",
+          selectedBackColor: "darkorange",
+          data: alternateData
+        });
+</script>
+<script src="__ROOT__/js/home/rongcloud/emoji/js/config.js"></script>
+<script src="__ROOT__/js/home/rongcloud/emoji/js/emoji-picker.js"></script>
+<script src="__ROOT__/js/home/rongcloud/emoji/js/jquery.emojiarea.js"></script>
+<script src="http://cdn.ronghub.com/RongIMLib-2.3.0.min.js"></script>
+<script src="__ROOT__/js/home/rongcloud/rongcloud/js/RongEmoji-2.0.2.beta.min.js"></script>
+<script src="__ROOT__/js/home/rongcloud/rongcloud/js/main.js"></script>
+<script src="__ROOT__/js/home/base.js"></script>
+<script type="text/javascript">
+    $('#treeview').on('nodeSelected', function(event, data) {
+        $('#data-uid').attr('data-uid',data.uid);
+        var userInfo={
+            'id': data.uid,
+            'isStudent': false,
+            'avatar': data.photo,
+            'username': data.user_name,
+            'date': new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+            'count': 0
+        };
+        htmlObj=$(rongCreateFriendInfo(userInfo));
+        $('#bjy-chat-modal .bjy-friend-list').prepend(htmlObj);
+        $('#bjy-chat-modal .bjy-cb-history').html('');
+        // 增加选中样式
+        $('.bjy-fl-one').eq(0).addClass('bjy-flo-checked').siblings('.bjy-fl-one').removeClass('bjy-flo-checked');
+        // 设置uid
+        $('#bjy-chat-modal .bjy-cbh-send').attr('data-uid',data.uid);
+        $('#bjy-chat-modal .bjy-cbh-send').attr('data-avatar',data.photo);
+        // 设置聊天框title
+        $('#bjy-chat-modal .bjy-tt-name').text(data.user_name);
+
+        $('.bjy-fl-one').eq(0).addClass('bjy-flo-checked').siblings('.bjy-fl-one').each(function(){
+            if($(this).attr('data-uid')==data.uid)
+            {
+                $(this).remove();
+            }
+        });
+
+        $('#bjy-chat-modal').modal('show');
+    });
+
+
+    </script>
+    <script>
+    $(function(){
+    // 初始化emoji
+    window.emojiPicker = new EmojiPicker({
+        emojiable_selector: '[data-emojiable=true]',
+        assetsPath: '../images/emoji/images',
+        'iconSize': 20
+    });
+    window.emojiPicker.discover();
+     
+ 
+    // 需要转emoji的选择器 表情选择、学霸秀、聊天框
+    var toEmoji=['.bjy-emoji-box','.lqk-cfont-one','.bjy-cbhl-content,.lqk-sshow-info'];
+    $.each(toEmoji, function(index, val) {
+        $.each($(val), function(k, v) {
+            var str=$(v).html();
+            var newStr=window.emojiPicker.unicodeToImage(str);
+            $(v).html(newStr);            
+        });
+ 
+    });
+    // 评论框内的图片转换为from中utf8
+    var imageDiv=['.bjy-emoji-box1','.bjy-emoji-box2','.bjy-emoji-box3'];
+    var emojiFrom=['.bjy-emoji-from1','.bjy-emoji-from2','.bjy-emoji-from3'];
+    $.each(imageDiv, function(index, val) {
+        $(val).blur(function(event) {
+            var str=emojiDeleteTag($(this).html());
+            $(emojiFrom[index]).val(str);
+        });
+    });
+ 
+    /**
+     * 将带有emoji图片的字符串转为utf8
+     * @param  {string} str 带emoji图片的字符串
+     * @return {string}     utf8字符串
+     */
+    function emojiDeleteTag(str){
+        var str=str.replace(/<img.*?src=\".*?\".*?style=\".*?\".*?alt=\"/g,'');
+        var str=str.replace(/<img.*?style=\'.*?\'.*?alt=\"/g,'');
+        var str=str.replace(/\".*?src=\".*?\">/g,'');
+        str=str.replace(/:">/g,':');
+        str=window.emojiPicker.colonToUnicode(str);
+        return str;
+    }
+    // 显示或隐藏表情框
+    $('.bjy-emoji-ico').click(function(event) {
+        var parentObj=$(this).parents('.bjy-show-out').eq(0);
+        parentObj.find('.bjy-emoji-box').toggleClass('show');
+        parentObj.find('.bjy-emoji-category').eq(0).click();
+    });
+    // 点击emoji分类；获取分类下的表情
+    $('.bjy-emoji-box').on('click', '.bjy-emoji-category', function(event) {
+        var indexNumber=$(this).index(),
+            thisEmojiConfig=Config.EmojiCategories[indexNumber],
+            thisHtml='',
+            colon='';
+        // 将colon格式的标签转为图片格式
+        $.each(thisEmojiConfig, function(index, val) {
+            colon +=':'+Config.Emoji[val][1][0]+':';
+            thisHtml=window.emojiPicker.colonToImage(colon);
+        });
+        // 将图片插入到div中
+        $(this).parents('.bjy-emoji-box').eq(0).find('.bjy-emoji-imgs').eq(indexNumber).html(thisHtml);
+    });
+    // 点击添加表情
+    $('body').on('click','.bjy-emoji-box img', function(event) {
+        var str=$(this).prop("outerHTML");
+        $(this).parents('.bjy-show-out').eq(0).find('.bjy-show-box').focus();
+        insertHtmlAtCaret(str);
+        // 选择表情后关闭表情选择框
+        $(this).parents('.bjy-show-out').eq(0).find('.bjy-emoji-box').removeClass('show')
+    });
+     
+})
+ 
+ 
+/**
+ * 在textarea光标后插入内容
+ * @param  string  str 需要插入的内容
+ */
+function insertHtmlAtCaret(str) {
+    var sel, range;
+    if(window.getSelection){
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+            var el = document.createElement("div");
+            el.innerHTML = str;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+                range.insertNode(frag);
+            if(lastNode){
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if (document.selection && document.selection.type != "Control") {
+        document.selection.createRange().pasteHTML(str);
+    }
+}
+</script>

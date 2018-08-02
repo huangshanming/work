@@ -1,0 +1,32 @@
+.head-avatar{margin-top: 45px;}
+.tonight img{vertical-align: middle;}
+.tonight span{font-size: 20px;margin-left: 20px;margin-right: 20px;}
+.tonight a img{margin-top: -10px;}
+.ctr-top{margin-bottom: 20px;}
+.ctr-top .ctr-top-l{width: 64px;text-align: center;}
+.ctr-top .ctr-top-l img{width: 64px;height: 64px;}
+.ctr-top p{margin-bottom: 10px;}
+.ctr-top .ctr-top-c{width: 200px;margin: 0 75px;}
+.ctr-top .ctr-top-c .ctr-c-t{font-size: 16px;}
+.ctr-top .ctr-top-c .ctr-c-t span{color: #000000;}
+.ctr-top .ctr-top-c .ctr-c-t a{color: #0074f7;}
+.ctr-top .ctr-top-c p{line-height: 16px;}
+.ctr-top .ctr-top-r{line-height: 26px;margin-right: 20px;}
+.fl{float: left;}
+.fr{float: right;}
+.center_main_center{margin-top: 60px;}
+.center_main_left{width: 230px;border: 1px solid #01002f;}
+.center_main_left li{height:40px;line-height: 40px;text-align: center;font-size: 14px;border-bottom: 1px dashed #999;}
+.center_main_left .perinf{width: 230px;height: 50px;line-height:50px;background-color: #01002f;text-align: center;color: #fff;border: none;}
+.center_main_left .information{border-bottom: none;}
+.pic {width: 720px;height: 50px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left; font-size: 18px;line-height: 50px;color: #000;}
+.all{font-weight: 600;}
+.center_main_right .many ul{display: block;position: relative;}
+.center_main_right{width: 720px;}
+.center_main_right .clothes,.info{width: 720px;}
+.center_main_right ul li{margin-left: 34px;}
+.margintp{margin-top: 0;}
+.d_dd_line ul li a{padding: 0;}
+.d_lun_question{padding: 0;}
+.mzzq ul li{width: 600px;}
+.mzzq ul li .writer{width: 350px;}

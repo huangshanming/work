@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>{{title}}</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+		<link rel="stylesheet" href="__ROOT__/css/pageNav.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+    	<script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+        <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<div class="ttb" id="app">
+		  	<div class="panel admin-panel">
+			    <div class="panel-head"><strong class="icon-reorder"> 提现记录</strong></div>
+			    <div class="table-responsive">
+				    <table class="table table-hover text-center" id="goods_table">
+				      	<tr>
+					        <th>序号</th>
+					        <th>银行</th>
+					        <th>开户支行</th>
+					        <th>银行账户</th>
+					        <th>收款人</th>
+					        <th>收款人身份证号码</th>
+					        <th>申请时间</th>       
+					        <th>提现金额</th>   
+					        <th>状态</th>   
+				      	</tr>
+				      	<tr v-for="(item,index) in balance_list">
+				      		<td>{{index}}</td>
+				      		<td>{{item.bank}}</td>
+				      		<td>{{item.branch}}</td>
+				      		<td>{{item.bank_account}}</td>
+				      		<td>{{item.payee}}</td>
+				      		<td>{{item.payee_id}}</td>
+				      		<td>{{item.create_time}}</td>
+				      		<td>{{item.money}}</td>
+				      		<td>{{item.status}}</td>
+				      	</tr>
+				    </table>
+			    </div>
+		  	</div>
+		  	<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style="float:left;"></nav>
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+		
+	</body>
+</html>
+<script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+<link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data:{
+			p:1,
+			pagesize:10,
+			balance_list:[],
+		},
+		methods:{
+			set_page:function(pageCount) {
+				var pageNavObj = null;//用于储存分页对象
+				var p = app.$data.p;
+				pageNavObj = new PageNavCreate("PageNavId",{ pageCount:pageCount, currentPage:p, perPageNum:5, });
+				pageNavObj.afterClick(function(page){
+					app.$options.methods.show(page);
+				});
+			},
+			show:function(page='') {
+				if(page){
+					app.$data.p = page;
+				}
+				var data = {};
+		        var url = base_url+'User/get_balance_list';
+				data['user_token'] = get_token();
+				data['pagesize'] = app.$data.pagesize;
+				data['p'] = page;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	app.$data.balance_list = [];
+		                    app.$data.balance_list = data.data.list;
+		                    app.$options.methods.set_page(data.data.max_page);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                alert('数据请求异常');
+		            }
+		        })
+			},
+
+		},
+		created:function() {
+			var data = {};
+	        var url = base_url+'User/get_balance_list';
+			data['user_token'] = get_token();
+			data['p'] = this.p;
+			data['pagesize'] = this.pagesize;
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                    app.$data.balance_list = data.data.list;
+	                    app.$options.methods.set_page(data.data.max_page);
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                alert('数据请求异常');
+	            }
+	        })
+		}
+
+	})
+</script>
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>

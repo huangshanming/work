@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>添加商品</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <link rel="stylesheet" href="__ROOT__/umeditor/themes/default/css/umeditor.css">
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script src="__ROOT__/js/shopadmin/sctp.js"></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+	    <link rel="stylesheet" href="__ROOT__/css/cropper.min.css" />
+	    <link rel="stylesheet" href="__ROOT__/css/ImgCropping.css" />
+	    <script type="text/javascript" src="__ROOT__/js/cropper.min.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="form-x" id="app">
+		    <div class="panel-head"><strong class="icon-reorder"> 编辑商品</strong></div>
+		    <div class="common-info margin-top">
+		    	<div class="form-group">
+					<div class="label">
+		          		<label>商品名称：</label>
+		        	</div>
+			        <div class="field">
+			          	<input type="text" class="input input-auto" value="" name="title" id="title" v-model="title" />
+			          	<div class="tips"></div>
+			        </div>
+		      	</div>
+		      	<div class="form-group">
+                    <div class="label">
+		          		<label>商品缩略图：</label>
+		        	</div>
+			        <div class="field">
+	                    <a href="javascript:void(0)" @click='photo_update(1)' >
+	                        点击修改<br>
+	                        <img id="bp" style="width:150px;height:150px;" :src="goods_info.picture" alt="">
+	                    </a>
+                	</div>
+		      	</div>
+		      	<div class="form-group">
+					<div class="label">
+		          		<label>商品细节图：</label>
+		        	</div>
+			        <div class="field">
+			          	<div class="float-left file-list">
+					        <div class="field">
+			                    <a href="javascript:void(0)" @click='photo_update(2)' >
+			                        点击修改<br>
+			                        <img id="sp1" style="width:150px;height:150px;" alt="" :src="goods_info.icon1">
+			                    </a>
+		                    </div>
+				      	</div>
+						<div class="float-left file-list">
+							<div class="field">
+			                    <a href="javascript:void(0)" @click='photo_update(3)' >
+			                        点击修改<br>
+			                        <img id="sp2" style="width:150px;height:150px;"  alt="" :src="goods_info.icon2">
+			                    </a>
+		                    </div>
+						</div>
+						<div class="float-left file-list">
+							<div class="field">
+			                    <a href="javascript:void(0)" @click='photo_update(4)' >
+			                        点击修改<br>
+			                        <img id="sp3" style="width:150px;height:150px;"  alt="" :src="goods_info.icon3">
+			                    </a>
+		                    </div>
+						</div>
+						<div class="float-left file-list">
+							<div class="field">
+			                    <a href="javascript:void(0)" @click='photo_update(5)' >
+			                        点击修改<br>
+			                        <img id="sp4" style="width:150px;height:150px;"  alt="" :src="goods_info.icon4">
+			                    </a>
+		                    </div>
+						</div>
+			        </div>
+		      	</div>
+		      	<div class="form-group">
+					<div class="label">
+		          		<label>所属分类：</label>
+		        	</div>
+			        <div class="field">
+			          	<select class="input input-auto" name="cate_id" id="cate_id" v-model="cate_id">
+			          		<option v-for="item in cate_list" v-bind:value="item.id">{{item.name}}</option>
+						</select>
+			        </div>
+		      	</div>
+		      	<div class="form-group">
+					<div class="label">
+		          		<label>商品介绍：</label>
+		        	</div>
+			        <div class="field">
+			          	<div id="editor-year" class="editor margin-right" name="detail" id="detail">
+			          	</div>
+			        </div>
+		      	</div>
+		      	<div class="form-group">
+					<div class="label">
+		          		<label></label>
+		        	</div>
+			        <div class="field">
+			          	<a class="button border-main" href="javascript:void(0)" @click="save()">保存</a>
+			        </div>
+		      	</div>
+
+		      	<!--图片裁剪框 start-->
+
+			    <div style="display: none" class="tailoring-container" >
+			        <div class="black-cloth" onclick="closeTailor(this)"></div>
+			        <div class="tailoring-content">
+			            <div class="tailoring-content-one">
+			                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+			                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+			                    选择图片
+			                </label>
+			                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+			            </div>
+			            <div class="tailoring-content-two">
+			                <div class="tailoring-box-parcel">
+			                    <img id="tailoringImg">
+			                </div>
+			                <div class="preview-box-parcel">
+			                    <p>图片预览：</p>
+			                    <div class="square previewImg"></div>
+			                    <div class="circular previewImg"></div>
+			                </div>
+			            </div>
+			            <div class="tailoring-content-three">
+			                <button class="l-btn cropper-reset-btn">复位</button>
+			                <button class="l-btn cropper-rotate-btn">旋转</button>
+			                <button class="l-btn cropper-scaleX-btn">换向</button>
+			                <button class="l-btn sureCut" id="sureCut" @click="confim_photo()">确定</button>
+			            </div>
+			        </div>
+			    </div>
+			    <!--图片裁剪框 end-->
+			</div>
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+		
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/umeditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/umeditor.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="__ROOT__/umeditor/lang/zh-cn/zh-cn.js"></script>
+		<script type="text/javascript">
+		window.onload = function() {
+			window.UMEDITOR_HOME_URL = '__PUBLIC__/umeditor/';
+    		var umMonth = UM.getEditor('editor-year');
+    		$('select').select();
+    		//弹出图片裁剪框
+		    $("#zupu_cover").on("click",function () {
+		        $(".tailoring-container").toggle();
+		    });
+			//cropper图片裁剪
+		    $('#tailoringImg').cropper({
+		        aspectRatio: 1/1,//默认比例
+		        preview: '.previewImg',//预览视图
+		        guides: false,  //裁剪框的虚线(九宫格)
+		        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+		        movable: false, //是否允许移动图片
+		        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+		        movable: true,  //是否允许移动剪裁框
+		        resizable: true,  //是否允许改变裁剪框的大小
+		        zoomable: false,  //是否允许缩放图片大小
+		        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+		        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+		        rotatable: true,  //是否允许旋转图片
+		        crop: function(e) {
+		            // 输出结果数据裁剪图像。
+		        }
+		    });
+		    //旋转
+		    $(".cropper-rotate-btn").on("click",function () {
+		        $('#tailoringImg').cropper("rotate", 45);
+		    });
+		    //复位
+		    $(".cropper-reset-btn").on("click",function () {
+		        $('#tailoringImg').cropper("reset");
+		    });
+		//换向
+		    var flagX = true;
+		    $(".cropper-scaleX-btn").on("click",function () {
+		        if(flagX){
+		            $('#tailoringImg').cropper("scaleX", -1);
+		            flagX = false;
+		        }else{
+		            $('#tailoringImg').cropper("scaleX", 1);
+		            flagX = true;
+		        }
+		        flagX != flagX;
+		    });
+		}
+			
+   		</script>
+</body>
+</html>
+<!-- <script src="__ROOT__/js/shopadmin/goods_add_vue.js"></script> -->
+<script type="text/javascript">
+     //弹出框水平垂直居中
+   (window.onresize = function () {
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+    
+    
+
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+</script>
+<script type="text/javascript">
+	var data = {};
+	data['user_token'] = get_token();
+	$.ajax({
+			url: base_url+'User/has_login',
+			type: 'post',
+			data: data,
+			async:false,
+			dataType: 'json',
+			timeout: 1000,
+			success: function (data, status) {
+            	 
+				if(data.code!=codeArr['e200'])
+				{
+					alert(data.msg);
+					window.location.href = './login.html';
+				}
+				
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+				window.location.href = './login.html';
+			}
+		})
+</script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+var app = new Vue({
+	el:'#app',
+	data:{
+		photo_selected:1,
+		goods_info:[],
+		attr_list:[],
+		cate_list:[],
+		cate_id:'',
+		goods_id:'',
+		title:'',
+		div:'',
+		attr_1:'',
+		attr_2:'',
+		attr_3:'',
+		attr_4:'',
+		av_1:'',
+		av_2:'',
+		av_3:'',
+		av_4:'',
+		av_list_1:[],
+		av_list_2:[],
+		av_list_3:[],
+		av_list_4:[],
+	},
+	methods:{
+		save:function() {
+			var sp1 = $('#sp1').attr('src');
+			var sp2 = $('#sp2').attr('src');
+			var sp3 = $('#sp3').attr('src');
+			var sp4 = $('#sp4').attr('src');
+			var bp = $('#bp').attr('src');
+			var detail = $('#editor-year').html();
+			if(!this.title || !sp1 || !sp2 || !sp3 || !sp4 || !bp || !detail) {
+				weui.alert('请填写必要信息');return false;
+			}
+			if(!this.cate_id) {
+				weui.alert('请选择商品分类');return false;
+			}
+			var data = {};
+			data['title'] = this.title;
+			data['sp1'] = sp1;
+			data['sp2'] = sp2;
+			data['sp3'] = sp3;
+			data['sp4'] = sp4;
+			data['cate_id'] = this.cate_id;
+			data['bp']  = bp;
+			data['detail'] = detail;
+			data['user_token'] = get_token();
+			data['id'] = this.goods_id;
+			$.ajax({
+				url: base_url+'Goods/update_goods',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 1000,
+				success: function (data, status) {
+	            	 
+					if(data.code==codeArr['e200'])
+					{
+						weui.alert('修改商品成功');
+					}else {
+						weui.alert(data.msg);
+					}
+					
+				},
+				fail: function (err, status) {
+					weui.alert('发生异常');
+				}
+			})
+		},
+		get_av:function(t) {
+			var id = 0;
+			if(t==1) {
+				id = this.attr_1;
+			}else if(t==2) {
+				id = this.attr_2;
+			}else if(t==3) {
+				id = this.attr_3;
+			}else if(t==4) {
+				id = this.attr_4;
+			}
+			var data = {};
+			data['user_token'] = get_token();
+			data['id'] = id;
+			$.ajax({
+				url: base_url+'Attrs/get_values',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				timeout: 1000,
+				success: function (data, status) {
+	            	 
+					if(data.code==codeArr['e200'])
+					{
+						if(t==1) {
+							app.$data.av_list_1 = data.data;
+						}else if(t==2) {
+							app.$data.av_list_2 = data.data;
+						}else if(t==3) {
+							app.$data.av_list_3 = data.data;
+						}else if(t==4) {
+							app.$data.av_list_4 = data.data;
+						}
+					}
+					
+				},
+				fail: function (err, status) {
+				}
+			})
+		},
+		photo_update:function(t) {
+			this.photo_selected = t;
+			$(".tailoring-container").toggle();
+		},
+		confim_photo:function() {
+			if ($("#tailoringImg").attr("src") == null ){
+	            return false;
+	        }else{
+	            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+	            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+	            if(this.photo_selected==1) {
+	            	$("#bp").prop("src",base64url);//显示为图片的形式
+	            }else if(this.photo_selected==2) {
+	            	$("#sp1").prop("src",base64url);//显示为图片的形式
+	            }else if(this.photo_selected==3) {
+	            	$("#sp2").prop("src",base64url);//显示为图片的形式
+	            }else if(this.photo_selected==4) {
+	            	$("#sp3").prop("src",base64url);//显示为图片的形式
+	            }else if(this.photo_selected==5) {
+	            	$("#sp4").prop("src",base64url);//显示为图片的形式
+	            }
+
+	            //关闭裁剪框
+	            closeTailor();
+	        }
+		},
+	},
+	created:function(){
+		var data = {};
+		data['user_token'] = get_token();
+		data['id'] = getParam('id');
+		if(isNaN(data['id'])) 
+		{
+			weui.alert('id不存在',function(){
+				window.history.go(-1);
+			});
+		}
+		this.goods_id = getParam('id');
+		$.ajax({
+			url: base_url+'Goods/get_info',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 1000,
+			success: function (data, status) {
+            	 
+				if(data.code==codeArr['e200'])
+				{
+					app.$data.goods_info = data.data;
+					app.$data.title = data.data.title;
+					$('#editor-year').html(data.data.detail);
+				}else
+				{
+					weui.alert(data.msg,function(){
+						window.history.go(-1);
+					});
+				}
+				
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+			}
+		})
+
+		var data = {};
+		data['user_token'] = get_token();
+		$.ajax({
+			url: base_url+'Goods/get_add_info',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			timeout: 1000,
+			success: function (data, status) {
+            	 
+				if(data.code==codeArr['e200'])
+				{
+					var cates,attrs = {};
+                    cates = data.data.cates;
+                    attrs = data.data.attrs;
+					app.$data.attr_list = attrs;
+					app.$data.cate_list = cates;
+				}else
+				{
+					alert(data.msg);
+					window.location.href = './login.html';
+				}
+				
+			},
+			fail: function (err, status) {
+				alert('数据请求异常');
+			}
+		})
+	}
+})
+</script>

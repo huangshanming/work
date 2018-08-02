@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head> 
+    <meta charset="utf-8">
+    <title>聊天标题</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/widget/css/RongIMWidget.min.css"/>
+    <script src="__ROOT__/widget/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+    <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+</head>
+<style type="text/css">
+    .firends{width:200px;background:#ddd;min-height:200px;float:left;}
+    .firends ul {list-style:none;width:200px;}
+    .firends ul li {float:left; height:50px; text-align:center;line-height:50px;}
+    .firends ul li img{width:50px;height:50px;border-radius:50%;}
+</style>
+<body ng-controller="main">
+<div class="weui-grids" id="firends">
+    
+</div>
+<button ng-click="show()">show</button>
+<button ng-click="hidden()">hidden</button>
+<button ng-click="setconversation()">设置会话</button>
+<label>会话类型</label><input ng-model="targetType">
+<label>会话Id</label><input ng-model="targetId">
+<div>
+    <rong-widget></rong-widget>
+</div>
+<!--客服列表框-->
+</body>
+<script src="__ROOT__/widget/angular.js"></script>
+<script src="__ROOT__/widget/RongIMWidget.js"></script>
+<script type="text/javascript">
+    var token = '';
+    window.onload = function() {
+        var data = {};
+        data['user_token'] = get_token();
+        $.ajax({
+            url: base_url+'index/Jiapu/get_chat_list',
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            async:true,
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    var str = '';
+                    var list = data.data;
+                    for (var i = list.length - 1; i >= 0; i--) {
+                        str += '<a href="javascript:;" class="weui-grid"><div class="weui-grid__icon"><img src="__ROOT__/images/f_icon.jpg" alt=""></div><p class="weui-grid__label">'+list[i].nickname+'</p></a>';
+                    }
+                    $('#firends').append(str);
+                }else
+                {
+                    alert('请先登录');
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+
+    var demo = angular.module("demo", ["RongWebIMWidget"]);
+    demo.config(function($logProvider){
+        //$logProvider.debugEnabled(false);
+    })
+
+    demo.controller("main", ["$scope","WebIMWidget", "$http", function($scope,WebIMWidget,
+                                                                       $http) {
+        alert(WebIMWidget);
+        $scope.show = function() {
+            WebIMWidget.show();
+        }
+
+        $scope.hidden = function() {
+            WebIMWidget.hidden();
+        }
+
+        $scope.server = WebIMWidget;
+        $scope.targetType=1;
+
+        $scope.setconversation=function(){
+            WebIMWidget.setConversation(Number($scope.targetType), $scope.targetId, "自定义:"+$scope.targetId);
+        }
+
+
+        var data = {};
+        data['user_token'] = get_token();
+        $.ajax({
+            url: base_url+'index/Rongyun/get_token',
+            type: 'post',
+            data: data,
+            dataType: 'json',
+            async:true,
+            timeout: 1000,
+            success: function (data, status) {
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    token = data.data;
+                    WebIMWidget.init({
+                        appkey: "e0x9wycfxxx5q",
+                        token: token,
+                        style:{
+                            width:600,
+                            positionFixed:true,
+                            bottom:20,
+                        },
+                        displayConversationList:true,
+                        conversationListPosition:WebIMWidget.EnumConversationListPosition.right,
+                        hiddenConversations:[{type:WebIMWidget.EnumConversationType.PRIVATE,id:'bb'}],
+                        onSuccess:function(id){
+                            console.log(id);
+                        },
+                        onError:function(error){
+                            console.log("error:"+error);
+                        }
+                    });
+                }else
+                {
+                    alert('请先登录');
+                }
+                
+            },
+            fail: function (err, status) {
+                alert('数据请求异常');
+            }
+        })
+        
+        WebIMWidget.show();
+
+        WebIMWidget.setUserInfoProvider(function(targetId,obj){
+            $http({
+                url:"{:url('index/userinfo')}"
+            }).success(function(rep){
+                var user;
+                rep.userlist.forEach(function(item){
+                    if(item.id==targetId){
+                        user=item;
+                    }
+                })
+                if(user){
+                    obj.onSuccess({id:user.id,name:user.name,portraitUri:user.portraitUri});
+                }else{
+                    obj.onSuccess({id:targetId,name:"陌："+targetId});
+                }
+            })
+        });
+
+        WebIMWidget.setOnlineStatusProvider(function(arr,obj){
+            $http({
+                url:"{:url('index/online')}"
+            }).success(function(rep){
+                obj.onSuccess(rep.data);
+            })
+        })
+
+
+        WebIMWidget.onClose=function(){
+            console.log("已关闭");
+        }
+
+        WebIMWidget.show();
+    }]);
+
+</script>
+
+</html>

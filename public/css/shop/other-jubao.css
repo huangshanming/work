@@ -1,0 +1,25 @@
+.serive_left{width: 184px;margin-top: 60px;float: left;}
+.jubao{width: 182px;height: 576px;border:1px solid #01002f;}
+.sco{height: 235px;}
+.ser{height: 305px;}
+.serive_left p{height: 58px;display: block;background-color: #01002f;text-align: center;line-height: 58px;color: #fff;font-size: 18px;}
+.seo p{background-image:none;}
+.money p{background-image: none;}
+.serive_left li{height: 35px;border-bottom: 1px dashed #999;line-height: 35px;}
+.serive_left .sco li a{margin-left: 0;}
+.serive_left .sco li{background: none;width: 182px;text-align: center;}
+.money li{background: url(../images/iconj.png) no-repeat 14px center;}
+.serive_left li a{margin-left: 10px;font-size: 14px;}
+.money li a{margin-left: 36px;}
+.serive_left li:first-child{margin-top: 15px;}
+.serive_left .finally{border-bottom: none;}
+.message .message_center a:nth-child(2){margin-left: 30px;}
+.message{width: 182px;text-align: center;margin-top: 40px;}
+.sale a{display: block;width: 182px;height: 38px;background-color: #01002f;color: #fff;font-size: 16px;text-align: center;line-height: 38px;margin-top: 30px;}
+.serive_right{width:760px;margin-left: 50px;float: left;margin-top: 60px;}
+.right_tittle{height: 30px;border-bottom: 1px dashed #999;line-height: 30px;}
+.right_tittle p{font-weight: 600;}
+.right_conves .h2{text-align: center;margin-top: 30px;margin-bottom: 30px;}
+.right_conves p{margin-top: 26px;line-height: 24px;}
+.conves p{margin-top: 15px;}
+

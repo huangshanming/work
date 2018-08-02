@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$title}</title>
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap.min.css" />
+        <link rel="stylesheet" href="__ROOT__/css/home/extend.css" />
+        <link rel="stylesheet" href="__ROOT__/css/home/home/index.css" />
+        <link rel="stylesheet" href="__ROOT__/css/home/bootstrap-theme.min.css"/>
+        <script type="text/javascript" src="__ROOT__/js/home/common.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/home/jquery.min.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/home/jquery.cookie.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<!--         <script type="text/javascript" src="__ROOT__/js/home/bootstrap.min.js" ></script> -->
+    </head> 
+    <style type="text/css">
+        body
+        {
+            background:url('__ROOT__/images/index.jpg');
+            background-size:576 446px;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-position:center;
+        }
+    </style>
+    <body>
+    <div>
+        <!--导航栏，设置属性为无论怎么滚动页面，导航栏都在顶部，当然也可以设置为bottom-->
+        <nav class="nav navbar-default navbar-fixed-top" role="navigation">
+            <!--导航栏采取流布局方式-->
+        <div class="container-fluid">
+
+        <div class="navbar-header">             
+        <!--浏览器界面小于一定阀值的时候，将会出现一个有三条横线的按钮，点击可以展开隐藏内容-->
+         <a href="#" class="navbar-brand">
+            <img src ="__ROOT__/images/logo.png" style="height: 50px;margin-top:-15px;"/>
+         </a>
+
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>       
+        </div>
+
+        <!--当浏览器缩小的时候，下面这些元素会消失，变成一个可弹出子菜单的小按钮-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <!--默认这个选项是选中的（灰色图标）-->
+                <li class="active" id="home_page">
+                    <a href="{:url('Index/index')}" class="dropdown-toggle" data-toggle="dropdown">首页<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a class="key" href="{:url('Index/info')}">个人信息</a></li>
+                        <li><a class="key" href="{:url('index/chat')}">亲缘社交</a></li>
+                        <li><a href="{:url('index/model')}">礼拼商城</a></li>
+                        <li><a class="key" href="{:url('index/crowd_funding')}">礼拼列表</a></li>
+                    </ul>
+                </li>
+                <!--下拉菜单-->
+                <li class="dropdown" id="jiapu_page">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">亲缘画卷<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu" id="menu">
+                        <li><a class="key" href="{:url('Index/jiapu')}">我的亲缘总图</a></li>
+                        <li><a class="key" href="{:url('Index/jiapu_create')}">创建家谱</a></li>
+                        <li><a class="key" href="{:url('Index/jiapu_search')}">搜索家谱</a></li>
+                        <li><a href="{:url('Index/baijia')}">姓氏渊源</a></li>
+                        <li><a class="key" href="{:url('Index/zhuanji_list')}">家族传记</a></li>
+                        <li><a class="key" href="{:url('Index/zhuanji')}">写传记</a></li>
+                        <li><a class="key" href="{:url('Index/album')}">相册、影视</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" id="dna_page">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">DNA检测<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="#">基因检测</a></li>
+                        <li><a href="#">匹配伴侣</a></li>
+                        <li><a href="#">匹配近亲</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" id="ai_page">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">特色服务<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li><a href="#">AI虚拟亲人</a></li>
+                        <li><a href="#">人脸匹配</a></li>
+                    </ul>
+                </li>
+                <li id="news_page"><a class="key" href="{:url('index/news')}">我的消息</a></li>
+                <li class="is_login">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color:#00cc00;" v-if="is_login==true" id="user_name"></span><span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li class="is_login"><a href="javascript:void(0)" onclick="cancel()" class="navber-link">注销</a></li>
+                    </ul>
+                </li>
+                <li class="no_login" id="login_page">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li class="no_login"><a href="{:url('index/register')}" class="navber-link">注册</a></li>
+                        <li class="no_login"><a href="{:url('index/login')}" class="navber-link">登录</a></li>
+                    </ul>
+                </li>
+                <li id="news_page"><a class="key" href="{:url('index/recharge')}">亲链币充值<span id="balance"></span></a></li>
+            </ul>
+            <div class="navbar-form  navbar-right" id="header_info">
+            </div>
+        </div>
+
+    </div>
+   </nav>
+   </div>
+   <script type="text/javascript">
+        var is_login;
+        var token = '';
+        var str = '';
+        token = get_token();
+        if(token) {
+            // str = '<p style="color:#00cc00;" v-if="is_login==true">'+get_session('user_name')+'</a><a href="javascript:void(0)" onclick="cancel()" class="navber-link">注销</a>';
+            $('.is_login').css('display',true);
+            $('.no_login').css('display','none');
+            $('.no_login').css('display','none');
+            $('#user_name').html(get_session('user_name'));
+            $('#balance').html('￥'+get_session('balance'));
+        }else {
+            // str = '<a href="./register.html" class="navber-link">注册</a><a href="./index.html" class="navber-link">登录</a>';
+            $('.no_login').css('display',true);
+            $('.is_login').css('display','none');
+            $('.key').attr("href",'javascript:alert("请先登录")'); 
+        }
+        $('#header_info').append(str);
+        function cancel() {
+            set_session('user_token','');
+            set_session('user_name','');
+            set_session('user_id','');
+            set_session('user_id','');
+            window.location.href = './index.html';
+        
+        }
+   
+        var data = {};
+        data['user_token'] = token;
+        $.ajax({
+            url: base_url+'jiapu/is_creator',
+            type: "POST",
+            data: data,
+            dataType:'json',
+            success: function(data, status){
+                 
+                if(data.code==codeArr['e200'])
+                {
+                    $('#menu').append(' <li><a href="{:url("index/jiapu_power")}" >家谱权限管理</a></li>');
+                }
+            }
+        });
+       
+   </script>

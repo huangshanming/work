@@ -1,0 +1,108 @@
+/*------------------主体-----------------*/
+.banner{width: 100%;height: 600px;position: relative;overflow: hidden;}
+.bing{position: relative;width: 100%;}
+.bing li{position: absolute;top: 0;left: 0;width: 100%;height: 600px;background-image: url(../images/banner.png);background-repeat: no-repeat;background-size: cover;}
+.fan img{width: 100%;}
+.jiaodian .dian{background-color: #01002f;}
+.jiaodian{height: 50px;position: absolute;bottom: 40px;left: 50%;margin-left: -40px;z-index: +9999;}
+.jiaodian i{width: 14px;height: 14px;cursor: pointer;background-color: #fff;border-radius: 50%;border: 1px solid #888;float: left;margin-right: 30px;margin-top: 20px;}
+.jiaodian .fff{background-color: #333;}
+.banner { position: relative; overflow: auto; text-align: center;}
+.banner li { list-style: none; }
+.banner ul li { float: left; }
+.banner ul li img{width: 100%;height: 600px;}
+#b04 {}
+#b04 .dots { position: absolute; left: 0; right: 0; bottom: 20px;}
+#b04 .dots li { display: inline-block; width: 10px; height: 10px; margin: 0 4px; text-indent: -999em; border: 2px solid #fff; border-radius: 6px; cursor: pointer; opacity: .4; -webkit-transition: background .5s, opacity .5s; -moz-transition: background .5s, opacity .5s; transition: background .5s, opacity .5s;}
+#b04 .dots li.active {background: #fff;opacity: 1;}
+#b04 .arrow { position: absolute; top: 50%;transform: translate(0,-50%);width: 20px;height: 35px;}
+#b04 #al { left: 15px;}
+#b04 #ar { right: 15px;}
+
+/*---------造型中心--------*/
+.zaoxing{margin-top: 36px;position: relative;}
+.pic{height: 60px;padding-right: 15px;background: url(../images/line.png) no-repeat bottom left;font-size: 18px;line-height: 40px;color: #000;}
+.title-left{display:block;float: left;padding-left: 40px;padding-top: 4px;}
+.title-top{background: url(../images/wom.png) no-repeat;}
+.title-bottom{background: url(../images/com.png) no-repeat;}
+.more{display: block;background: url(../images/img.png) 23px 6px no-repeat;float: right;line-height: 40px;padding-right: 30px;padding-top: 16px;font-size: 14px;}
+.clearit{clear:both;}
+.more p{margin-right: 30px;}
+.cosplay{height: 90px;padding-left: 20px;line-height: 90px;}
+.cosplay ul{float: left;}
+.cosplay li a{margin-right: 30px;color:rgb(1,0,47);font-size: 18px;}
+.all{color: #000;font-weight:600;}
+.hot{float: right;padding-right: 10px;}
+.hot a{display: inline-block;padding:2px 12px;text-align: center;line-height: 26px;margin-left: 25px;border: 1px solid #666;border-radius: 6px;color: #666;font-size: 14px;}
+/*------------共享资料---------------*/
+.clothes,.info{overflow: hidden;width: 1200px;}
+.clothes ul li{margin-right: 65px;margin-bottom: 22px;overflow: hidden;}
+.tt ul li{float: left;width: 144px;height: 193px;}
+.tt ul li img{width: 144px;height: 190px;}
+.clothes ul li a{position: relative;}
+.clothes a span{position: absolute;left: 0;bottom: 0;background: rgba(0,0,0,0.4);color: #fff;padding:0 5px;}
+.clothes a span i{font-style: normal;display: table-cell;vertical-align: middle;height: 54px;width: 100%;}
+.info ul li{width: 209px;height: 200px;margin-right: 60px;float: left;}
+.info ul li:first-child{position: relative;}
+.info ul li:first-child img:first-child{ position: absolute;top: 50%;margin-top: -100px;left: 50%;margin-left: -35px;}
+.clothes .active{display: block;}
+.tabchange{display: none;}
+.info ul li span{position: static;background: none; color: #333; height: 40px;text-align: center;line-height: 40px;display: block;}
+/*--------------招聘中心---------------*/
+.yingpin{width: 545px;float: left;}
+.star{width: 545px;}
+.zhaopin{background: url(../images/peo.png) no-repeat 4px 0;}
+.hot .only{width: 60px;height: 20px;line-height: 22px;margin-right: 20px;}
+.hair{margin-top: 20px;margin-left: 20px;}
+.clothes ul .hair_top{height: 170px;float: none;}
+.word{width: 300px;float: left;padding-top: 15px;padding-left: 25px;color: #333;position: relative;}
+.word h4{color: #333;}
+.word h4,p{margin-top: 10px;}
+.hh span{float: right;}
+.word p{line-height: 20px;}
+/*------------排行榜------------*/
+.paibang{background: url(../images/hei.png) no-repeat; }
+.paihang{width: 395px;float: right;}
+.bang{width: 395px;}
+.start .active .team{margin-left: 25px;}
+.team a{display: block;width: 80px;height: 80px;background-color: #000;border-radius: 100%;overflow: hidden;float: left;margin-right: 50px;margin-top: 4px;}
+.team .jianjie p{line-height: 6px;}
+.kingjt,.ju{color: #e07e00;}
+.kingy,.yt{color:#88a0aa;}
+.jianjie p span{margin-left: 30px;}
+/*------------专家论坛-----------*/
+.zhuanjia{background: url(../images/per.png) no-repeat 4px 8px;	}
+.small .big a{margin-right: 8px;}
+.long{margin-top: 20px;float: left;}
+.long span,.long img{display:block;float: left;}
+.uncle{margin-left: 4px;font-size: 16px;}
+.today{margin-top: 3px;margin-left: 26px;}
+.eyes img{width: 20px;margin-top: -2px;margin-right: 2px;}
+.zixun{background:url(../images/hei.png) no-repeat;}
+/*--------------资讯-----------*/
+.cosplay li .att{margin-right: 50px;}
+/*.start{margin-top: 20px;}*/
+.aa img{width: 395px;margin-top: 20px;margin-bottom: 15px;}
+.start ul{/*margin-top: 20px;*/margin-left: 5px;}
+.start ul li{margin-top: 13px;}
+.start ul li span{position: static; float: right;display: inline-block;}
+.thing .six{color: #333;background-color: #fff;}
+/*--------------视频/图文指导------------*/
+.vedio{background: url(../images/box.png) no-repeat 4px 14px;}
+.blue li{width: 25%;height: 240px;text-align: center;float: left;margin-left: 0px;}
+/*.blue li:nth-child(2) img{width: 206px}*/
+.clothes ul .thing{margin-bottom: 16px;}
+/*--------------信用投诉中心-------------*/
+.xinyong{background: url(../images/rit.png) no-repeat 4px 14px;}
+.question{width: 1000px;float: left;margin-left: 70px;}
+.question .forget{margin-right: 120px;float: left;height:65px;width: 200px;border-right: 1px solid rgba(0,0,0,.1)}
+.question .border{border-right: none;}
+.forget i{display: inline-block;width: 6px;height: 6px;background-color: #333;border-radius: 100%;margin-right: 5px;}
+.girl{width: 395px;}
+.down{margin-top: 10px;}
+.up{margin-top: 12px;}
+.clothes .girl li{margin-right: 10px;}
+.que{display: none;}
+.active{display: block;}
+
+

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <title>商品列表</title>  
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/pintuer.css">
+	    <link rel="stylesheet" href="__ROOT__/css/shopadmin/admin.css">
+	    <script src="__ROOT__/js/shopadmin/jquery.js"></script>
+    	<script src="__ROOT__/js/shopadmin/common.js"></script>
+	    <script src="__ROOT__/js/shopadmin/pintuer.js"></script>  
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/layer/layer.js" ></script>
+	    <script type="text/javascript" src="__ROOT__/js/shopadmin/jedate/jedate.js" ></script>
+    	<script type="text/javascript" src="__ROOT__/js/pageNav.js" ></script>
+        <script type="text/javascript" src="__ROOT__/js/weui.min.js" ></script>
+        <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+	</head>
+	<body>
+	<div id="app">
+		<div class="ttb">
+		  	<div class="panel admin-panel">
+			    <div class="panel-head"><strong class="icon-reorder"> 属性列表</strong></div>
+			    <input type="text" v-model="addAttr" class="input input-auto margin-big-left" placeholder="输入属性名称" />
+			    <a class="button border-main" @click="add()" style="cursor:pointer;">增加属性</a>
+			    <div class="table-responsive">
+				    <table class="table table-hover text-center" id="goods_table">
+				      	<tr>
+				      		<th><input type="checkbox" name="ckall" value=""  /></th>
+					        <th>属性名称</th>
+					        <th>属性值</th>
+					        <th>操作</th>       
+				      	</tr>
+				      	<tr v-for="(item,index) in attrs_list">
+				      		<td>
+				      			<input type="checkbox" name="ckall" value="item.id" />
+				      		</td>
+				      		<td>
+				      			{{item.name}}
+			      			</td>
+			      			<td>
+			      				<label style="height:20px;border:1px solid #ddd; margin-right: 4px;" v-for="(val,vindex) in attrs_list[index].val_list">{{val.value}} <a href="javascript:void(0)" @click="val_del(val.id,index,vindex)">x</a></label>
+			      			</td>
+			      			<td>
+			    				<input type="text" v-model="addVal" class="input input-auto margin-big-left" placeholder="输入属性值" />
+			      				<div class="button-group">
+			      					<a class="button border-green" style="cursor:pointer;" @click="addValue(item.id,index)">
+			      						添加属性值
+			      					</a>
+			      					<!-- <a class="button border-main">
+			      						<span class="icon-edit"></span> 编辑
+			      					</a> -->
+			      					<a class="button border-red" href="javascript:void(0)" @click="del(item.id,index)">
+				      			<span class="icon-trash-o"></span> 删除</a>
+				      			</div>
+			      			</td>
+				      	</tr>
+				    </table>
+			    </div>
+		  	</div>
+		  	<nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId" style="float:left;"></nav>
+		</div>
+		<a href="javascript:void(0)" id="btn-scroll-up"> 
+  			<img src="__ROOT__/images/shopadmin/top.png"/>
+		</a>
+	</div>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+ 		data:{
+ 			p:1,
+ 			attrs_list:[],
+ 			pagesize:10,
+ 			addVal:'',
+			'title':'',
+			'order_num':'',
+			'detail_order':[],
+			'express_id':'',
+			'express':'',
+			'addAttr':'',
+ 		},
+ 		methods:{
+ 			del:function(id,index) {
+ 				weui.confirm('确定删除？',function(){
+	 				var data = {};
+			        var url = base_url+'Attrs/del';
+					data['user_token'] = get_token();
+					data['id'] = id;
+			        $.ajax({
+			            url: url,
+			            type: 'post',
+			            data: data,
+			            dataType: 'json',
+			            timeout: 1000,
+			            success: function (data, status) {
+			                 
+			                if(data.code==codeArr['e200'])
+			                {
+			                	weui.alert('删除成功',function(){
+			                		app.$data.attrs_list.splice(index,1);
+			                	});
+			                }else {
+			                	weui.alert(data.msg);
+			                }
+			                
+			            },
+			            fail: function (err, status) {
+			                weui.alert('数据请求异常');
+			            }
+			        })
+			    })
+ 			},
+ 			val_del:function(id,aIndex,vIndex) {
+ 				weui.confirm('确定删除？',function(){
+ 					var data = {};
+			        var url = base_url+'Attrs/del_value';
+					data['user_token'] = get_token();
+					data['id'] = id;
+			        $.ajax({
+			            url: url,
+			            type: 'post',
+			            data: data,
+			            dataType: 'json',
+			            timeout: 1000,
+			            success: function (data, status) {
+			                 
+			                if(data.code==codeArr['e200'])
+			                {
+			                	weui.alert('删除成功',function(){
+			                		app.$data.attrs_list[aIndex].val_list.splice(vIndex,1);
+			                	});
+			                }else {
+			                	weui.alert(data.msg);
+			                }
+			                
+			            },
+			            fail: function (err, status) {
+			                weui.alert('数据请求异常');
+			            }
+			        })
+ 				})
+ 			},
+ 			addValue:function(attr_id,index) {
+ 				if(this.addVal=='') {
+ 					return false;
+ 				}
+ 				var data = {};
+		        var url = base_url+'Attrs/add_value';
+				data['user_token'] = get_token();
+				data['value'] = this.addVal;
+				data['attr_id'] = attr_id;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	weui.alert('添加成功',function(){
+
+		                		app.$data.attrs_list[index].val_list.push(data.data);
+		                	});
+		                }else {
+		                	weui.alert(data.msg);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                weui.alert('数据请求异常');
+		            }
+		        })
+ 			},
+ 			add:function() {
+ 				var data = {};
+ 				if(!this.addAttr) {
+ 					return false;
+ 				}
+		        var url = base_url+'Attrs/add';
+				data['user_token'] = get_token();
+				data['name'] = this.addAttr;
+				data['pagesize'] = this.pagesize;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	weui.alert('添加成功',function(){
+			                    app.$data.attrs_list.push( data.data.list );
+			                    app.$options.methods.set_page(data.data.max_page);
+		                	});
+		                }else {
+		                	weui.alert(data.msg);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                weui.alert('数据请求异常');
+		            }
+		        })
+ 			},
+			set_page:function(pageCount) {
+				var pageNavObj = null;//用于储存分页对象
+				var p = app.$data.p;
+				pageNavObj = new PageNavCreate("PageNavId",{ pageCount:pageCount, currentPage:p, perPageNum:2, });
+				pageNavObj.afterClick(function(page){
+					app.$options.methods.show(page);
+				});
+			},
+			show:function(page='') {
+				if(page){
+					app.$data.p = page;
+				}
+		        var data = {};
+		        var url = base_url+'Attrs/get_list';
+				data['user_token'] = get_token();
+				data['p'] = page;
+				data['pagesize'] = app.$data.pagesize;
+		        $.ajax({
+		            url: url,
+		            type: 'post',
+		            data: data,
+		            dataType: 'json',
+		            timeout: 1000,
+		            success: function (data, status) {
+		                 
+		                if(data.code==codeArr['e200'])
+		                {
+		                	console.log(data.data);
+		                    app.$data.attrs_list = data.data.list;
+		                    app.$options.methods.set_page(data.data.max_page);
+		                }
+		                
+		            },
+		            fail: function (err, status) {
+		                weui.alert('数据请求异常');
+		            }
+		        })
+			},
+ 		},
+		created:function() {
+ 			var data = {};
+	        var url = base_url+'Attrs/get_list';
+			data['user_token'] = get_token();
+			data['p'] = this.p;
+	        $.ajax({
+	            url: url,
+	            type: 'post',
+	            data: data,
+	            dataType: 'json',
+	            timeout: 1000,
+	            success: function (data, status) {
+	                 
+	                if(data.code==codeArr['e200'])
+	                {
+	                	console.log(data.data);
+	                    app.$data.attrs_list = data.data.list;
+	                    app.$options.methods.set_page(data.data.max_page);
+	                }
+	                
+	            },
+	            fail: function (err, status) {
+	                weui.alert('数据请求异常');
+	            }
+	        })
+ 		}
+ 	});
+	
+</script>
+
+<script>
+	if(!get_token()) {
+		window.location.href = "./login.html";
+	}
+</script>
